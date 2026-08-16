@@ -9,13 +9,13 @@
     cursor: none;
 }
 
-
-/* ========================================
-   BODY
-======================================== */
+html {
+    width: 100%;
+    min-height: 100%;
+}
 
 body {
-
+    width: 100%;
     min-height: 100vh;
 
     position: relative;
@@ -75,7 +75,7 @@ body {
 
 
 /* ========================================
-   CURSOR
+   CUSTOM CURSOR
 ======================================== */
 
 .cursor {
@@ -92,7 +92,6 @@ body {
     transform:
         translate(-50%, -50%);
 }
-
 
 .cursor::after {
 
@@ -129,7 +128,6 @@ body {
     overflow: hidden;
 }
 
-
 .floating-background span {
 
     position: absolute;
@@ -144,57 +142,39 @@ body {
         infinite;
 }
 
-
 .floating-background span:nth-child(1) {
-
     top: 12%;
     left: 8%;
-
     font-size: 22px;
 }
 
-
 .floating-background span:nth-child(2) {
-
     top: 20%;
     right: 12%;
-
     font-size: 20px;
 }
 
-
 .floating-background span:nth-child(3) {
-
     top: 55%;
     left: 7%;
-
     font-size: 25px;
 }
 
-
 .floating-background span:nth-child(4) {
-
     top: 70%;
     right: 8%;
-
     font-size: 18px;
 }
 
-
 .floating-background span:nth-child(5) {
-
     bottom: 12%;
     left: 20%;
-
     font-size: 20px;
 }
 
-
 .floating-background span:nth-child(6) {
-
     top: 42%;
     right: 23%;
-
     font-size: 22px;
 }
 
@@ -209,10 +189,7 @@ body {
 
     z-index: 5;
 
-    width: min(
-        900px,
-        92%
-    );
+    width: min(900px, 92%);
 
     min-height: 720px;
 
@@ -220,8 +197,7 @@ body {
 
     padding:
         25px
-        35px
-        25px;
+        35px;
 
     background:
         rgba(255,253,248,.82);
@@ -243,112 +219,6 @@ body {
 
     -webkit-backdrop-filter:
         blur(10px);
-}
-
-
-/* ========================================
-   READY SCREEN
-======================================== */
-
-#ready-screen {
-
-    position: absolute;
-
-    inset: 0;
-
-    z-index: 50;
-
-    display: flex;
-
-    flex-direction: column;
-
-    align-items: center;
-
-    justify-content: center;
-
-    text-align: center;
-
-    padding: 30px;
-
-    background:
-        rgba(255,253,248,.97);
-
-    opacity: 1;
-}
-
-
-#ready-screen h2 {
-
-    max-width: 500px;
-
-    font-family: Georgia, serif;
-
-    font-size:
-        clamp(
-            1.5rem,
-            4vw,
-            2.2rem
-        );
-
-    line-height: 1.3;
-
-    color: #292724;
-
-    margin-bottom: 25px;
-}
-
-
-#ready-button {
-
-    padding:
-        13px 28px;
-
-    border: none;
-
-    border-radius: 4px;
-
-    background: #292724;
-
-    color: #fffdf8;
-
-    font-family:
-        "Arial Rounded MT Bold",
-        Arial,
-        sans-serif;
-
-    font-size: .85rem;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    box-shadow:
-        0 5px 0 #171614,
-        0 10px 20px
-        rgba(0,0,0,.12);
-
-    transition:
-        transform .2s ease,
-        background .2s ease;
-
-    cursor: pointer;
-}
-
-
-#ready-button:hover {
-
-    background: #3b3834;
-
-    transform:
-        translateY(-3px);
-}
-
-
-#ready-button span {
-
-    margin-left: 8px;
-
-    color: #d98b8b;
 }
 
 
@@ -380,7 +250,6 @@ body {
     color: #77716a;
 }
 
-
 .quest-label {
 
     display: flex;
@@ -391,7 +260,6 @@ body {
 
     color: #9c5c5c;
 }
-
 
 .status-dot {
 
@@ -416,6 +284,8 @@ body {
 ======================================== */
 
 .birthday-content {
+
+    position: relative;
 
     display: flex;
 
@@ -479,7 +349,6 @@ h1 {
         rgba(255,255,255,.8);
 }
 
-
 h1 span {
 
     display: block;
@@ -491,6 +360,112 @@ h1 span {
     letter-spacing: 3px;
 
     margin-top: 12px;
+}
+
+
+/* ========================================
+   READY SCREEN
+======================================== */
+
+#ready-screen {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 50;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        rgba(255,253,248,.96);
+
+    opacity: 1;
+}
+
+#ready-screen p {
+
+    font-family: Georgia, serif;
+
+    font-size: 1.25rem;
+
+    color: #6e6861;
+
+    margin-bottom: 22px;
+}
+
+#ready-button {
+
+    padding:
+        13px
+        28px;
+
+    border: none;
+
+    border-radius: 4px;
+
+    background: #292724;
+
+    color: #fffdf8;
+
+    font-family:
+        "Arial Rounded MT Bold",
+        Arial,
+        sans-serif;
+
+    font-size: .85rem;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 5px 0 #171614,
+        0 10px 20px
+        rgba(0,0,0,.12);
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+
+    cursor: pointer;
+}
+
+#ready-button:hover {
+
+    background: #3b3834;
+
+    transform:
+        translateY(-3px);
+}
+
+
+/* ========================================
+   QUEST CONTENT
+======================================== */
+
+.quest-content {
+
+    width: 100%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+}
+
+.quest-content.hidden {
+
+    display: none;
 }
 
 
@@ -508,7 +483,9 @@ h1 span {
 
     line-height: 1.7;
 
-    margin-bottom: 15px;
+    margin-bottom: 10px;
+
+    text-align: center;
 }
 
 
@@ -522,12 +499,12 @@ h1 span {
 
     width: 450px;
 
-    max-width: 95%;
-
     height: 330px;
 
+    max-width: 100%;
+
     margin:
-        10px auto
+        5px auto
         0;
 
     display: flex;
@@ -571,6 +548,8 @@ h1 span {
     width: 330px;
 
     height: 210px;
+
+    flex-shrink: 0;
 }
 
 
@@ -599,7 +578,6 @@ h1 span {
     z-index: 5;
 }
 
-
 .candle {
 
     position: relative;
@@ -607,6 +585,8 @@ h1 span {
     width: 25px;
 
     height: 90px;
+
+    flex-shrink: 0;
 }
 
 
@@ -630,10 +610,8 @@ h1 span {
 
         repeating-linear-gradient(
             135deg,
-
             #fffdf8 0px,
             #fffdf8 7px,
-
             #d9a0a0 7px,
             #d9a0a0 12px
         );
@@ -686,7 +664,6 @@ h1 span {
     z-index: 10;
 
     background:
-
         linear-gradient(
             45deg,
             #d98b8b,
@@ -719,7 +696,6 @@ h1 span {
     cursor: pointer;
 }
 
-
 .flame::after {
 
     content: "";
@@ -738,7 +714,6 @@ h1 span {
 
     opacity: .7;
 }
-
 
 .flame:hover {
 
@@ -830,16 +805,13 @@ h1 span {
     bottom: -10px;
 }
 
-
 .cream-1 {
     left: 55px;
 }
 
-
 .cream-2 {
     left: 130px;
 }
-
 
 .cream-3 {
     right: 55px;
@@ -883,7 +855,6 @@ h1 span {
     height: 55px;
 
     background:
-
         linear-gradient(
             to bottom,
             #d7a0a0,
@@ -918,7 +889,6 @@ h1 span {
     height: 60px;
 
     background:
-
         linear-gradient(
             to bottom,
             #fffdf8,
@@ -965,6 +935,55 @@ h1 span {
 
 
 /* ========================================
+   CAKE STICKERS
+======================================== */
+
+.cake-sticker {
+
+    position: absolute;
+
+    z-index: 20;
+
+    pointer-events: none;
+}
+
+.cake-sticker img {
+
+    display: block;
+
+    width: 100%;
+
+    height: auto;
+}
+
+.sticker-d1 {
+
+    width: 110px;
+
+    left:
+        calc(50% - 280px);
+
+    top: 48%;
+
+    transform:
+        translateY(-50%);
+}
+
+.sticker-d2 {
+
+    width: 110px;
+
+    right:
+        calc(50% - 280px);
+
+    top: 48%;
+
+    transform:
+        translateY(-50%);
+}
+
+
+/* ========================================
    QUEST STATUS
 ======================================== */
 
@@ -984,26 +1003,23 @@ h1 span {
 
     letter-spacing: .5px;
 
-    margin-top: 10px;
-
-    width: 100%;
+    margin-top: -5px;
 }
-
 
 #quest-text {
 
     display: block;
 
-    width: 100%;
+    max-width: 90%;
 
     text-align: center;
 
-    line-height: 1.4;
+    line-height: 1.5;
 }
 
 
 /* ========================================
-   CANDLE PROGRESS
+   PROGRESS
 ======================================== */
 
 .candle-progress {
@@ -1012,7 +1028,6 @@ h1 span {
 
     gap: 8px;
 }
-
 
 .progress-dot {
 
@@ -1026,7 +1041,6 @@ h1 span {
     transition:
         all .3s ease;
 }
-
 
 .progress-dot.active {
 
@@ -1078,11 +1092,6 @@ h1 span {
     text-align: center;
 }
 
-
-/* ========================================
-   MESSAGE ICON
-======================================== */
-
 .message-icon {
 
     font-size: 28px;
@@ -1091,7 +1100,6 @@ h1 span {
 
     margin-bottom: 10px;
 }
-
 
 .message-small {
 
@@ -1105,7 +1113,6 @@ h1 span {
 
     margin-bottom: 10px;
 }
-
 
 .birthday-message h2 {
 
@@ -1122,7 +1129,6 @@ h1 span {
 
     margin-bottom: 18px;
 }
-
 
 .birthday-message p:not(.message-small) {
 
@@ -1178,7 +1184,6 @@ h1 span {
     cursor: pointer;
 }
 
-
 #continue-button:hover {
 
     background: #3b3834;
@@ -1186,7 +1191,6 @@ h1 span {
     transform:
         translateY(-3px);
 }
-
 
 #continue-button span {
 
@@ -1222,62 +1226,6 @@ h1 span {
 
 
 /* ========================================
-   CAKE STICKERS
-======================================== */
-
-.cake-sticker {
-
-    position: absolute;
-
-    z-index: 5;
-
-    pointer-events: none;
-}
-
-
-.cake-sticker img {
-
-    width: 100%;
-
-    height: auto;
-
-    display: block;
-}
-
-
-/* LEFT */
-
-.sticker-d1 {
-
-    width: 110px;
-
-    left:
-        calc(50% - 280px);
-
-    top: 48%;
-
-    transform:
-        translateY(-50%);
-}
-
-
-/* RIGHT */
-
-.sticker-d2 {
-
-    width: 110px;
-
-    right:
-        calc(50% - 280px);
-
-    top: 48%;
-
-    transform:
-        translateY(-50%);
-}
-
-
-/* ========================================
    ANIMATIONS
 ======================================== */
 
@@ -1291,7 +1239,6 @@ h1 span {
         opacity: .3;
     }
 }
-
 
 @keyframes flameFlicker {
 
@@ -1309,7 +1256,6 @@ h1 span {
             scale(1.08);
     }
 }
-
 
 @keyframes floatAround {
 
@@ -1330,7 +1276,7 @@ h1 span {
 
 
 /* ========================================
-   MOBILE — TABLET / PHONE
+   TABLET
 ======================================== */
 
 @media (max-width: 768px) {
@@ -1341,8 +1287,7 @@ h1 span {
 
         min-height: auto;
 
-        margin:
-            20px auto;
+        margin: 20px auto;
 
         padding:
             20px
@@ -1354,7 +1299,7 @@ h1 span {
     .birthday-content {
 
         padding:
-            35px 0
+            40px 0
             30px;
     }
 
@@ -1374,60 +1319,40 @@ h1 span {
 
         font-size: .9rem;
 
-        line-height: 1.6;
+        max-width: 95%;
     }
 
 
-    /* ====================================
-       CAKE MOBILE
-    ==================================== */
+    /*
+       IMPORTANT:
+       Cake tetap proporsional,
+       bukan dibuat terlalu kecil.
+    */
 
     .cake-area {
 
-        width: 450px;
-
-        max-width: none;
+        width: 400px;
 
         height: 300px;
 
+        transform:
+            scale(.82);
+
         margin:
-            5px auto
-            0;
+            -5px auto
+            -10px;
+    }
+
+
+    .cake-sticker {
 
         transform:
-            scale(.78);
-
-        transform-origin:
-            center top;
+            translateY(-50%)
+            scale(.85);
     }
 
-
-    .quest-status {
-
-        margin-top:
-            -45px;
-
-        gap: 10px;
-
-        font-size: .78rem;
-    }
-
-
-    #quest-text {
-
-        width: 90%;
-
-        line-height: 1.4;
-    }
-
-
-    /* ====================================
-       STICKERS MOBILE
-    ==================================== */
 
     .sticker-d1 {
-
-        width: 90px;
 
         left:
             calc(50% - 245px);
@@ -1436,26 +1361,23 @@ h1 span {
 
     .sticker-d2 {
 
-        width: 90px;
-
         right:
             calc(50% - 245px);
     }
 
 
-    /* ====================================
-       MESSAGE
-    ==================================== */
+    .quest-status {
+
+        margin-top: -5px;
+    }
+
 
     .birthday-message {
 
-        width: 90%;
+        width: 94%;
 
         padding:
-            28px
-            18px;
-
-        margin-top: 30px;
+            28px 20px;
     }
 
 
@@ -1465,32 +1387,36 @@ h1 span {
 
         letter-spacing: 1px;
     }
-
 }
 
 
 /* ========================================
-   SMALL PHONE
+   MOBILE
 ======================================== */
 
 @media (max-width: 480px) {
 
-    .quest-header {
+    .birthday-page {
 
-        font-size: 8px;
+        width: calc(100% - 24px);
 
-        letter-spacing: 1.5px;
+        margin:
+            12px auto;
+
+        padding:
+            16px
+            12px
+            18px;
     }
 
 
-    .birthday-page {
+    .quest-header {
 
-        width: 94%;
+        font-size: 7px;
 
-        padding:
-            18px
-            14px
-            20px;
+        letter-spacing: 1.2px;
+
+        padding-bottom: 12px;
     }
 
 
@@ -1502,58 +1428,159 @@ h1 span {
     }
 
 
+    .eyebrow {
+
+        font-size: 8px;
+
+        letter-spacing: 2px;
+
+        margin-bottom: 12px;
+    }
+
+
     h1 {
 
         font-size:
             clamp(
-                2.1rem,
+                2rem,
                 10vw,
-                3rem
+                2.8rem
             );
+
+        margin-bottom: 15px;
     }
 
 
     h1 span {
 
-        font-size: .5em;
+        font-size: .52em;
 
         letter-spacing: 2px;
+
+        margin-top: 9px;
     }
 
+
+    /*
+       READY
+    */
+
+    #ready-screen {
+
+        padding: 20px;
+    }
+
+
+    #ready-screen p {
+
+        font-size: 1rem;
+
+        line-height: 1.5;
+
+        margin-bottom: 18px;
+    }
+
+
+    #ready-button {
+
+        padding:
+            11px
+            23px;
+
+        font-size: .78rem;
+    }
+
+
+    /*
+       DESCRIPTION
+    */
 
     .description {
 
-        font-size: .84rem;
+        width: 90%;
 
-        line-height: 1.55;
+        font-size: .78rem;
+
+        line-height: 1.6;
+
+        margin-bottom: 0;
     }
 
 
-    /* ====================================
-       CAKE SMALL PHONE
-    ==================================== */
+    /*
+       CAKE
+       
+       Ini bagian paling penting.
+       Cake tidak lagi overflow
+       keluar layar.
+    */
 
     .cake-area {
 
-        width: 450px;
+        width: 330px;
 
-        height: 270px;
+        height: 265px;
 
-        margin:
-            0 auto;
+        max-width: 100%;
 
         transform:
-            scale(.65);
+            scale(.68);
 
-        transform-origin:
-            center top;
+        margin:
+            -18px
+            auto
+            -30px;
     }
 
 
+    /*
+       Sticker diperkecil
+       dan didekatkan ke cake.
+    */
+
+    .cake-sticker {
+
+        z-index: 20;
+
+        transform:
+            translateY(-50%)
+            scale(.72);
+    }
+
+
+    .sticker-d1 {
+
+        width: 100px;
+
+        left:
+            calc(50% - 205px);
+
+        top: 48%;
+    }
+
+
+    .sticker-d2 {
+
+        width: 100px;
+
+        right:
+            calc(50% - 205px);
+
+        top: 48%;
+    }
+
+
+    /*
+       QUEST TEXT
+    */
+
     .quest-status {
 
-        margin-top:
-            -70px;
+        width: 100%;
+
+        margin-top: 0;
+
+        gap: 10px;
 
         font-size: .75rem;
     }
@@ -1561,72 +1588,38 @@ h1 span {
 
     #quest-text {
 
-        width: 95%;
-
-        line-height: 1.35;
-    }
-
-
-    /* ====================================
-       STICKERS SMALL PHONE
-    ==================================== */
-
-    .sticker-d1 {
-
-        width: 75px;
-
-        left:
-            calc(50% - 230px);
-    }
-
-
-    .sticker-d2 {
-
-        width: 75px;
-
-        right:
-            calc(50% - 230px);
-    }
-
-
-    /* ====================================
-       READY SCREEN
-    ==================================== */
-
-    #ready-screen {
-
-        padding: 25px;
-    }
-
-
-    #ready-screen h2 {
+        width: 90%;
 
         max-width: 280px;
 
-        font-size:
-            1.4rem;
+        line-height: 1.5;
 
-        line-height: 1.3;
+        text-align: center;
     }
 
 
-    #ready-button {
+    .candle-progress {
 
-        padding:
-            12px
-            24px;
-
-        font-size: .8rem;
+        gap: 7px;
     }
 
 
-    /* ====================================
-       BIRTHDAY MESSAGE
-    ==================================== */
+    .progress-dot {
+
+        width: 7px;
+        height: 7px;
+    }
+
+
+    /*
+       COMPLETED MESSAGE
+    */
 
     .birthday-message {
 
-        width: 92%;
+        width: 94%;
+
+        margin-top: 25px;
 
         padding:
             25px
@@ -1634,17 +1627,33 @@ h1 span {
     }
 
 
+    .message-icon {
+
+        font-size: 24px;
+    }
+
+
+    .message-small {
+
+        font-size: 8px;
+
+        letter-spacing: 2px;
+    }
+
+
     .birthday-message h2 {
 
-        font-size: 1.8rem;
+        font-size: 1.65rem;
 
-        line-height: 1.2;
+        line-height: 1.15;
+
+        margin-bottom: 15px;
     }
 
 
     .birthday-message p:not(.message-small) {
 
-        font-size: .9rem;
+        font-size: .88rem;
 
         line-height: 1.6;
     }
@@ -1654,19 +1663,98 @@ h1 span {
 
         width: 100%;
 
-        font-size: .75rem;
-
         padding:
             12px
             15px;
+
+        font-size: .72rem;
+    }
+
+
+    /*
+       FOOTER
+    */
+
+    .bottom-bar {
+
+        gap: 10px;
+
+        font-size: 6px;
+
+        letter-spacing: .7px;
+    }
+}
+
+
+/* ========================================
+   VERY SMALL PHONES
+======================================== */
+
+@media (max-width: 360px) {
+
+    .birthday-page {
+
+        width: calc(100% - 16px);
+
+        padding:
+            14px
+            10px
+            16px;
+    }
+
+
+    h1 {
+
+        font-size: 1.9rem;
+    }
+
+
+    .description {
+
+        font-size: .72rem;
+    }
+
+
+    .cake-area {
+
+        transform:
+            scale(.60);
+
+        margin:
+            -30px
+            auto
+            -45px;
+    }
+
+
+    .sticker-d1 {
+
+        left:
+            calc(50% - 190px);
+    }
+
+
+    .sticker-d2 {
+
+        right:
+            calc(50% - 190px);
+    }
+
+
+    .quest-status {
+
+        font-size: .7rem;
+    }
+
+
+    .birthday-message h2 {
+
+        font-size: 1.45rem;
     }
 
 
     .bottom-bar {
 
-        font-size: 6px;
-
-        letter-spacing: .8px;
+        font-size: 5.5px;
     }
-
 }
