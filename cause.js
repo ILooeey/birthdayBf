@@ -10,13 +10,16 @@
 const cursor =
     document.querySelector('.cursor');
 
+
 document.addEventListener('mousemove', (e) => {
 
     if (!cursor) return;
 
+
     gsap.to(cursor, {
 
         left: e.clientX,
+
         top: e.clientY,
 
         duration: 0.12,
@@ -35,20 +38,26 @@ document.addEventListener('mousemove', (e) => {
 const flames =
     document.querySelectorAll('.flame');
 
+
 const progressDots =
     document.querySelectorAll('.progress-dot');
+
 
 const questText =
     document.querySelector('#quest-text');
 
+
 const birthdayMessage =
     document.querySelector('#birthday-message');
+
 
 const continueButton =
     document.querySelector('#continue-button');
 
+
 const readyScreen =
     document.querySelector('#ready-screen');
+
 
 const readyButton =
     document.querySelector('#ready-button');
@@ -62,80 +71,63 @@ let candlesOut = 0;
 
 
 // ========================================
-// READY SCREEN
+// INITIAL PAGE
 // ========================================
 
-if (readyButton && readyScreen) {
+window.addEventListener('load', () => {
 
-    readyButton.addEventListener('click', () => {
 
-        // Hide ready screen
-        gsap.to(readyScreen, {
+    // Page entrance
 
+    gsap.fromTo(
+        '.birthday-page',
+
+        {
             opacity: 0,
-            scale: .95,
 
-            duration: .5,
+            y: 25,
 
-            ease: "power2.inOut",
+            scale: .98
+        },
 
-            onComplete: () => {
+        {
+            opacity: 1,
 
-                readyScreen.style.display = 'none';
+            y: 0,
 
-            }
+            scale: 1,
 
-        });
+            duration: 1,
 
-
-        // Show cake
-        gsap.fromTo(
-            '.cake-area',
-
-            {
-                opacity: 0,
-                y: 40,
-                scale: .85
-            },
-
-            {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-
-                duration: 1,
-
-                delay: .3,
-
-                ease: "back.out(1.5)"
-            }
-        );
+            ease: "power3.out"
+        }
+    );
 
 
-        // Show quest status
-        gsap.fromTo(
-            '.quest-status',
+    // Make sure cake is hidden
 
-            {
-                opacity: 0,
-                y: 10
-            },
+    gsap.set('.cake-area', {
 
-            {
-                opacity: 1,
-                y: 0,
+        opacity: 0,
 
-                duration: .6,
+        y: 40,
 
-                delay: .8,
-
-                ease: "power2.out"
-            }
-        );
+        scale: .85
 
     });
 
-}
+
+    // Make sure quest status is hidden
+
+    gsap.set('.quest-status', {
+
+        opacity: 0,
+
+        y: 10
+
+    });
+
+});
 
 
 // ========================================
@@ -145,11 +137,13 @@ if (readyButton && readyScreen) {
 gsap.to(".sticker-d1", {
 
     x: 12,
+
     rotation: 3,
 
     duration: 1.8,
 
     repeat: -1,
+
     yoyo: true,
 
     ease: "sine.inOut"
@@ -160,11 +154,13 @@ gsap.to(".sticker-d1", {
 gsap.to(".sticker-d2", {
 
     x: -12,
+
     rotation: -3,
 
     duration: 2.1,
 
     repeat: -1,
+
     yoyo: true,
 
     ease: "sine.inOut"
@@ -173,190 +169,314 @@ gsap.to(".sticker-d2", {
 
 
 // ========================================
+// READY SCREEN
+// ========================================
+
+if (readyButton && readyScreen) {
+
+
+    readyButton.addEventListener(
+        'click',
+        () => {
+
+
+            // --------------------------------
+            // Hide Ready Screen
+            // --------------------------------
+
+            gsap.to(
+                readyScreen,
+
+                {
+
+                    opacity: 0,
+
+                    scale: .95,
+
+                    duration: .5,
+
+                    ease: "power2.inOut",
+
+                    onComplete: () => {
+
+                        readyScreen.style.display =
+                            'none';
+
+                    }
+
+                }
+            );
+
+
+            // --------------------------------
+            // Show Cake
+            // --------------------------------
+
+            gsap.to(
+                '.cake-area',
+
+                {
+
+                    opacity: 1,
+
+                    y: 0,
+
+                    scale: 1,
+
+                    duration: 1,
+
+                    delay: .25,
+
+                    ease: "back.out(1.5)"
+
+                }
+            );
+
+
+            // --------------------------------
+            // Show Quest Status
+            // --------------------------------
+
+            gsap.to(
+                '.quest-status',
+
+                {
+
+                    opacity: 1,
+
+                    y: 0,
+
+                    duration: .6,
+
+                    delay: .85,
+
+                    ease: "power2.out"
+
+                }
+            );
+
+
+        }
+    );
+
+}
+
+
+// ========================================
 // CANDLE QUEST
 // ========================================
 
 flames.forEach((flame) => {
 
-    flame.addEventListener('click', () => {
 
-        // Prevent clicking same candle twice
+    flame.addEventListener(
+        'click',
+        () => {
 
-        if (
-            flame.classList.contains(
+
+            // Prevent clicking same candle twice
+
+            if (
+                flame.classList.contains(
+                    'extinguished'
+                )
+            ) {
+
+                return;
+
+            }
+
+
+            flame.classList.add(
                 'extinguished'
-            )
-        ) {
-
-            return;
-
-        }
+            );
 
 
-        flame.classList.add(
-            'extinguished'
-        );
+            const candle =
+                flame.closest('.candle');
 
 
-        const candle =
-            flame.closest('.candle');
+            const smoke =
+                candle.querySelector('.smoke');
 
 
-        const smoke =
-            candle.querySelector('.smoke');
+            // --------------------------------
+            // Flame disappearing
+            // --------------------------------
+
+            gsap.to(
+                flame,
+
+                {
+
+                    opacity: 0,
+
+                    scale: 0,
+
+                    rotation: -20,
+
+                    duration: .35,
+
+                    ease: "back.in(2)"
+
+                }
+            );
 
 
-        // --------------------------------
-        // Flame disappearing animation
-        // --------------------------------
+            // --------------------------------
+            // Smoke
+            // --------------------------------
 
-        gsap.to(flame, {
+            gsap.fromTo(
 
-            opacity: 0,
+                smoke,
 
-            scale: 0,
+                {
 
-            rotation: -20,
+                    opacity: 0,
 
-            duration: .35,
+                    y: 0,
 
-            ease: "back.in(2)"
+                    scale: .5
 
-        });
+                },
+
+                {
+
+                    opacity: .5,
+
+                    y: -20,
+
+                    scale: 1,
+
+                    duration: .4,
+
+                    ease: "power2.out",
+
+                    onComplete: () => {
 
 
-        // --------------------------------
-        // Smoke
-        // --------------------------------
+                        gsap.to(
+                            smoke,
 
-        gsap.fromTo(
-            smoke,
+                            {
 
-            {
-                opacity: 0,
-                y: 0,
-                scale: .5
-            },
+                                opacity: 0,
 
-            {
-                opacity: .5,
-                y: -20,
-                scale: 1,
+                                y: -45,
 
-                duration: .4,
+                                scale: 1.5,
 
-                ease: "power2.out",
+                                duration: .8,
 
-                onComplete: () => {
+                                ease: "power2.out"
 
-                    gsap.to(smoke, {
+                            }
+                        );
 
-                        opacity: 0,
+                    }
 
-                        y: -45,
+                }
+            );
 
-                        scale: 1.5,
 
-                        duration: .8,
+            // --------------------------------
+            // Candle reaction
+            // --------------------------------
 
-                        ease: "power2.out"
+            gsap.fromTo(
 
-                    });
+                candle,
+
+                {
+
+                    y: 0,
+
+                    rotation: 0
+
+                },
+
+                {
+
+                    y: -5,
+
+                    rotation:
+                        Math.random() > .5
+                            ? -3
+                            : 3,
+
+                    duration: .15,
+
+                    yoyo: true,
+
+                    repeat: 1,
+
+                    ease: "power2.out"
 
                 }
 
-            }
-        );
-
-
-        // --------------------------------
-        // Candle reaction
-        // --------------------------------
-
-        gsap.fromTo(
-            candle,
-
-            {
-                y: 0,
-                rotation: 0
-            },
-
-            {
-
-                y: -5,
-
-                rotation:
-                    Math.random() > .5
-                        ? -3
-                        : 3,
-
-                duration: .15,
-
-                yoyo: true,
-
-                repeat: 1,
-
-                ease: "power2.out"
-
-            }
-        );
-
-
-        // --------------------------------
-        // Progress
-        // --------------------------------
-
-        candlesOut++;
-
-
-        if (
-            progressDots[
-                candlesOut - 1
-            ]
-        ) {
-
-            progressDots[
-                candlesOut - 1
-            ].classList.remove(
-                'active'
             );
 
+
+            // --------------------------------
+            // Progress
+            // --------------------------------
+
+            candlesOut++;
+
+
+            if (
+                progressDots[
+                    candlesOut - 1
+                ]
+            ) {
+
+                progressDots[
+                    candlesOut - 1
+                ].classList.remove(
+                    'active'
+                );
+
+            }
+
+
+            // --------------------------------
+            // Text update
+            // --------------------------------
+
+            const remaining =
+                flames.length -
+                candlesOut;
+
+
+            if (remaining > 0) {
+
+
+                questText.textContent =
+                    remaining === 1
+
+                        ? "One more candle... make your wish. ✦"
+
+                        : `${remaining} candles left... keep going. ✦`;
+
+            }
+
+
+            // --------------------------------
+            // Complete quest
+            // --------------------------------
+
+            if (
+                candlesOut ===
+                flames.length
+            ) {
+
+                completeQuest();
+
+            }
+
         }
-
-
-        // --------------------------------
-        // Text update
-        // --------------------------------
-
-        const remaining =
-            flames.length - candlesOut;
-
-
-        if (remaining > 0) {
-
-            questText.textContent =
-                remaining === 1
-
-                    ? "One more candle... make your wish. ✦"
-
-                    : `${remaining} candles left... keep going. ✦`;
-
-        }
-
-
-        // --------------------------------
-        // COMPLETE QUEST
-        // --------------------------------
-
-        if (
-            candlesOut === flames.length
-        ) {
-
-            completeQuest();
-
-        }
-
-    });
+    );
 
 });
 
@@ -367,66 +487,87 @@ flames.forEach((flame) => {
 
 function completeQuest() {
 
+
     questText.textContent =
         "You did it. Your wish is ready. 🤍";
 
 
-    // Celebration particles
+    // --------------------------------
+    // Celebration
+    // --------------------------------
 
     createCelebration();
 
 
+    // --------------------------------
     // Cake celebration
+    // --------------------------------
 
-    gsap.to('.cake', {
+    gsap.to(
+        '.cake',
 
-        y: -8,
+        {
 
-        rotation: 1,
+            y: -8,
 
-        duration: .25,
+            rotation: 1,
 
-        yoyo: true,
+            duration: .25,
 
-        repeat: 3,
+            yoyo: true,
 
-        ease: "power2.out"
+            repeat: 3,
 
-    });
+            ease: "power2.out"
 
-
-    // Hide status
-
-    gsap.to('.quest-status', {
-
-        opacity: 0,
-
-        y: -10,
-
-        duration: .5
-
-    });
+        }
+    );
 
 
+    // --------------------------------
+    // Hide quest status
+    // --------------------------------
+
+    gsap.to(
+        '.quest-status',
+
+        {
+
+            opacity: 0,
+
+            y: -10,
+
+            duration: .5
+
+        }
+    );
+
+
+    // --------------------------------
     // Show birthday message
+    // --------------------------------
 
-    gsap.to(birthdayMessage, {
+    gsap.to(
+        birthdayMessage,
 
-        opacity: 1,
+        {
 
-        visibility: 'visible',
+            opacity: 1,
 
-        y: 0,
+            visibility: 'visible',
 
-        scale: 1,
+            y: 0,
 
-        duration: 1,
+            scale: 1,
 
-        delay: .7,
+            duration: 1,
 
-        ease: "back.out(1.5)"
+            delay: .7,
 
-    });
+            ease: "back.out(1.5)"
+
+        }
+    );
 
 }
 
@@ -437,15 +578,26 @@ function completeQuest() {
 
 function createCelebration() {
 
+
     const symbols = [
+
         '✦',
+
         '♡',
+
         '✧',
+
         '⋆'
+
     ];
 
 
-    for (let i = 0; i < 18; i++) {
+    for (
+        let i = 0;
+        i < 18;
+        i++
+    ) {
+
 
         const particle =
             document.createElement('div');
@@ -463,20 +615,26 @@ function createCelebration() {
         particle.style.position =
             'fixed';
 
+
         particle.style.left =
             '50%';
+
 
         particle.style.top =
             '45%';
 
+
         particle.style.zIndex =
             '100';
+
 
         particle.style.pointerEvents =
             'none';
 
+
         particle.style.color =
             '#a85c5c';
+
 
         particle.style.fontSize =
             `${Math.random() * 12 + 12}px`;
@@ -487,34 +645,42 @@ function createCelebration() {
         );
 
 
-        gsap.to(particle, {
+        gsap.to(
+            particle,
 
-            x:
-                Math.random() * 500 - 250,
+            {
 
-            y:
-                Math.random() * 400 - 250,
+                x:
+                    Math.random() *
+                    500 - 250,
 
-            rotation:
-                Math.random() * 360,
+                y:
+                    Math.random() *
+                    400 - 250,
 
-            opacity: 0,
+                rotation:
+                    Math.random() * 360,
 
-            scale:
-                Math.random() * .8 + .5,
+                opacity: 0,
 
-            duration:
-                Math.random() * 1.5 + 1,
+                scale:
+                    Math.random() *
+                    .8 + .5,
 
-            ease: "power2.out",
+                duration:
+                    Math.random() *
+                    1.5 + 1,
 
-            onComplete: () => {
+                ease: "power2.out",
 
-                particle.remove();
+                onComplete: () => {
+
+                    particle.remove();
+
+                }
 
             }
-
-        });
+        );
 
     }
 
@@ -527,12 +693,15 @@ function createCelebration() {
 
 if (continueButton) {
 
+
     continueButton.addEventListener(
         'click',
         () => {
 
+
             gsap.to(
                 '.birthday-page',
+
                 {
 
                     opacity: 0,
@@ -557,41 +726,3 @@ if (continueButton) {
     );
 
 }
-
-
-// ========================================
-// INITIAL ANIMATION
-// ========================================
-
-window.addEventListener(
-    'load',
-    () => {
-
-        gsap.fromTo(
-            '.birthday-page',
-
-            {
-                opacity: 0,
-                y: 25,
-                scale: .98
-            },
-
-            {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-
-                duration: 1,
-
-                ease: "power3.out"
-
-            }
-        );
-
-
-        // IMPORTANT:
-        // Cake tidak dianimasikan di sini.
-        // Cake akan muncul setelah tombol READY diklik.
-
-    }
-);
