@@ -22,339 +22,352 @@
 <body>
 
 
-    <!-- CUSTOM CURSOR -->
+<!-- =====================================================
+     CUSTOM CURSOR
+===================================================== -->
 
-    <div class="cursor"></div>
+<div class="cursor"></div>
 
 
-    <!-- BACKGROUND -->
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
 
-    <div class="background">
+<div class="background">
 
-        <span>✦</span>
-        <span>♡</span>
-        <span>✧</span>
-        <span>⋆</span>
-        <span>♡</span>
-        <span>✦</span>
+    <span>✦</span>
+    <span>♡</span>
+    <span>✧</span>
+    <span>⋆</span>
+    <span>♡</span>
+    <span>✦</span>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+    <!-- =================================================
+         QUEST LABEL
+    ================================================= -->
+
+    <div class="quest-label">
+
+        <span class="dot"></span>
+
+        FINAL QUEST
+
+        <span class="dot"></span>
 
     </div>
 
 
+    <!-- =================================================
+         TITLE
+    ================================================= -->
 
-    <!-- MAIN -->
+    <h1>
 
-    <main class="container">
+        A Little Something
+
+        <br>
+
+        <span>
+            Is Coming Your Way.
+        </span>
+
+    </h1>
 
 
-        <!-- TOP LABEL -->
+    <!-- =================================================
+         INTRO
+    ================================================= -->
 
-        <div class="quest-label">
+    <p class="intro">
 
-            <span class="dot"></span>
+        You made it all the way here...
 
-            FINAL QUEST
+    </p>
 
-            <span class="dot"></span>
+
+    <p class="sub-intro">
+
+        So I think you deserve to know<br>
+        what's waiting for you. 🤍
+
+    </p>
+
+
+    <!-- =================================================
+         GIFT
+    ================================================= -->
+
+    <section class="gift-area">
+
+        <div
+            class="gift-box"
+            id="gift-box"
+        >
+
+            <div class="gift-lid">
+
+                <div class="ribbon"></div>
+
+            </div>
+
+
+            <div class="gift-body">
+
+                <div class="ribbon vertical"></div>
+
+                <div class="ribbon horizontal"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         LOCK MESSAGE
+    ================================================= -->
+
+    <div
+        class="lock-message"
+        id="lock-message"
+    >
+
+        <div class="lock-icon">
+            🔒
+        </div>
+
+
+        <p>
+            Your birthday gift is waiting.
+        </p>
+
+
+        <button
+            type="button"
+            id="unlock-button"
+            class="unlock-button"
+        >
+
+            Unlock your gift 🎁
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         REVEAL
+    ================================================= -->
+
+    <section
+        class="reveal"
+        id="reveal"
+    >
+
+
+        <div class="reveal-icon">
+            💌
+        </div>
+
+
+        <p class="reveal-small">
+            GIFT UNLOCKED
+        </p>
+
+
+        <h2>
+
+            I wish I could<br>
+            give this to you myself.
+
+        </h2>
+
+
+        <p class="message">
+
+            But since I can't hand it to you<br>
+            and watch you open it myself...
+
+            <br><br>
+
+            I sent a little something<br>
+            to find its way to you instead. 🤍
+
+        </p>
+
+
+        <!-- =================================================
+             PACKAGE
+        ================================================= -->
+
+        <div class="package-card">
+
+            <div class="package-icon">
+                📦
+            </div>
+
+
+            <div class="package-info">
+
+                <span>
+                    YOUR LITTLE SURPRISE
+                </span>
+
+
+                <strong>
+                    ON ITS WAY TO YOUUU GANTENGGGG &gt;o&lt;
+                </strong>
+
+            </div>
 
         </div>
 
 
+        <!-- =================================================
+             TRACKING CARD
+        ================================================= -->
 
-        <!-- TITLE -->
-
-        <h1>
-
-            A Little Something<br>
-
-            <span>Is Coming Your Way.</span>
-
-        </h1>
+        <div class="tracking-card">
 
 
+            <div class="tracking-title">
 
-        <!-- INTRO -->
+                YOUR LITTLE SURPRISE
 
-        <p class="intro">
-
-            You made it all the way here...
-
-        </p>
+            </div>
 
 
-        <p class="sub-intro">
+            <p class="scratch-instruction">
 
-            So I think you deserve to know<br>
-            what's waiting for you. 🤍
+                gosok gosokinn ciniii ✦
 
-        </p>
-
+            </p>
 
 
-        <!-- GIFT -->
-
-        <section class="gift-area">
+            <div class="scratch-container">
 
 
-            <div
-                class="gift-box"
-                id="gift-box"
-            >
+                <div
+                    class="tracking-number"
+                    id="tracking-number"
+                >
 
-
-                <div class="gift-lid">
-
-                    <div class="ribbon"></div>
+                    CM71903983627
 
                 </div>
 
 
-                <div class="gift-body">
-
-                    <div class="ribbon vertical"></div>
-
-                    <div class="ribbon horizontal"></div>
-
-                </div>
-
-
-                <div class="gift-shadow"></div>
+                <canvas
+                    id="scratch-canvas"
+                ></canvas>
 
 
             </div>
 
 
-        </section>
+            <p class="scratch-hint">
+
+                ✦ Terusssss.. you're almost there.
+
+            </p>
 
 
+        </div>
 
-        <!-- LOCK MESSAGE -->
 
-        <div
-            class="lock-message"
-            id="lock-message"
+        <!-- =================================================
+             TRACKING MESSAGE
+        ================================================= -->
+
+        <p class="tracking-message">
+
+            Keep this safe.
+            Your little surprise is somewhere
+            between me and you now. 🤍
+
+        </p>
+
+
+        <!-- =================================================
+             COPY BUTTON
+        ================================================= -->
+
+        <button
+            type="button"
+            class="copy-button"
+            id="copy-button"
         >
 
-            <div class="lock-icon">
+            Mau dicopy? Klik aja
 
-                🔒
+        </button>
 
+
+        <!-- =================================================
+             FINAL MESSAGE
+        ================================================= -->
+
+        <div class="final-message">
+
+
+            <div class="final-heart">
+                ♡
             </div>
 
 
             <p>
-
-                Your birthday gift is waiting.
-
+                Happy Birthday, sayanggg 🤍
             </p>
 
 
-            <button
-                id="unlock-button"
-                class="unlock-button"
-            >
+            <span>
 
-                Unlock your gift 🎁
+                I hope this little gift makes you smile
+                as much as you make me smile hihi
 
-            </button>
+            </span>
+
 
         </div>
 
 
+        <!-- =================================================
+             FINISH BUTTON
+        ================================================= -->
 
-        <!-- REVEAL -->
-
-        <section
-            class="reveal"
-            id="reveal"
+        <button
+            type="button"
+            class="finish-button"
+            id="finish-button"
         >
 
+            Last Info klik inii ✦
 
-            <div class="reveal-icon">
+        </button>
 
-                💌
 
-            </div>
+    </section>
 
 
-            <p class="reveal-small">
+</main>
 
-                GIFT UNLOCKED
 
-            </p>
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
 
-
-            <h2>
-
-                I wish I could<br>
-                give this to you myself.
-
-            </h2>
-
-
-            <p class="message">
-
-                But since I can't hand it to you<br>
-                and watch you open it myself...
-
-                <br><br>
-
-                I sent a little something<br>
-                to find its way to you instead. 🤍
-
-            </p>
-
-
-
-            <!-- PACKAGE -->
-
-            <div class="package-card">
-
-
-                <div class="package-icon">
-
-                    📦
-
-                </div>
-
-
-                <div class="package-info">
-
-                    <span>
-
-                        YOUR LITTLE SURPRISE
-
-                    </span>
-
-
-                    <strong>
-
-                        ON ITS WAY TO YOU
-
-                    </strong>
-
-                </div>
-
-
-            </div>
-
-
-
-            <!-- RECEIPT -->
-
-            <div class="tracking-card">
-
-
-                <!-- ========================================
-     SCRATCH TRACKING CARD
-======================================== -->
-
-                <div class="tracking-title">
-                    YOUR LITTLE SURPRISE
-                </div>
-
-                <p class="scratch-instruction">
-                    Scratch the card to reveal your gift's tracking number ✦
-                </p>
-
-                <div class="scratch-container">
-
-                    <!-- SECRET NUMBER -->
-                    <div
-                        class="tracking-number"
-                        id="tracking-number"
-                    >
-                        CM71903983627
-                    </div>
-
-                    <!-- SCRATCH LAYER -->
-                    <canvas
-                        id="scratch-canvas"
-                    ></canvas>
-
-                </div>
-
-                <p class="scratch-hint">
-                    ✦ Keep scratching... you're almost there.
-                </p>
-
-            </div>
-                </div>
-
-
-                <p>
-
-                    Keep this safe.  
-                    Your little surprise is somewhere
-                    between me and you now. 🤍
-
-                </p>
-
-
-                <button
-                    class="copy-button"
-                    id="copy-button"
-                >
-
-                    Copy tracking number
-
-                </button>
-
-            </div>
-
-
-
-            <!-- FINAL MESSAGE -->
-
-            <div class="final-message">
-
-
-                <div class="final-heart">
-
-                    ♡
-
-                </div>
-
-
-                <p>
-
-                    Happy Birthday, my love.
-
-                </p>
-
-
-                <span>
-
-                    I hope this little gift makes you smile
-                    as much as you make me smile.
-
-                </span>
-
-
-            </div>
-
-
-
-            <!-- BACK -->
-
-            <button
-                class="finish-button"
-                id="finish-button"
-            >
-
-                One last little surprise ✦
-
-            </button>
-
-
-        </section>
-
-
-    </main>
-
-
-
-    <script src="./last.js"></script>
+<script src="./last.js"></script>
 
 </body>
 
