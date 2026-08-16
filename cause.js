@@ -27,11 +27,45 @@ document.addEventListener('mousemove', (e) => {
 
 });
 
+
+// ========================================
+// ELEMENTS
+// ========================================
+
+const flames =
+    document.querySelectorAll('.flame');
+
+const progressDots =
+    document.querySelectorAll('.progress-dot');
+
+const questText =
+    document.querySelector('#quest-text');
+
+const birthdayMessage =
+    document.querySelector('#birthday-message');
+
+const continueButton =
+    document.querySelector('#continue-button');
+
+const readyScreen =
+    document.querySelector('#ready-screen');
+
+const readyButton =
+    document.querySelector('#ready-button');
+
+
+// ========================================
+// VARIABLES
+// ========================================
+
+let candlesOut = 0;
+
+
 // ========================================
 // READY SCREEN
 // ========================================
 
-if (readyButton) {
+if (readyButton && readyScreen) {
 
     readyButton.addEventListener('click', () => {
 
@@ -55,7 +89,27 @@ if (readyButton) {
 
 
         // Show cake
-    
+        gsap.fromTo(
+            '.cake-area',
+
+            {
+                opacity: 0,
+                y: 40,
+                scale: .85
+            },
+
+            {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+
+                duration: 1,
+
+                delay: .3,
+
+                ease: "back.out(1.5)"
+            }
+        );
 
 
         // Show quest status
@@ -83,73 +137,65 @@ if (readyButton) {
 
 }
 
+
+// ========================================
+// STICKER ANIMATION
+// ========================================
+
+gsap.to(".sticker-d1", {
+
+    x: 12,
+    rotation: 3,
+
+    duration: 1.8,
+
+    repeat: -1,
+    yoyo: true,
+
+    ease: "sine.inOut"
+
+});
+
+
+gsap.to(".sticker-d2", {
+
+    x: -12,
+    rotation: -3,
+
+    duration: 2.1,
+
+    repeat: -1,
+    yoyo: true,
+
+    ease: "sine.inOut"
+
+});
+
+
 // ========================================
 // CANDLE QUEST
 // ========================================
 
-const flames =
-    document.querySelectorAll('.flame');
-
-const progressDots =
-    document.querySelectorAll('.progress-dot');
-
-const questText =
-    document.querySelector('#quest-text');
-
-const birthdayMessage =
-    document.querySelector('#birthday-message');
-
-const continueButton =
-    document.querySelector('#continue-button');
-
-const readyScreen =
-    document.querySelector('#ready-screen');
-
-const readyButton =
-    document.querySelector('#ready-button');
-
-
-let candlesOut = 0;
-
-
-// ========================================
-// CLICK FLAME
-// ========================================
-
 flames.forEach((flame) => {
-    
-    /* ========================================
-   STICKER ANIMATION
-======================================== */
-
-    gsap.to(".sticker-d1", {
-        x: 12,
-        rotation: 3,
-        duration: 1.8,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
-
-    gsap.to(".sticker-d2", {
-        x: -12,
-        rotation: -3,
-        duration: 2.1,
-        repeat: -1,
-        yoyo: true,
-        ease: "sine.inOut"
-    });
 
     flame.addEventListener('click', () => {
 
-        // Prevent clicking the same candle twice
+        // Prevent clicking same candle twice
 
-        if (flame.classList.contains('extinguished')) {
+        if (
+            flame.classList.contains(
+                'extinguished'
+            )
+        ) {
+
             return;
+
         }
 
 
-        flame.classList.add('extinguished');
+        flame.classList.add(
+            'extinguished'
+        );
 
 
         const candle =
@@ -172,7 +218,7 @@ flames.forEach((flame) => {
 
             rotation: -20,
 
-            duration: 0.35,
+            duration: .35,
 
             ease: "back.in(2)"
 
@@ -236,7 +282,9 @@ flames.forEach((flame) => {
             },
 
             {
+
                 y: -5,
+
                 rotation:
                     Math.random() > .5
                         ? -3
@@ -249,6 +297,7 @@ flames.forEach((flame) => {
                 repeat: 1,
 
                 ease: "power2.out"
+
             }
         );
 
@@ -259,11 +308,18 @@ flames.forEach((flame) => {
 
         candlesOut++;
 
-        if (progressDots[candlesOut - 1]) {
+
+        if (
+            progressDots[
+                candlesOut - 1
+            ]
+        ) {
 
             progressDots[
                 candlesOut - 1
-            ].classList.remove('active');
+            ].classList.remove(
+                'active'
+            );
 
         }
 
@@ -280,7 +336,9 @@ flames.forEach((flame) => {
 
             questText.textContent =
                 remaining === 1
+
                     ? "One more candle... make your wish. ✦"
+
                     : `${remaining} candles left... keep going. ✦`;
 
         }
@@ -290,7 +348,9 @@ flames.forEach((flame) => {
         // COMPLETE QUEST
         // --------------------------------
 
-        if (candlesOut === flames.length) {
+        if (
+            candlesOut === flames.length
+        ) {
 
             completeQuest();
 
@@ -311,7 +371,7 @@ function completeQuest() {
         "You did it. Your wish is ready. 🤍";
 
 
-    // Little celebration particles
+    // Celebration particles
 
     createCelebration();
 
@@ -333,8 +393,6 @@ function completeQuest() {
         ease: "power2.out"
 
     });
-
-    
 
 
     // Hide status
@@ -373,7 +431,6 @@ function completeQuest() {
 }
 
 
-
 // ========================================
 // CELEBRATION PARTICLES
 // ========================================
@@ -392,6 +449,7 @@ function createCelebration() {
 
         const particle =
             document.createElement('div');
+
 
         particle.textContent =
             symbols[
@@ -526,31 +584,14 @@ window.addEventListener(
                 duration: 1,
 
                 ease: "power3.out"
+
             }
         );
 
 
-        gsap.fromTo(
-            '.cake',
-
-            {
-                opacity: 0,
-                y: 40,
-                scale: .85
-            },
-
-            {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-
-                duration: 1,
-
-                delay: .5,
-
-                ease: "back.out(1.5)"
-            }
-        );
+        // IMPORTANT:
+        // Cake tidak dianimasikan di sini.
+        // Cake akan muncul setelah tombol READY diklik.
 
     }
 );
