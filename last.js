@@ -1,59 +1,79 @@
 /* ========================================
-   CUSTOM CURSOR
-======================================== */
-
-const cursor =
-    document.querySelector('.cursor');
-
-
-document.addEventListener(
-    'mousemove',
-    (e) => {
-
-        gsap.to(cursor, {
-
-            left: e.clientX,
-
-            top: e.clientY,
-
-            duration: .15,
-
-            ease: "power2.out"
-
-        });
-
-    }
-);
-
-
-/* ========================================
    ELEMENTS
 ======================================== */
 
+const cursor =
+    document.querySelector(".cursor");
+
 const giftBox =
-    document.querySelector('#gift-box');
+    document.querySelector("#gift-box");
+
+const giftLid =
+    document.querySelector(".gift-lid");
+
+const giftBody =
+    document.querySelector(".gift-body");
 
 const unlockButton =
-    document.querySelector('#unlock-button');
+    document.querySelector("#unlock-button");
 
 const lockMessage =
-    document.querySelector('#lock-message');
+    document.querySelector("#lock-message");
 
 const reveal =
-    document.querySelector('#reveal');
+    document.querySelector("#reveal");
+
+const scratchCanvas =
+    document.querySelector("#scratch-canvas");
+
+const scratchContainer =
+    document.querySelector(".scratch-container");
 
 const trackingNumber =
-    document.querySelector('#tracking-number');
+    document.querySelector("#tracking-number");
+
+const trackingCard =
+    document.querySelector(".tracking-card");
 
 const copyButton =
-    document.querySelector('#copy-button');
+    document.querySelector("#copy-button");
+
+const finishButton =
+    document.querySelector("#finish-button");
+
+const popupOverlay =
+    document.querySelector("#camera-popup-overlay");
+
+const popupClose =
+    document.querySelector("#camera-popup-close");
+
+
+const RESI =
+    "CM71903983627";
 
 
 /* ========================================
-   YOUR TRACKING NUMBER
+   CUSTOM CURSOR
 ======================================== */
 
-const RESI = "CM71903983627";
+document.addEventListener(
+    "mousemove",
+    (e) => {
+
+        if (!cursor) return;
+
+        gsap.to(
+            cursor,
+            {
+                left: e.clientX,
+                top: e.clientY,
+                duration: 0.15,
+                ease: "power2.out"
+            }
+        );
+
+    }
+);
 
 
 /* ========================================
@@ -61,35 +81,41 @@ const RESI = "CM71903983627";
 ======================================== */
 
 window.addEventListener(
-    'load',
+    "load",
     () => {
 
+        /* PAGE */
+
         gsap.from(
-            '.container',
+            ".container",
             {
                 opacity: 0,
-                y: 25,
+                y: 30,
                 duration: 1,
                 ease: "power3.out"
             }
         );
 
 
+        /* GIFT APPEARS */
+
         gsap.from(
-            '.gift-box',
+            giftBox,
             {
                 opacity: 0,
-                scale: .6,
-                rotation: -10,
+                scale: 0.5,
+                rotation: -12,
                 duration: 1.2,
-                delay: .3,
+                delay: 0.3,
                 ease: "back.out(1.7)"
             }
         );
 
 
+        /* GIFT FLOAT */
+
         gsap.to(
-            '.gift-box',
+            giftBox,
             {
                 y: -8,
                 duration: 1.8,
@@ -97,6 +123,14 @@ window.addEventListener(
                 yoyo: true,
                 ease: "sine.inOut"
             }
+        );
+
+
+        /* SCRATCH */
+
+        setTimeout(
+            resizeScratchCanvas,
+            300
         );
 
     }
@@ -107,160 +141,220 @@ window.addEventListener(
    UNLOCK GIFT
 ======================================== */
 
-unlockButton.addEventListener(
-    'click',
-    () => {
+if (unlockButton) {
+
+    unlockButton.addEventListener(
+        "click",
+        openGift
+    );
+
+}
 
 
-        unlockButton.disabled = true;
+function openGift() {
+
+    if (
+        !giftBox ||
+        !giftLid ||
+        !lockMessage ||
+        !reveal
+    ) return;
 
 
-        /* Button press */
+    /* PREVENT DOUBLE CLICK */
 
-        gsap.to(
+    unlockButton.disabled = true;
+
+
+    /* STOP FLOAT */
+
+    gsap.killTweensOf(giftBox);
+
+
+    /* BUTTON PRESS */
+
+    gsap.timeline()
+
+        .to(
             unlockButton,
             {
-                scale: .9,
-                duration: .1
+                scale: 0.92,
+                duration: 0.1
             }
-        );
+        )
 
-
-        gsap.to(
+        .to(
             unlockButton,
             {
                 scale: 1,
-                duration: .25,
-                delay: .1
+                duration: 0.2
             }
         );
 
 
-        /* Gift shakes */
+    /* ====================================
+       GIFT SHAKE
+    ==================================== */
 
-        gsap.timeline()
-
-            .to(
-                giftBox,
-                {
-                    x: -8,
-                    rotation: -6,
-                    duration: .08
-                }
-            )
-
-            .to(
-                giftBox,
-                {
-                    x: 8,
-                    rotation: 5,
-                    duration: .08
-                }
-            )
-
-            .to(
-                giftBox,
-                {
-                    x: -5,
-                    rotation: -3,
-                    duration: .08
-                }
-            )
-
-            .to(
-                giftBox,
-                {
-                    x: 0,
-                    rotation: 0,
-                    duration: .15
-                }
-            );
+    const timeline =
+        gsap.timeline();
 
 
-        /* Open lid */
+    timeline
 
-        gsap.to(
-            '.gift-lid',
+        .to(
+            giftBox,
             {
-
-                y: -80,
-
-                rotation: -8,
-
-                opacity: 0,
-
-                duration: .8,
-
-                delay: .4,
-
-                ease: "back.out(1.5)"
-
+                x: -10,
+                rotation: -6,
+                duration: .08
             }
-        );
+        )
 
-
-        /* Gift body glow */
-
-        gsap.to(
-            '.gift-body',
+        .to(
+            giftBox,
             {
-
-                boxShadow:
-                    '0 0 60px rgba(168,92,92,.35)',
-
-                duration: .8,
-
-                delay: .5
-
+                x: 10,
+                rotation: 6,
+                duration: .08
             }
-        );
+        )
 
-
-        /* Hide lock */
-
-        gsap.to(
-            lockMessage,
+        .to(
+            giftBox,
             {
+                x: -7,
+                rotation: -4,
+                duration: .08
+            }
+        )
 
-                opacity: 0,
+        .to(
+            giftBox,
+            {
+                x: 7,
+                rotation: 4,
+                duration: .08
+            }
+        )
 
-                y: -20,
+        .to(
+            giftBox,
+            {
+                x: 0,
+                rotation: 0,
+                duration: .15
+            });
 
-                duration: .5,
 
-                delay: 1,
+    /* ====================================
+       LID FLIES OPEN
+    ==================================== */
 
-                onComplete: () => {
+    gsap.to(
+        giftLid,
+        {
+            y: -100,
+            x: 20,
+            rotation: -15,
+            opacity: 0,
+            duration: .8,
+            delay: .45,
+            ease: "back.in(1.5)"
+        }
+    );
 
-                    lockMessage.style.display =
-                        'none';
 
-                    showReveal();
+    /* ====================================
+       BODY GLOWS
+    ==================================== */
 
-                }
+    gsap.to(
+        giftBody,
+        {
+            boxShadow:
+                "0 0 70px rgba(168,92,92,.55)",
+            duration: .5,
+            delay: .7,
+            yoyo: true,
+            repeat: 1
+        }
+    );
+
+
+    /* ====================================
+       HEART PARTICLES
+    ==================================== */
+
+    setTimeout(
+        createGiftExplosion,
+        550
+    );
+
+
+    /* ====================================
+       HIDE LOCK
+    ==================================== */
+
+    gsap.to(
+        lockMessage,
+        {
+            opacity: 0,
+            y: -25,
+            duration: .5,
+            delay: 1.1,
+
+            onComplete: () => {
+
+                lockMessage.style.display =
+                    "none";
 
             }
-        );
 
-    }
-);
+        }
+    );
+
+
+    /* ====================================
+       SHOW REVEAL
+    ==================================== */
+
+    setTimeout(
+        () => {
+
+            showReveal();
+
+        },
+        1250
+    );
+
+}
 
 
 /* ========================================
    SHOW REVEAL
 ======================================== */
+
 function showReveal() {
 
-    // Resi disembunyikan sampai scratch selesai
-    trackingNumber.textContent = "";
+    if (!reveal) return;
 
-    reveal.style.display = 'block';
+
+    reveal.style.display =
+        "block";
+
+
+    reveal.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+
 
     gsap.fromTo(
         reveal,
         {
             opacity: 0,
-            y: 40
+            y: 50
         },
         {
             opacity: 1,
@@ -272,53 +366,179 @@ function showReveal() {
 
                 createParticles();
 
-                setTimeout(() => {
-                    resizeScratchCanvas();
-                }, 100);
+                setTimeout(
+                    resizeScratchCanvas,
+                    100
+                );
 
             }
+
         }
     );
+
 }
 
+
 /* ========================================
-   COPY RESI
+   GIFT EXPLOSION
 ======================================== */
+
+function createGiftExplosion() {
+
+    const symbols = [
+        "♡",
+        "✦",
+        "✧",
+        "⋆",
+        "🤍"
+    ];
+
+
+    for (
+        let i = 0;
+        i < 25;
+        i++
+    ) {
+
+        const particle =
+            document.createElement("div");
+
+
+        particle.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        particle.style.position =
+            "fixed";
+
+
+        particle.style.left =
+            "50%";
+
+
+        particle.style.top =
+            "42%";
+
+
+        particle.style.zIndex =
+            "999998";
+
+
+        particle.style.pointerEvents =
+            "none";
+
+
+        particle.style.color =
+            "#a85c5c";
+
+
+        particle.style.fontSize =
+            `${Math.random() * 15 + 12}px`;
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        gsap.to(
+            particle,
+            {
+
+                x:
+                    Math.random() *
+                    350 -
+                    175,
+
+                y:
+                    Math.random() *
+                    300 -
+                    150,
+
+                rotation:
+                    Math.random() *
+                    360,
+
+                scale:
+                    Math.random() * .8 +
+                    .6,
+
+                opacity: 0,
+
+                duration:
+                    Math.random() * .8 +
+                    .8,
+
+                ease:
+                    "power2.out",
+
+                onComplete: () => {
+
+                    particle.remove();
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
 
 /* ========================================
    SCRATCH CARD
 ======================================== */
 
-const scratchCanvas =
-    document.querySelector('#scratch-canvas');
-
-const scratchContainer =
-    document.querySelector('.scratch-container');
-
-const trackingCard =
-    document.querySelector('.tracking-card');
-
-
-const ctx =
-    scratchCanvas.getContext('2d');
-
+let ctx = null;
 
 let isScratching = false;
 
 let scratchedPixels = 0;
 
-const requiredScratch =
-    45;
+const requiredScratch = 45;
+
+
+if (scratchCanvas) {
+
+    ctx =
+        scratchCanvas.getContext("2d");
+
+}
 
 
 /* ========================================
-   SET CANVAS SIZE
+   RESIZE CANVAS
 ======================================== */
 
 function resizeScratchCanvas() {
 
+    if (
+        !scratchCanvas ||
+        !scratchContainer ||
+        !ctx
+    ) return;
+
+
+    if (
+        scratchCanvas.dataset.revealed
+    ) return;
+
+
     const rect =
         scratchContainer.getBoundingClientRect();
+
+
+    if (
+        rect.width <= 0 ||
+        rect.height <= 0
+    ) return;
+
 
     const dpr =
         window.devicePixelRatio || 1;
@@ -327,18 +547,27 @@ function resizeScratchCanvas() {
     scratchCanvas.width =
         rect.width * dpr;
 
+
     scratchCanvas.height =
         rect.height * dpr;
 
 
     scratchCanvas.style.width =
-        rect.width + 'px';
+        rect.width + "px";
+
 
     scratchCanvas.style.height =
-        rect.height + 'px';
+        rect.height + "px";
 
 
-    ctx.scale(dpr, dpr);
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
 
 
     drawScratchLayer(
@@ -350,7 +579,7 @@ function resizeScratchCanvas() {
 
 
 /* ========================================
-   SCRATCH LAYER
+   DRAW SCRATCH
 ======================================== */
 
 function drawScratchLayer(
@@ -358,12 +587,16 @@ function drawScratchLayer(
     height
 ) {
 
-    /*
-        Base layer
-    */
+    if (!ctx) return;
+
+
+    ctx.globalCompositeOperation =
+        "source-over";
+
 
     ctx.fillStyle =
-        '#a85c5c';
+        "#a85c5c";
+
 
     ctx.fillRect(
         0,
@@ -372,10 +605,6 @@ function drawScratchLayer(
         height
     );
 
-
-    /*
-        Subtle texture
-    */
 
     for (
         let i = 0;
@@ -394,9 +623,7 @@ function drawScratchLayer(
 
 
         ctx.fillStyle =
-            `rgba(255,253,248,${
-                Math.random() * .25
-            })`;
+            `rgba(255,253,248,${Math.random() * .25})`;
 
 
         ctx.fillRect(
@@ -409,25 +636,24 @@ function drawScratchLayer(
     }
 
 
-    /*
-        Scratch instruction
-    */
-
     ctx.fillStyle =
-        '#fffdf8';
+        "#fffdf8";
+
 
     ctx.font =
-        'bold 12px Arial';
+        "bold 12px Arial";
+
 
     ctx.textAlign =
-        'center';
+        "center";
+
 
     ctx.textBaseline =
-        'middle';
+        "middle";
 
 
     ctx.fillText(
-        '✦ SCRATCH HERE ✦',
+        "✦ SCRATCH HERE ✦",
         width / 2,
         height / 2
     );
@@ -436,16 +662,16 @@ function drawScratchLayer(
 
 
 /* ========================================
-   SCRATCH FUNCTION
+   SCRATCH
 ======================================== */
 
-function scratch(
-    x,
-    y
-) {
+function scratch(x, y) {
+
+    if (!ctx) return;
+
 
     ctx.globalCompositeOperation =
-        'destination-out';
+        "destination-out";
 
 
     ctx.beginPath();
@@ -464,14 +690,15 @@ function scratch(
 
 
     ctx.globalCompositeOperation =
-        'source-over';
+        "source-over";
 
 
     scratchedPixels++;
 
 
     if (
-        scratchedPixels >= requiredScratch
+        scratchedPixels >=
+        requiredScratch
     ) {
 
         revealTracking();
@@ -494,10 +721,12 @@ function getPointerPosition(e) {
     return {
 
         x:
-            e.clientX - rect.left,
+            e.clientX -
+            rect.left,
 
         y:
-            e.clientY - rect.top
+            e.clientY -
+            rect.top
 
     };
 
@@ -508,116 +737,120 @@ function getPointerPosition(e) {
    MOUSE
 ======================================== */
 
-scratchCanvas.addEventListener(
-    'mousedown',
-    (e) => {
+if (scratchCanvas) {
 
-        isScratching = true;
+    scratchCanvas.addEventListener(
+        "mousedown",
+        (e) => {
 
-        const pos =
-            getPointerPosition(e);
+            isScratching = true;
 
-        scratch(
-            pos.x,
-            pos.y
-        );
+            const pos =
+                getPointerPosition(e);
 
-    }
-);
+            scratch(
+                pos.x,
+                pos.y
+            );
 
-
-scratchCanvas.addEventListener(
-    'mousemove',
-    (e) => {
-
-        if (!isScratching)
-            return;
+        }
+    );
 
 
-        const pos =
-            getPointerPosition(e);
+    scratchCanvas.addEventListener(
+        "mousemove",
+        (e) => {
 
+            if (!isScratching) return;
 
-        scratch(
-            pos.x,
-            pos.y
-        );
+            const pos =
+                getPointerPosition(e);
 
-    }
-);
+            scratch(
+                pos.x,
+                pos.y
+            );
 
+        }
+    );
 
-window.addEventListener(
-    'mouseup',
-    () => {
-
-        isScratching = false;
-
-    }
-);
+}
 
 
 /* ========================================
    TOUCH
 ======================================== */
 
-scratchCanvas.addEventListener(
-    'touchstart',
-    (e) => {
+if (scratchCanvas) {
 
-        e.preventDefault();
+    scratchCanvas.addEventListener(
+        "touchstart",
+        (e) => {
 
-        isScratching = true;
+            e.preventDefault();
 
+            isScratching = true;
 
-        const touch =
-            e.touches[0];
+            const touch =
+                e.touches[0];
 
-
-        const rect =
-            scratchCanvas.getBoundingClientRect();
-
-
-        scratch(
-            touch.clientX - rect.left,
-            touch.clientY - rect.top
-        );
-
-    },
-    { passive: false }
-);
+            const rect =
+                scratchCanvas.getBoundingClientRect();
 
 
-scratchCanvas.addEventListener(
-    'touchmove',
-    (e) => {
+            scratch(
+                touch.clientX - rect.left,
+                touch.clientY - rect.top
+            );
 
-        e.preventDefault();
-
-        if (!isScratching)
-            return;
-
-
-        const touch =
-            e.touches[0];
+        },
+        {
+            passive: false
+        }
+    );
 
 
-        const rect =
-            scratchCanvas.getBoundingClientRect();
+    scratchCanvas.addEventListener(
+        "touchmove",
+        (e) => {
+
+            e.preventDefault();
+
+            if (!isScratching) return;
+
+            const touch =
+                e.touches[0];
+
+            const rect =
+                scratchCanvas.getBoundingClientRect();
 
 
-        scratch(
-            touch.clientX - rect.left,
-            touch.clientY - rect.top
-        );
+            scratch(
+                touch.clientX - rect.left,
+                touch.clientY - rect.top
+            );
 
-    },
-    { passive: false }
-);
+        },
+        {
+            passive: false
+        }
+    );
 
 
-scratchCanvas.addEventListener(
-    'touchend',
+    scratchCanvas.addEventListener(
+        "touchend",
+        () => {
+
+            isScratching = false;
+
+        }
+    );
+
+}
+
+
+window.addEventListener(
+    "mouseup",
     () => {
 
         isScratching = false;
@@ -633,34 +866,38 @@ scratchCanvas.addEventListener(
 function revealTracking() {
 
     if (
+        !scratchCanvas ||
         scratchCanvas.dataset.revealed
-    )
-        return;
+    ) return;
+
 
     scratchCanvas.dataset.revealed =
-        'true';
+        "true";
 
-    // Baru tampilkan nomor resi setelah digosok
-    trackingNumber.textContent = RESI;
+
+    trackingNumber.textContent =
+        RESI;
+
 
     trackingCard.classList.add(
-        'revealed'
+        "revealed"
     );
+
 
     gsap.to(
         scratchCanvas,
         {
             opacity: 0,
-            duration: .8,
-            ease: "power2.out"
+            duration: .8
         }
     );
 
+
     gsap.fromTo(
-        '#tracking-number',
+        trackingNumber,
         {
-            scale: .85,
-            opacity: .5
+            scale: .8,
+            opacity: .4
         },
         {
             scale: 1,
@@ -670,149 +907,180 @@ function revealTracking() {
         }
     );
 
+
     const hint =
         document.querySelector(
-            '.scratch-hint'
+            ".scratch-hint"
         );
 
-    hint.textContent =
-        "You found it. 📦 Your little surprise is on its way. ♡";
+
+    if (hint) {
+
+        hint.textContent =
+            "You found it. 📦 Your little surprise is on its way. ♡";
+
+    }
+
 
     createScratchCelebration();
-}
-
-
-/* ========================================
-   CELEBRATION
-======================================= */
-
-function createScratchCelebration() {
-
-    const symbols = [
-        "✦",
-        "♡",
-        "✧",
-        "⋆"
-    ];
-
-
-    for (
-        let i = 0;
-        i < 12;
-        i++
-    ) {
-
-        const particle =
-            document.createElement('div');
-
-
-        particle.textContent =
-            symbols[
-                Math.floor(
-                    Math.random()
-                    *
-                    symbols.length
-                )
-            ];
-
-
-        particle.style.position =
-            'fixed';
-
-        particle.style.left =
-            '50%';
-
-        particle.style.top =
-            '55%';
-
-        particle.style.zIndex =
-            '999';
-
-        particle.style.pointerEvents =
-            'none';
-
-        particle.style.color =
-            '#a85c5c';
-
-        particle.style.fontSize =
-            (
-                Math.random() * 12 + 10
-            ) + 'px';
-
-
-        document.body.appendChild(
-            particle
-        );
-
-
-        gsap.to(
-            particle,
-            {
-
-                x:
-                    Math.random() * 300
-                    - 150,
-
-                y:
-                    Math.random() * 200
-                    - 100,
-
-                opacity: 0,
-
-                rotation:
-                    Math.random() * 360,
-
-                duration:
-                    1.2,
-
-                ease:
-                    "power2.out",
-
-                onComplete: () => {
-
-                    particle.remove();
-
-                }
-
-            }
-        );
-
-    }
 
 }
 
 
 /* ========================================
-   INITIALIZE
+   COPY
 ======================================== */
 
-window.addEventListener(
-    'load',
-    () => {
+if (copyButton) {
 
-        setTimeout(
-            resizeScratchCanvas,
-            100
-        );
+    copyButton.addEventListener(
+        "click",
+        async () => {
 
-    }
-);
+            try {
+
+                await navigator.clipboard.writeText(
+                    RESI
+                );
+
+            } catch {
+
+                const textarea =
+                    document.createElement(
+                        "textarea"
+                    );
 
 
-window.addEventListener(
-    'resize',
-    () => {
+                textarea.value =
+                    RESI;
 
-        /*
-            Don't redraw after
-            user has already scratched.
-        */
+
+                document.body.appendChild(
+                    textarea
+                );
+
+
+                textarea.select();
+
+                document.execCommand(
+                    "copy"
+                );
+
+                textarea.remove();
+
+            }
+
+
+            copyButton.textContent =
+                "Copied!!! 📦♡";
+
+
+            setTimeout(
+                () => {
+
+                    copyButton.textContent =
+                        "Copy tracking number";
+
+                },
+                1800
+            );
+
+        }
+    );
+
+}
+
+
+/* ========================================
+   FINAL POPUP
+======================================== */
+
+if (finishButton) {
+
+    finishButton.addEventListener(
+        "click",
+        () => {
+
+            popupOverlay.classList.add(
+                "show"
+            );
+
+
+            document.body.style.overflow =
+                "hidden";
+
+
+            createCameraCelebration();
+
+        }
+    );
+
+}
+
+
+if (popupClose) {
+
+    popupClose.addEventListener(
+        "click",
+        () => {
+
+            popupOverlay.classList.remove(
+                "show"
+            );
+
+
+            document.body.style.overflow =
+                "";
+
+        }
+    );
+
+}
+
+
+if (popupOverlay) {
+
+    popupOverlay.addEventListener(
+        "click",
+        (e) => {
+
+            if (
+                e.target ===
+                popupOverlay
+            ) {
+
+                popupOverlay.classList.remove(
+                    "show"
+                );
+
+
+                document.body.style.overflow =
+                    "";
+
+            }
+
+        }
+    );
+
+}
+
+
+document.addEventListener(
+    "keydown",
+    (e) => {
 
         if (
-            !scratchCanvas.dataset.revealed
+            e.key === "Escape" &&
+            popupOverlay.classList.contains("show")
         ) {
 
-            resizeScratchCanvas();
+            popupOverlay.classList.remove(
+                "show"
+            );
+
+
+            document.body.style.overflow =
+                "";
 
         }
 
@@ -841,48 +1109,44 @@ function createParticles() {
     ) {
 
         const particle =
-            document.createElement('div');
+            document.createElement("div");
 
 
         particle.textContent =
             symbols[
                 Math.floor(
-                    Math.random()
-                    *
+                    Math.random() *
                     symbols.length
                 )
             ];
 
 
         particle.style.position =
-            'fixed';
+            "fixed";
 
 
         particle.style.left =
-            '50%';
+            "50%";
 
 
         particle.style.top =
-            '45%';
+            "45%";
 
 
         particle.style.zIndex =
-            '999';
+            "999998";
 
 
         particle.style.pointerEvents =
-            'none';
+            "none";
 
 
         particle.style.color =
-            '#a85c5c';
+            "#a85c5c";
 
 
         particle.style.fontSize =
-            (
-                Math.random() * 15 + 10
-            )
-            + 'px';
+            `${Math.random() * 15 + 10}px`;
 
 
         document.body.appendChild(
@@ -895,23 +1159,27 @@ function createParticles() {
             {
 
                 x:
-                    Math.random() * 400
-                    - 200,
+                    Math.random() *
+                    400 -
+                    200,
 
                 y:
-                    Math.random() * 400
-                    - 200,
+                    Math.random() *
+                    400 -
+                    200,
 
                 opacity: 0,
 
                 rotation:
-                    Math.random() * 360,
+                    Math.random() *
+                    360,
 
                 duration:
-                    Math.random() * 1.5
-                    + 1,
+                    Math.random() * 1.5 +
+                    1,
 
-                ease: "power2.out",
+                ease:
+                    "power2.out",
 
                 onComplete: () => {
 
@@ -928,7 +1196,220 @@ function createParticles() {
 
 
 /* ========================================
-   FLOATING BACKGROUND
+   SCRATCH CELEBRATION
+======================================== */
+
+function createScratchCelebration() {
+
+    const symbols = [
+        "✦",
+        "♡",
+        "✧",
+        "⋆"
+    ];
+
+
+    for (
+        let i = 0;
+        i < 12;
+        i++
+    ) {
+
+        const particle =
+            document.createElement("div");
+
+
+        particle.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        particle.style.position =
+            "fixed";
+
+
+        particle.style.left =
+            "50%";
+
+
+        particle.style.top =
+            "55%";
+
+
+        particle.style.zIndex =
+            "999998";
+
+
+        particle.style.pointerEvents =
+            "none";
+
+
+        particle.style.color =
+            "#a85c5c";
+
+
+        particle.style.fontSize =
+            `${Math.random() * 12 + 10}px`;
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        gsap.to(
+            particle,
+            {
+
+                x:
+                    Math.random() *
+                    300 -
+                    150,
+
+                y:
+                    Math.random() *
+                    200 -
+                    100,
+
+                opacity: 0,
+
+                rotation:
+                    Math.random() *
+                    360,
+
+                duration: 1.2,
+
+                ease:
+                    "power2.out",
+
+                onComplete: () => {
+
+                    particle.remove();
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+
+/* ========================================
+   POPUP CELEBRATION
+======================================== */
+
+function createCameraCelebration() {
+
+    const symbols = [
+        "♡",
+        "✦",
+        "✧",
+        "⋆"
+    ];
+
+
+    for (
+        let i = 0;
+        i < 15;
+        i++
+    ) {
+
+        const particle =
+            document.createElement("div");
+
+
+        particle.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        particle.style.position =
+            "fixed";
+
+
+        particle.style.left =
+            "50%";
+
+
+        particle.style.top =
+            "50%";
+
+
+        particle.style.zIndex =
+            "1000000";
+
+
+        particle.style.pointerEvents =
+            "none";
+
+
+        particle.style.color =
+            "#a85c5c";
+
+
+        particle.style.fontSize =
+            `${Math.random() * 10 + 12}px`;
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        gsap.to(
+            particle,
+            {
+
+                x:
+                    Math.random() *
+                    260 -
+                    130,
+
+                y:
+                    Math.random() *
+                    200 -
+                    100,
+
+                rotation:
+                    Math.random() *
+                    360,
+
+                opacity: 0,
+
+                duration:
+                    Math.random() *
+                    .8 +
+                    .8,
+
+                ease:
+                    "power2.out",
+
+                onComplete: () => {
+
+                    particle.remove();
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+
+/* ========================================
+   BACKGROUND FLOATING PARTICLES
 ======================================== */
 
 setInterval(
@@ -942,50 +1423,44 @@ setInterval(
 
 
         const element =
-            document.createElement('div');
-
-
-        element.className =
-            'background-particle';
+            document.createElement("div");
 
 
         element.textContent =
             symbols[
                 Math.floor(
-                    Math.random()
-                    *
+                    Math.random() *
                     symbols.length
                 )
             ];
 
 
         element.style.position =
-            'fixed';
+            "fixed";
 
 
         element.style.left =
-            Math.random() * 100
-            + 'vw';
+            Math.random() * 100 + "vw";
 
 
         element.style.top =
-            '105vh';
+            "105vh";
 
 
         element.style.color =
-            '#a85c5c';
+            "#a85c5c";
 
 
         element.style.opacity =
-            '.2';
+            ".2";
 
 
         element.style.pointerEvents =
-            'none';
+            "none";
 
 
         element.style.zIndex =
-            '1';
+            "1";
 
 
         document.body.appendChild(
@@ -998,20 +1473,16 @@ setInterval(
             {
 
                 y:
-                    -window.innerHeight
-                    -100,
+                    -window.innerHeight - 100,
 
                 x:
-                    Math.random() * 100
-                    -50,
+                    Math.random() * 100 - 50,
 
                 rotation:
-                    Math.random() * 80
-                    -40,
+                    Math.random() * 80 - 40,
 
                 duration:
-                    Math.random() * 6
-                    + 7,
+                    Math.random() * 6 + 7,
 
                 ease: "none",
 
@@ -1026,4 +1497,25 @@ setInterval(
 
     },
     1800
+);
+
+
+/* ========================================
+   RESIZE
+======================================== */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        if (
+            scratchCanvas &&
+            !scratchCanvas.dataset.revealed
+        ) {
+
+            resizeScratchCanvas();
+
+        }
+
+    }
 );
