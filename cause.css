@@ -809,6 +809,7 @@ h1 span {
 @media (max-width: 600px) {
 
     #quest-text {
+       transform: translateY(20px);
         position: relative;
         z-index: 10;
         display: block;
