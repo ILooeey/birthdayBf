@@ -22,16 +22,12 @@
 <body>
 
 
-    <!-- =====================================================
-         CUSTOM CURSOR
-    ====================================================== -->
+    <!-- CUSTOM CURSOR -->
 
     <div class="cursor"></div>
 
 
-    <!-- =====================================================
-         BACKGROUND
-    ====================================================== -->
+    <!-- BACKGROUND -->
 
     <div class="background">
 
@@ -46,16 +42,12 @@
 
 
 
-    <!-- =====================================================
-         MAIN
-    ====================================================== -->
+    <!-- MAIN -->
 
     <main class="container">
 
 
-        <!-- =================================================
-             QUEST LABEL
-        ================================================== -->
+        <!-- TOP LABEL -->
 
         <div class="quest-label">
 
@@ -69,27 +61,19 @@
 
 
 
-        <!-- =================================================
-             TITLE
-        ================================================== -->
+        <!-- TITLE -->
 
         <h1>
 
-            A Little Something
+            A Little Something<br>
 
-            <br>
-
-            <span>
-                Is Coming Your Way.
-            </span>
+            <span>Is Coming Your Way.</span>
 
         </h1>
 
 
 
-        <!-- =================================================
-             INTRO
-        ================================================== -->
+        <!-- INTRO -->
 
         <p class="intro">
 
@@ -107,27 +91,23 @@
 
 
 
-        <!-- =================================================
-             GIFT BOX
-        ================================================== -->
+        <!-- GIFT -->
 
         <section class="gift-area">
+
 
             <div
                 class="gift-box"
                 id="gift-box"
             >
 
-                <!-- LID -->
 
                 <div class="gift-lid">
 
-                    <div class="ribbon lid-ribbon"></div>
+                    <div class="ribbon"></div>
 
                 </div>
 
-
-                <!-- BODY -->
 
                 <div class="gift-body">
 
@@ -138,19 +118,17 @@
                 </div>
 
 
-                <!-- GLOW -->
+                <div class="gift-shadow"></div>
 
-                <div class="gift-glow"></div>
 
             </div>
+
 
         </section>
 
 
 
-        <!-- =================================================
-             LOCK MESSAGE
-        ================================================== -->
+        <!-- LOCK MESSAGE -->
 
         <div
             class="lock-message"
@@ -184,9 +162,7 @@
 
 
 
-        <!-- =================================================
-             REVEAL
-        ================================================== -->
+        <!-- REVEAL -->
 
         <section
             class="reveal"
@@ -230,11 +206,10 @@
 
 
 
-            <!-- =================================================
-                 PACKAGE
-            ================================================== -->
+            <!-- PACKAGE -->
 
             <div class="package-card">
+
 
                 <div class="package-icon">
 
@@ -260,95 +235,76 @@
 
                 </div>
 
+
             </div>
 
 
 
-            <!-- =================================================
-                 TRACKING CARD
-            ================================================== -->
+            <!-- RECEIPT -->
 
             <div class="tracking-card">
 
 
+                <!-- ========================================
+     SCRATCH TRACKING CARD
+======================================== -->
+
                 <div class="tracking-title">
-
                     YOUR LITTLE SURPRISE
-
                 </div>
 
-
                 <p class="scratch-instruction">
-
                     Scratch the card to reveal your gift's tracking number ✦
-
                 </p>
-
 
                 <div class="scratch-container">
 
-
                     <!-- SECRET NUMBER -->
-
                     <div
                         class="tracking-number"
                         id="tracking-number"
                     >
-
                         CM71903983627
-
                     </div>
 
-
                     <!-- SCRATCH LAYER -->
-
                     <canvas
                         id="scratch-canvas"
                     ></canvas>
 
+                </div>
 
+                <p class="scratch-hint">
+                    ✦ Keep scratching... you're almost there.
+                </p>
+
+            </div>
                 </div>
 
 
-                <p class="scratch-hint">
+                <p>
 
-                    ✦ Keep scratching... you're almost there.
+                    Keep this safe.  
+                    Your little surprise is somewhere
+                    between me and you now. 🤍
 
                 </p>
 
+
+                <button
+                    class="copy-button"
+                    id="copy-button"
+                >
+
+                    Copy tracking number
+
+                </button>
 
             </div>
 
 
 
-            <!-- =================================================
-                 TRACKING MESSAGE
-            ================================================== -->
-
-            <p class="tracking-message">
-
-                Keep this safe.<br>
-
-                Your little surprise is somewhere
-                between me and you now. 🤍
-
-            </p>
-
-
-            <button
-                class="copy-button"
-                id="copy-button"
-            >
-
-                Copy tracking number
-
-            </button>
-
-
-
-            <!-- =================================================
-                 FINAL MESSAGE
-            ================================================== -->
+            <!-- FINAL MESSAGE -->
 
             <div class="final-message">
 
@@ -379,9 +335,7 @@
 
 
 
-            <!-- =================================================
-                 FINISH
-            ================================================== -->
+            <!-- BACK -->
 
             <button
                 class="finish-button"
@@ -399,73 +353,6 @@
     </main>
 
 
-
-    <!-- =====================================================
-         FINAL POPUP
-    ====================================================== -->
-
-    <div
-        class="camera-popup-overlay"
-        id="camera-popup-overlay"
-    >
-
-        <div class="camera-popup">
-
-
-            <div class="camera-popup-icon">
-
-                👀
-
-            </div>
-
-
-            <p class="camera-popup-small">
-
-                ONE LAST THING...
-
-            </p>
-
-
-            <h2>
-
-                Nanti pas kita VC...
-
-            </h2>
-
-
-            <p class="camera-popup-text">
-
-                HIHIHI Love u Sayanggg 🤍
-
-            </p>
-
-
-            <div class="camera-popup-note">
-
-                Ciniii hadep kameraaa 👀
-
-            </div>
-
-
-            <button
-                class="camera-popup-button"
-                id="camera-popup-close"
-            >
-
-                OKE, SIAPPP ✦
-
-            </button>
-
-
-        </div>
-
-    </div>
-
-
-
-    <!-- =====================================================
-         JAVASCRIPT
-    ====================================================== -->
 
     <script src="./last.js"></script>
 
