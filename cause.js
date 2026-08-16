@@ -27,6 +27,81 @@ document.addEventListener('mousemove', (e) => {
 
 });
 
+// ========================================
+// READY SCREEN
+// ========================================
+
+if (readyButton) {
+
+    readyButton.addEventListener('click', () => {
+
+        // Hide ready screen
+        gsap.to(readyScreen, {
+
+            opacity: 0,
+            scale: .95,
+
+            duration: .5,
+
+            ease: "power2.inOut",
+
+            onComplete: () => {
+
+                readyScreen.style.display = 'none';
+
+            }
+
+        });
+
+
+        // Show cake
+        gsap.fromTo(
+            '.cake',
+
+            {
+                opacity: 0,
+                y: 40,
+                scale: .85
+            },
+
+            {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+
+                duration: 1,
+
+                delay: .3,
+
+                ease: "back.out(1.5)"
+            }
+        );
+
+
+        // Show quest status
+        gsap.fromTo(
+            '.quest-status',
+
+            {
+                opacity: 0,
+                y: 10
+            },
+
+            {
+                opacity: 1,
+                y: 0,
+
+                duration: .6,
+
+                delay: .8,
+
+                ease: "power2.out"
+            }
+        );
+
+    });
+
+}
 
 // ========================================
 // CANDLE QUEST
