@@ -17,17 +17,15 @@ document.addEventListener(
 
         if (!cursor) return;
 
-        gsap.to(cursor, {
-
-            left: e.clientX,
-
-            top: e.clientY,
-
-            duration: .15,
-
-            ease: "power2.out"
-
-        });
+        gsap.to(
+            cursor,
+            {
+                left: e.clientX,
+                top: e.clientY,
+                duration: .15,
+                ease: "power2.out"
+            }
+        );
 
     }
 );
@@ -60,21 +58,21 @@ const finishButton =
 
 
 /* ========================================
-   CAMERA POPUP ELEMENTS
+   FINAL POPUP ELEMENTS
 ======================================== */
 
-const cameraModal =
-    document.querySelector('#camera-modal');
+const cameraPopupOverlay =
+    document.querySelector('#camera-popup-overlay');
 
-const cameraModalCard =
-    document.querySelector('.camera-modal-card');
+const cameraPopup =
+    document.querySelector('#camera-popup');
 
-const cameraReadyButton =
-    document.querySelector('#camera-ready-button');
+const cameraPopupClose =
+    document.querySelector('#camera-popup-close');
 
 
 /* ========================================
-   YOUR TRACKING NUMBER
+   TRACKING NUMBER
 ======================================== */
 
 const RESI =
@@ -89,82 +87,82 @@ window.addEventListener(
     'load',
     () => {
 
+        /* ====================================
+           PAGE ENTRANCE
+        ==================================== */
+
         gsap.from(
             '.container',
             {
                 opacity: 0,
-
                 y: 25,
-
                 duration: 1,
-
                 ease: "power3.out"
             }
         );
 
 
-        gsap.from(
-            '.gift-box',
-            {
-                opacity: 0,
+        /* ====================================
+           GIFT ENTRANCE
+        ==================================== */
 
-                scale: .6,
+        if (giftBox) {
 
-                rotation: -10,
+            gsap.from(
+                giftBox,
+                {
+                    opacity: 0,
+                    scale: .6,
+                    rotation: -10,
+                    duration: 1.2,
+                    delay: .3,
+                    ease: "back.out(1.7)"
+                }
+            );
 
-                duration: 1.2,
 
-                delay: .3,
+            /* ====================================
+               GIFT FLOAT
+            ==================================== */
 
-                ease: "back.out(1.7)"
-            }
-        );
+            gsap.to(
+                giftBox,
+                {
+                    y: -8,
+                    duration: 1.8,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                }
+            );
 
-
-        gsap.to(
-            '.gift-box',
-            {
-                y: -8,
-
-                duration: 1.8,
-
-                repeat: -1,
-
-                yoyo: true,
-
-                ease: "sine.inOut"
-            }
-        );
+        }
 
 
         /* ====================================
-           CAMERA MODAL INITIAL STATE
+           POPUP INITIAL STATE
         ==================================== */
 
         if (
-            cameraModal &&
-            cameraModalCard
+            cameraPopupOverlay &&
+            cameraPopup
         ) {
 
             gsap.set(
-                cameraModal,
+                cameraPopupOverlay,
                 {
                     opacity: 0,
-
-                    visibility: 'hidden',
-
-                    pointerEvents: 'none'
+                    visibility: "hidden",
+                    pointerEvents: "none"
                 }
             );
 
 
             gsap.set(
-                cameraModalCard,
+                cameraPopup,
                 {
                     opacity: 0,
-
-                    y: 25,
-
+                    y: 30,
                     scale: .92
                 }
             );
@@ -197,7 +195,6 @@ if (unlockButton) {
                 unlockButton,
                 {
                     scale: .9,
-
                     duration: .1
                 }
             );
@@ -207,85 +204,72 @@ if (unlockButton) {
                 unlockButton,
                 {
                     scale: 1,
-
                     duration: .25,
-
                     delay: .1
                 }
             );
 
 
             /* ====================================
-               GIFT SHAKES
+               GIFT SHAKE
             ==================================== */
 
-            gsap.timeline()
+            if (giftBox) {
 
-                .to(
-                    giftBox,
-                    {
-                        x: -8,
+                gsap.timeline()
 
-                        rotation: -6,
+                    .to(
+                        giftBox,
+                        {
+                            x: -8,
+                            rotation: -6,
+                            duration: .08
+                        }
+                    )
 
-                        duration: .08
-                    }
-                )
+                    .to(
+                        giftBox,
+                        {
+                            x: 8,
+                            rotation: 5,
+                            duration: .08
+                        }
+                    )
 
-                .to(
-                    giftBox,
-                    {
-                        x: 8,
+                    .to(
+                        giftBox,
+                        {
+                            x: -5,
+                            rotation: -3,
+                            duration: .08
+                        }
+                    )
 
-                        rotation: 5,
+                    .to(
+                        giftBox,
+                        {
+                            x: 0,
+                            rotation: 0,
+                            duration: .15
+                        }
+                    );
 
-                        duration: .08
-                    }
-                )
-
-                .to(
-                    giftBox,
-                    {
-                        x: -5,
-
-                        rotation: -3,
-
-                        duration: .08
-                    }
-                )
-
-                .to(
-                    giftBox,
-                    {
-                        x: 0,
-
-                        rotation: 0,
-
-                        duration: .15
-                    }
-                );
+            }
 
 
             /* ====================================
-               OPEN LID
+               OPEN GIFT LID
             ==================================== */
 
             gsap.to(
                 '.gift-lid',
                 {
-
                     y: -80,
-
                     rotation: -8,
-
                     opacity: 0,
-
                     duration: .8,
-
                     delay: .4,
-
                     ease: "back.out(1.5)"
-
                 }
             );
 
@@ -297,45 +281,46 @@ if (unlockButton) {
             gsap.to(
                 '.gift-body',
                 {
-
                     boxShadow:
                         '0 0 60px rgba(168,92,92,.35)',
 
                     duration: .8,
-
                     delay: .5
-
                 }
             );
 
 
             /* ====================================
-               HIDE LOCK
+               HIDE LOCK MESSAGE
             ==================================== */
 
-            gsap.to(
-                lockMessage,
-                {
+            if (lockMessage) {
 
-                    opacity: 0,
+                gsap.to(
+                    lockMessage,
+                    {
+                        opacity: 0,
+                        y: -20,
+                        duration: .5,
+                        delay: 1,
 
-                    y: -20,
+                        onComplete: () => {
 
-                    duration: .5,
+                            lockMessage.style.display =
+                                'none';
 
-                    delay: 1,
+                            showReveal();
 
-                    onComplete: () => {
-
-                        lockMessage.style.display =
-                            'none';
-
-                        showReveal();
+                        }
 
                     }
+                );
 
-                }
-            );
+            } else {
+
+                showReveal();
+
+            }
 
         }
     );
@@ -352,17 +337,21 @@ function showReveal() {
     if (!reveal) return;
 
 
-    /*
-        Hide tracking number
-        until scratch is completed
-    */
+    /* ====================================
+       HIDE TRACKING NUMBER
+    ==================================== */
 
     if (trackingNumber) {
 
-        trackingNumber.textContent = "";
+        trackingNumber.textContent =
+            "";
 
     }
 
+
+    /* ====================================
+       SHOW REVEAL
+    ==================================== */
 
     reveal.style.display =
         'block';
@@ -372,16 +361,12 @@ function showReveal() {
         reveal,
         {
             opacity: 0,
-
             y: 40
         },
         {
             opacity: 1,
-
             y: 0,
-
             duration: 1,
-
             ease: "power3.out",
 
             onComplete: () => {
@@ -399,6 +384,7 @@ function showReveal() {
                 );
 
             }
+
         }
     );
 
@@ -446,6 +432,15 @@ let scratchedPixels =
     0;
 
 
+let trackingRevealed =
+    false;
+
+
+/*
+    Number of scratch movements
+    required before revealing
+*/
+
 const requiredScratch =
     45;
 
@@ -460,8 +455,7 @@ function resizeScratchCanvas() {
         !scratchCanvas ||
         !scratchContainer ||
         !ctx
-    )
-        return;
+    ) return;
 
 
     const rect =
@@ -488,13 +482,9 @@ function resizeScratchCanvas() {
         rect.height + 'px';
 
 
-    /*
-        Reset transform before scaling.
-
-        Prevents the canvas from
-        becoming increasingly distorted
-        after multiple resize events.
-    */
+    /* ====================================
+       RESET TRANSFORM
+    ==================================== */
 
     ctx.setTransform(
         dpr,
@@ -515,7 +505,7 @@ function resizeScratchCanvas() {
 
 
 /* ========================================
-   SCRATCH LAYER
+   DRAW SCRATCH LAYER
 ======================================== */
 
 function drawScratchLayer(
@@ -557,13 +547,11 @@ function drawScratchLayer(
     ) {
 
         const x =
-            Math.random() *
-            width;
+            Math.random() * width;
 
 
         const y =
-            Math.random() *
-            height;
+            Math.random() * height;
 
 
         const size =
@@ -587,7 +575,7 @@ function drawScratchLayer(
 
 
     /* ====================================
-       INSTRUCTION
+       SCRATCH TEXT
     ==================================== */
 
     ctx.fillStyle =
@@ -608,9 +596,7 @@ function drawScratchLayer(
 
     ctx.fillText(
         '✦ SCRATCH HERE ✦',
-
         width / 2,
-
         height / 2
     );
 
@@ -626,7 +612,10 @@ function scratch(
     y
 ) {
 
-    if (!ctx) return;
+    if (
+        !ctx ||
+        trackingRevealed
+    ) return;
 
 
     ctx.globalCompositeOperation =
@@ -668,16 +657,19 @@ function scratch(
 
 
 /* ========================================
-   POINTER POSITION
+   GET POINTER POSITION
 ======================================== */
 
 function getPointerPosition(e) {
 
-    if (!scratchCanvas)
+    if (!scratchCanvas) {
+
         return {
             x: 0,
             y: 0
         };
+
+    }
 
 
     const rect =
@@ -700,7 +692,7 @@ function getPointerPosition(e) {
 
 
 /* ========================================
-   MOUSE
+   MOUSE DOWN
 ======================================== */
 
 if (scratchCanvas) {
@@ -725,6 +717,10 @@ if (scratchCanvas) {
         }
     );
 
+
+    /* ====================================
+       MOUSE MOVE
+    ==================================== */
 
     scratchCanvas.addEventListener(
         'mousemove',
@@ -765,7 +761,7 @@ window.addEventListener(
 
 
 /* ========================================
-   TOUCH
+   TOUCH START
 ======================================== */
 
 if (scratchCanvas) {
@@ -785,6 +781,9 @@ if (scratchCanvas) {
                 e.touches[0];
 
 
+            if (!touch) return;
+
+
             const rect =
                 scratchCanvas.getBoundingClientRect();
 
@@ -803,6 +802,10 @@ if (scratchCanvas) {
         }
     );
 
+
+    /* ====================================
+       TOUCH MOVE
+    ==================================== */
 
     scratchCanvas.addEventListener(
         'touchmove',
@@ -819,6 +822,9 @@ if (scratchCanvas) {
                 e.touches[0];
 
 
+            if (!touch) return;
+
+
             const rect =
                 scratchCanvas.getBoundingClientRect();
 
@@ -838,8 +844,23 @@ if (scratchCanvas) {
     );
 
 
+    /* ====================================
+       TOUCH END
+    ==================================== */
+
     scratchCanvas.addEventListener(
         'touchend',
+        () => {
+
+            isScratching =
+                false;
+
+        }
+    );
+
+
+    scratchCanvas.addEventListener(
+        'touchcancel',
         () => {
 
             isScratching =
@@ -857,14 +878,14 @@ if (scratchCanvas) {
 
 function revealTracking() {
 
-    if (!scratchCanvas)
-        return;
-
-
     if (
-        scratchCanvas.dataset.revealed
-    )
-        return;
+        !scratchCanvas ||
+        trackingRevealed
+    ) return;
+
+
+    trackingRevealed =
+        true;
 
 
     scratchCanvas.dataset.revealed =
@@ -883,6 +904,10 @@ function revealTracking() {
     }
 
 
+    /* ====================================
+       TRACKING CARD STATE
+    ==================================== */
+
     if (trackingCard) {
 
         trackingCard.classList.add(
@@ -893,19 +918,15 @@ function revealTracking() {
 
 
     /* ====================================
-       HIDE SCRATCH LAYER
+       HIDE SCRATCH CANVAS
     ==================================== */
 
     gsap.to(
         scratchCanvas,
         {
-
             opacity: 0,
-
             duration: .8,
-
             ease: "power2.out"
-
         }
     );
 
@@ -920,22 +941,22 @@ function revealTracking() {
             trackingNumber,
             {
                 scale: .85,
-
                 opacity: .5
             },
             {
                 scale: 1,
-
                 opacity: 1,
-
                 duration: .8,
-
                 ease: "back.out(2)"
             }
         );
 
     }
 
+
+    /* ====================================
+       CHANGE HINT
+    ==================================== */
 
     const hint =
         document.querySelector(
@@ -950,6 +971,10 @@ function revealTracking() {
 
     }
 
+
+    /* ====================================
+       CELEBRATION
+    ==================================== */
 
     createScratchCelebration();
 
@@ -1088,7 +1113,7 @@ window.addEventListener(
 
 
 /* ========================================
-   RESIZE
+   WINDOW RESIZE
 ======================================== */
 
 window.addEventListener(
@@ -1097,7 +1122,7 @@ window.addEventListener(
 
         if (
             scratchCanvas &&
-            !scratchCanvas.dataset.revealed
+            !trackingRevealed
         ) {
 
             resizeScratchCanvas();
@@ -1328,76 +1353,95 @@ setInterval(
 
 
 /* ========================================
-   CAMERA MOMENT
-======================================== */
-/* ========================================
    FINAL VC POPUP
 ======================================== */
 
-const cameraPopupOverlay =
-    document.querySelector(
-        '#camera-popup-overlay'
-    );
-
-const cameraPopup =
-    document.querySelector(
-        '#camera-popup'
-    );
-
-const cameraPopupClose =
-    document.querySelector(
-        '#camera-popup-close'
-    );
-
 
 /* ========================================
-   OPEN FINAL POPUP
+   OPEN POPUP
 ======================================== */
 
-if (
-    finishButton &&
-    cameraPopupOverlay &&
-    cameraPopup
-) {
+function openFinalPopup() {
 
-    finishButton.addEventListener(
-        'click',
-        () => {
+    if (
+        !cameraPopupOverlay ||
+        !cameraPopup
+    ) {
 
-            /* ====================================
-               SHOW OVERLAY
-            ==================================== */
+        console.error(
+            "FINAL POPUP ELEMENT NOT FOUND."
+        );
 
-            cameraPopupOverlay.classList.add(
-                'show'
-            );
+        return;
+
+    }
 
 
-            /* ====================================
-               ENTRANCE ANIMATION
-            ==================================== */
+    /* ====================================
+       KILL OLD ANIMATIONS
+    ==================================== */
 
-            gsap.fromTo(
-                cameraPopup,
-                {
-                    opacity: 0,
+    gsap.killTweensOf(
+        [
+            cameraPopupOverlay,
+            cameraPopup
+        ]
+    );
 
-                    y: 25,
 
-                    scale: .92
-                },
-                {
-                    opacity: 1,
+    /* ====================================
+       SHOW OVERLAY
+    ==================================== */
 
-                    y: 0,
+    cameraPopupOverlay.classList.add(
+        'show'
+    );
 
-                    scale: 1,
 
-                    duration: .65,
+    cameraPopupOverlay.style.visibility =
+        'visible';
 
-                    ease: "back.out(1.5)"
-                }
-            );
+
+    cameraPopupOverlay.style.pointerEvents =
+        'auto';
+
+
+    cameraPopupOverlay.style.opacity =
+        '1';
+
+
+    /* ====================================
+       POPUP START
+    ==================================== */
+
+    gsap.set(
+        cameraPopup,
+        {
+            opacity: 0,
+            y: 30,
+            scale: .92
+        }
+    );
+
+
+    /* ====================================
+       ENTRANCE
+    ==================================== */
+
+    gsap.to(
+        cameraPopup,
+        {
+
+            opacity: 1,
+
+            y: 0,
+
+            scale: 1,
+
+            duration: .65,
+
+            ease:
+                "back.out(1.5)"
 
         }
     );
@@ -1406,18 +1450,136 @@ if (
 
 
 /* ========================================
-   CLOSE FINAL POPUP
+   CLOSE POPUP
 ======================================== */
 
-if (
-    cameraPopupClose &&
-    cameraPopupOverlay &&
-    cameraPopup
-) {
+function closeFinalPopup() {
+
+    if (
+        !cameraPopupOverlay ||
+        !cameraPopup
+    ) return;
+
+
+    gsap.killTweensOf(
+        [
+            cameraPopupOverlay,
+            cameraPopup
+        ]
+    );
+
+
+    /* ====================================
+       CARD EXIT
+    ==================================== */
+
+    gsap.to(
+        cameraPopup,
+        {
+
+            opacity: 0,
+
+            y: 20,
+
+            scale: .95,
+
+            duration: .3,
+
+            ease:
+                "power2.in"
+
+        }
+    );
+
+
+    /* ====================================
+       OVERLAY EXIT
+    ==================================== */
+
+    gsap.to(
+        cameraPopupOverlay,
+        {
+
+            opacity: 0,
+
+            duration: .35,
+
+            delay: .1,
+
+            ease:
+                "power2.in",
+
+            onComplete: () => {
+
+                cameraPopupOverlay.classList.remove(
+                    'show'
+                );
+
+
+                cameraPopupOverlay.style.visibility =
+                    'hidden';
+
+
+                cameraPopupOverlay.style.pointerEvents =
+                    'none';
+
+
+                /* ====================================
+                   RESET POPUP
+                ==================================== */
+
+                gsap.set(
+                    cameraPopup,
+                    {
+                        opacity: 1,
+                        y: 0,
+                        scale: 1
+                    }
+                );
+
+            }
+
+        }
+    );
+
+
+    createCameraCelebration();
+
+}
+
+
+/* ========================================
+   FINISH BUTTON
+======================================== */
+
+if (finishButton) {
+
+    finishButton.addEventListener(
+        'click',
+        (e) => {
+
+            e.preventDefault();
+
+            openFinalPopup();
+
+        }
+    );
+
+}
+
+
+/* ========================================
+   CLOSE BUTTON
+======================================== */
+
+if (cameraPopupClose) {
 
     cameraPopupClose.addEventListener(
         'click',
-        () => {
+        (e) => {
+
+            e.preventDefault();
+
 
             /* ====================================
                BUTTON PRESS
@@ -1426,6 +1588,7 @@ if (
             gsap.to(
                 cameraPopupClose,
                 {
+
                     scale: .92,
 
                     duration: .1,
@@ -1433,75 +1596,73 @@ if (
                     yoyo: true,
 
                     repeat: 1
+
                 }
             );
 
 
-            /* ====================================
-               CARD EXIT
-            ==================================== */
+            setTimeout(
+                () => {
 
-            gsap.to(
-                cameraPopup,
-                {
-                    opacity: 0,
+                    closeFinalPopup();
 
-                    y: 20,
-
-                    scale: .95,
-
-                    duration: .35,
-
-                    ease: "power2.in"
-                }
+                },
+                120
             );
-
-
-            /* ====================================
-               CLOSE OVERLAY
-            ==================================== */
-
-            gsap.to(
-                cameraPopupOverlay,
-                {
-                    opacity: 0,
-
-                    duration: .4,
-
-                    delay: .1,
-
-                    ease: "power2.in",
-
-                    onComplete: () => {
-
-                        cameraPopupOverlay.classList.remove(
-                            'show'
-                        );
-
-                        /* Reset */
-
-                        gsap.set(
-                            cameraPopup,
-                            {
-                                opacity: 1,
-
-                                y: 0,
-
-                                scale: 1
-                            }
-                        );
-
-                    }
-                }
-            );
-
-
-            createCameraCelebration();
 
         }
     );
 
 }
+
+
+/* ========================================
+   CLICK OUTSIDE POPUP
+======================================== */
+
+if (cameraPopupOverlay) {
+
+    cameraPopupOverlay.addEventListener(
+        'click',
+        (e) => {
+
+            if (
+                e.target ===
+                cameraPopupOverlay
+            ) {
+
+                closeFinalPopup();
+
+            }
+
+        }
+    );
+
+}
+
+
+/* ========================================
+   ESC KEY
+======================================== */
+
+document.addEventListener(
+    'keydown',
+    (e) => {
+
+        if (
+            e.key === "Escape" &&
+            cameraPopupOverlay &&
+            cameraPopupOverlay.classList.contains(
+                'show'
+            )
+        ) {
+
+            closeFinalPopup();
+
+        }
+
+    }
+);
 
 
 /* ========================================
@@ -1520,7 +1681,7 @@ function createCameraCelebration() {
 
     for (
         let i = 0;
-        i < 10;
+        i < 12;
         i++
     ) {
 
@@ -1583,8 +1744,8 @@ function createCameraCelebration() {
 
                 y:
                     Math.random() *
-                    200 -
-                    100,
+                    220 -
+                    110,
 
                 rotation:
                     Math.random() *
