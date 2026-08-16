@@ -2,259 +2,446 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>A Birthday Quest For You 🎂</title>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js">
+    </script>
 
-    <link rel="stylesheet" href="./cause.css">
+    <link
+        rel="stylesheet"
+        href="./cause.css"
+    >
+
 </head>
+
 
 <body>
 
-    <!-- Custom Cursor -->
+    <!-- ========================================
+         CUSTOM CURSOR
+    ======================================== -->
+
     <div class="cursor"></div>
 
 
-    <!-- Paper texture -->
+    <!-- ========================================
+         PAPER TEXTURE
+    ======================================== -->
+
     <div class="paper-texture"></div>
 
 
-    <!-- Floating decorations -->
+    <!-- ========================================
+         FLOATING BACKGROUND
+    ======================================== -->
+
     <div class="floating-background">
+
         <span>✦</span>
         <span>♡</span>
         <span>✧</span>
         <span>+</span>
         <span>⋆</span>
         <span>♡</span>
+
     </div>
 
 
+    <!-- ========================================
+         MAIN PAGE
+    ======================================== -->
+
     <main class="birthday-page">
 
-        <!-- TOP -->
+
+        <!-- ========================================
+             HEADER
+        ======================================== -->
+
         <div class="quest-header">
 
             <div class="quest-label">
+
                 <span class="status-dot"></span>
+
                 BIRTHDAY QUEST
+
             </div>
 
+
             <div class="quest-number">
+
                 QUEST 01 / 01
+
             </div>
 
         </div>
 
 
-        <!-- MAIN -->
+        <!-- ========================================
+             MAIN CONTENT
+        ======================================== -->
+
         <section class="birthday-content">
+
+
+            <!-- TITLE -->
 
             <p class="eyebrow">
                 A LITTLE BIRTHDAY QUEST
             </p>
 
+
             <h1>
-                Make a wish<br>
-                <span>before you continue.</span>
-            </h1>
-            <div id="ready-screen">
-                <h2>Ready for your birthday quest? ✦</h2>
-                <button id="ready-btn">I'm Ready ♡</button>
-            </div>
-            
-            <div id="cake-section" style="display: none;">
-                <!-- cake kamu di sini -->
-            
-                <span id="quest-text">
-                    Click the flames to blow out the candles.
-                </span>
-            </div>
-            <p class="description">
-                There are a few little flames waiting for you.
+
+                Make a wish
+
                 <br>
-                Click each one and make your birthday wish. 🎂
-            </p>
 
-
-            <!-- CAKE -->
-            <div class="cake-area">
-
-            <div class="cake-glow"></div>
-
-
-            <!-- D1 -->
-            <div class="cake-sticker sticker-d1">
-                <img src="d2.png" alt="D1">
-            </div>
-
-
-            <!-- D2 -->
-            <div class="cake-sticker sticker-d2">
-                <img src="d3.png" alt="D2">
-            </div>
-
-
-            <div class="cake">
-
-                <!-- Candles -->
-                <div class="candles">
-
-                    <div class="candle candle-1">
-                        <div class="flame" data-candle="1"></div>
-                        <div class="wick"></div>
-                        <div class="candle-body"></div>
-                        <div class="smoke"></div>
-                    </div>
-
-                    <div class="candle candle-2">
-                        <div class="flame" data-candle="2"></div>
-                        <div class="wick"></div>
-                        <div class="candle-body"></div>
-                        <div class="smoke"></div>
-                    </div>
-
-                    <div class="candle candle-3">
-                        <div class="flame" data-candle="3"></div>
-                        <div class="wick"></div>
-                        <div class="candle-body"></div>
-                        <div class="smoke"></div>
-                    </div>
-
-                    <div class="candle candle-4">
-                        <div class="flame" data-candle="4"></div>
-                        <div class="wick"></div>
-                        <div class="candle-body"></div>
-                        <div class="smoke"></div>
-                    </div>
-
-                    <div class="candle candle-5">
-                        <div class="flame" data-candle="5"></div>
-                        <div class="wick"></div>
-                        <div class="candle-body"></div>
-                        <div class="smoke"></div>
-                    </div>
-
-                </div>
-
-
-                <!-- Cake -->
-                <div class="cake-top">
-
-                    <div class="cream cream-1"></div>
-                    <div class="cream cream-2"></div>
-                    <div class="cream cream-3"></div>
-
-                    <div class="sprinkles">
-                        <span>•</span>
-                        <span>•</span>
-                        <span>•</span>
-                        <span>•</span>
-                        <span>•</span>
-                        <span>•</span>
-                    </div>
-
-                </div>
-
-                <div class="cake-middle"></div>
-
-                <div class="cake-bottom"></div>
-
-                <div class="cake-plate"></div>
-
-            </div>
-
-        </div>
-
-
-            <!-- QUEST STATUS -->
-            <div class="quest-status">
-
-                <span id="quest-text">
-                    Click the flames to blow out the candles.
+                <span>
+                    before you continue.
                 </span>
 
-                <div class="candle-progress">
-                    <span class="progress-dot active"></span>
-                    <span class="progress-dot"></span>
-                    <span class="progress-dot"></span>
-                    <span class="progress-dot"></span>
-                    <span class="progress-dot"></span>
-                </div>
-
-            </div>
-            
-    <div class="wish-card">
-
-        <p class="wish-small">
-            A LITTLE MESSAGE FOR YOU
-        </p>
-
-        <p class="wish-text" id="wish-text">
-            Semoga semua doa kamu terkabul ya. ♡
-        </p>
-
-        <button id="wish-confirm">
-            Continue
-            <span>→</span>
-        </button>
-
-    </div>
-
-</div>
+            </h1>
 
 
-            <!-- COMPLETED MESSAGE -->
-            <div class="birthday-message" id="birthday-message">
+            <!-- ========================================
+                 READY SCREEN
+            ======================================== -->
 
-                <div class="message-icon">
-                    ♡
-                </div>
-
-                <p class="message-small">
-                    QUEST COMPLETE
-                </p>
-
-                <h2>
-                    Happy Birthday, my love. 🤍
-                </h2>
+            <div id="ready-screen">
 
                 <p>
-                    I hope this new chapter of your life
-                    brings you lots of happiness,
-                    good things, and everything you've been wishing for.
+                    Ready for your birthday quest? ✦
                 </p>
 
-                <p>
-                    And I hope I get to be there
-                    for as many of those moments as I can.
-                </p>
 
-                <button id="continue-button">
-                    Read my birthday message
-                    <span>→</span>
+                <button id="ready-button">
+
+                    I'm Ready
+
+                    <span>♡</span>
+
                 </button>
 
             </div>
 
+
+            <!-- ========================================
+                 DESCRIPTION
+            ======================================== -->
+
+            <p class="description">
+
+                There are a few little flames waiting for you.
+
+                <br>
+
+                Click each one and make your birthday wish. 🎂
+
+            </p>
+
+
+            <!-- ========================================
+                 CAKE AREA
+            ======================================== -->
+
+            <div class="cake-area">
+
+
+                <div class="cake-glow"></div>
+
+
+                <!-- D1 STICKER -->
+
+                <div class="cake-sticker sticker-d1">
+
+                    <img
+                        src="d2.png"
+                        alt="D1"
+                    >
+
+                </div>
+
+
+                <!-- D2 STICKER -->
+
+                <div class="cake-sticker sticker-d2">
+
+                    <img
+                        src="d3.png"
+                        alt="D2"
+                    >
+
+                </div>
+
+
+                <!-- CAKE -->
+
+                <div class="cake">
+
+
+                    <!-- CANDLES -->
+
+                    <div class="candles">
+
+
+                        <div class="candle candle-1">
+
+                            <div
+                                class="flame"
+                                data-candle="1">
+                            </div>
+
+                            <div class="wick"></div>
+
+                            <div class="candle-body"></div>
+
+                            <div class="smoke"></div>
+
+                        </div>
+
+
+                        <div class="candle candle-2">
+
+                            <div
+                                class="flame"
+                                data-candle="2">
+                            </div>
+
+                            <div class="wick"></div>
+
+                            <div class="candle-body"></div>
+
+                            <div class="smoke"></div>
+
+                        </div>
+
+
+                        <div class="candle candle-3">
+
+                            <div
+                                class="flame"
+                                data-candle="3">
+                            </div>
+
+                            <div class="wick"></div>
+
+                            <div class="candle-body"></div>
+
+                            <div class="smoke"></div>
+
+                        </div>
+
+
+                        <div class="candle candle-4">
+
+                            <div
+                                class="flame"
+                                data-candle="4">
+                            </div>
+
+                            <div class="wick"></div>
+
+                            <div class="candle-body"></div>
+
+                            <div class="smoke"></div>
+
+                        </div>
+
+
+                        <div class="candle candle-5">
+
+                            <div
+                                class="flame"
+                                data-candle="5">
+                            </div>
+
+                            <div class="wick"></div>
+
+                            <div class="candle-body"></div>
+
+                            <div class="smoke"></div>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <!-- CAKE TOP -->
+
+                    <div class="cake-top">
+
+                        <div class="cream cream-1"></div>
+
+                        <div class="cream cream-2"></div>
+
+                        <div class="cream cream-3"></div>
+
+
+                        <div class="sprinkles">
+
+                            <span>•</span>
+                            <span>•</span>
+                            <span>•</span>
+                            <span>•</span>
+                            <span>•</span>
+                            <span>•</span>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- CAKE MIDDLE -->
+
+                    <div class="cake-middle"></div>
+
+
+                    <!-- CAKE BOTTOM -->
+
+                    <div class="cake-bottom"></div>
+
+
+                    <!-- PLATE -->
+
+                    <div class="cake-plate"></div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- ========================================
+                 QUEST STATUS
+            ======================================== -->
+
+            <div class="quest-status">
+
+
+                <span id="quest-text">
+
+                    Click the flames to blow out the candles.
+
+                </span>
+
+
+                <div class="candle-progress">
+
+                    <span class="progress-dot active"></span>
+
+                    <span class="progress-dot"></span>
+
+                    <span class="progress-dot"></span>
+
+                    <span class="progress-dot"></span>
+
+                    <span class="progress-dot"></span>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- ========================================
+                 COMPLETED MESSAGE
+            ======================================== -->
+
+            <div
+                class="birthday-message"
+                id="birthday-message"
+            >
+
+
+                <div class="message-icon">
+
+                    ♡
+
+                </div>
+
+
+                <p class="message-small">
+
+                    QUEST COMPLETE
+
+                </p>
+
+
+                <h2>
+
+                    Happy Birthday, my love. 🤍
+
+                </h2>
+
+
+                <p>
+
+                    I hope this new chapter of your life
+                    brings you lots of happiness,
+                    good things, and everything you've been wishing for.
+
+                </p>
+
+
+                <p>
+
+                    And I hope I get to be there
+                    for as many of those moments as I can.
+
+                </p>
+
+
+                <button id="continue-button">
+
+                    Read my birthday message
+
+                    <span>→</span>
+
+                </button>
+
+
+            </div>
+
+
         </section>
-        
 
 
-        <!-- FOOTER -->
+        <!-- ========================================
+             FOOTER
+        ======================================== -->
+
         <div class="bottom-bar">
 
-            <span>FOR MY FAVORITE PERSON</span>
+            <span>
+                FOR MY FAVORITE PERSON
+            </span>
 
-            <span>♡ WITH LOVE</span>
+
+            <span>
+                ♡ WITH LOVE
+            </span>
 
         </div>
 
+
     </main>
 
+
+    <!-- ========================================
+         SCRIPT
+    ======================================== -->
 
     <script src="./cause.js"></script>
 
