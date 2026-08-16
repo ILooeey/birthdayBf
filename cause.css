@@ -89,8 +89,10 @@ body {
 
     z-index: 99999;
 
-    transform: translate(-50%, -50%);
+    transform:
+        translate(-50%, -50%);
 }
+
 
 .cursor::after {
 
@@ -144,38 +146,55 @@ body {
 
 
 .floating-background span:nth-child(1) {
+
     top: 12%;
     left: 8%;
+
     font-size: 22px;
 }
 
+
 .floating-background span:nth-child(2) {
+
     top: 20%;
     right: 12%;
+
     font-size: 20px;
 }
 
+
 .floating-background span:nth-child(3) {
+
     top: 55%;
     left: 7%;
+
     font-size: 25px;
 }
 
+
 .floating-background span:nth-child(4) {
+
     top: 70%;
     right: 8%;
+
     font-size: 18px;
 }
 
+
 .floating-background span:nth-child(5) {
+
     bottom: 12%;
     left: 20%;
+
     font-size: 20px;
 }
 
+
 .floating-background span:nth-child(6) {
+
     top: 42%;
     right: 23%;
+
     font-size: 22px;
 }
 
@@ -226,6 +245,7 @@ body {
         blur(10px);
 }
 
+
 /* ========================================
    READY SCREEN
 ======================================== */
@@ -248,22 +268,33 @@ body {
 
     text-align: center;
 
+    padding: 30px;
+
     background:
-        rgba(255,253,248,.96);
+        rgba(255,253,248,.97);
 
     opacity: 1;
 }
 
 
-#ready-screen p {
+#ready-screen h2 {
+
+    max-width: 500px;
 
     font-family: Georgia, serif;
 
-    font-size: 1.25rem;
+    font-size:
+        clamp(
+            1.5rem,
+            4vw,
+            2.2rem
+        );
 
-    color: #6e6861;
+    line-height: 1.3;
 
-    margin-bottom: 22px;
+    color: #292724;
+
+    margin-bottom: 25px;
 }
 
 
@@ -319,6 +350,8 @@ body {
 
     color: #d98b8b;
 }
+
+
 /* ========================================
    HEADER
 ======================================== */
@@ -398,6 +431,10 @@ body {
 }
 
 
+/* ========================================
+   EYEBROW
+======================================== */
+
 .eyebrow {
 
     font-size: 10px;
@@ -457,6 +494,10 @@ h1 span {
 }
 
 
+/* ========================================
+   DESCRIPTION
+======================================== */
+
 .description {
 
     color: #6e6861;
@@ -496,6 +537,10 @@ h1 span {
     align-items: flex-end;
 }
 
+
+/* ========================================
+   CAKE GLOW
+======================================== */
 
 .cake-glow {
 
@@ -565,7 +610,9 @@ h1 span {
 }
 
 
-/* Candle body */
+/* ========================================
+   CANDLE BODY
+======================================== */
 
 .candle-body {
 
@@ -583,8 +630,10 @@ h1 span {
 
         repeating-linear-gradient(
             135deg,
+
             #fffdf8 0px,
             #fffdf8 7px,
+
             #d9a0a0 7px,
             #d9a0a0 12px
         );
@@ -598,7 +647,9 @@ h1 span {
 }
 
 
-/* Wick */
+/* ========================================
+   WICK
+======================================== */
 
 .wick {
 
@@ -635,6 +686,7 @@ h1 span {
     z-index: 10;
 
     background:
+
         linear-gradient(
             45deg,
             #d98b8b,
@@ -664,7 +716,6 @@ h1 span {
         opacity .3s ease,
         transform .3s ease;
 
-    /* IMPORTANT */
     cursor: pointer;
 }
 
@@ -688,8 +739,6 @@ h1 span {
     opacity: .7;
 }
 
-
-/* Hover flame */
 
 .flame:hover {
 
@@ -728,7 +777,7 @@ h1 span {
 
 
 /* ========================================
-   CAKE BODY
+   CAKE TOP
 ======================================== */
 
 .cake-top {
@@ -761,7 +810,9 @@ h1 span {
 }
 
 
-/* Cream */
+/* ========================================
+   CREAM
+======================================== */
 
 .cream {
 
@@ -773,7 +824,8 @@ h1 span {
 
     background: #fffdf8;
 
-    border-radius: 0 0 50% 50%;
+    border-radius:
+        0 0 50% 50%;
 
     bottom: -10px;
 }
@@ -783,16 +835,20 @@ h1 span {
     left: 55px;
 }
 
+
 .cream-2 {
     left: 130px;
 }
+
 
 .cream-3 {
     right: 55px;
 }
 
 
-/* Sprinkles */
+/* ========================================
+   SPRINKLES
+======================================== */
 
 .sprinkles {
 
@@ -801,7 +857,8 @@ h1 span {
     justify-content:
         space-around;
 
-    padding: 15px 40px;
+    padding:
+        15px 40px;
 
     color: #a85c5c;
 
@@ -809,7 +866,9 @@ h1 span {
 }
 
 
-/* Middle */
+/* ========================================
+   CAKE MIDDLE
+======================================== */
 
 .cake-middle {
 
@@ -824,6 +883,7 @@ h1 span {
     height: 55px;
 
     background:
+
         linear-gradient(
             to bottom,
             #d7a0a0,
@@ -841,7 +901,9 @@ h1 span {
 }
 
 
-/* Bottom */
+/* ========================================
+   CAKE BOTTOM
+======================================== */
 
 .cake-bottom {
 
@@ -856,6 +918,7 @@ h1 span {
     height: 60px;
 
     background:
+
         linear-gradient(
             to bottom,
             #fffdf8,
@@ -873,7 +936,9 @@ h1 span {
 }
 
 
-/* Plate */
+/* ========================================
+   PLATE
+======================================== */
 
 .cake-plate {
 
@@ -898,25 +963,7 @@ h1 span {
     z-index: 0;
 }
 
-@media (max-width: 600px) {
 
-    #quest-text {
-       transform: translateY(50px);
-        position: relative;
-        z-index: 10;
-        display: block;
-        width: 90%;
-        margin: 0 auto 20px;
-        text-align: center;
-        line-height: 1.4;
-    }
-
-    /* Kalau cake masih menimpa teks */
-    .cake {
-        margin-top: 20px;
-    }
-
-}
 /* ========================================
    QUEST STATUS
 ======================================== */
@@ -938,8 +985,26 @@ h1 span {
     letter-spacing: .5px;
 
     margin-top: 10px;
+
+    width: 100%;
 }
 
+
+#quest-text {
+
+    display: block;
+
+    width: 100%;
+
+    text-align: center;
+
+    line-height: 1.4;
+}
+
+
+/* ========================================
+   CANDLE PROGRESS
+======================================== */
 
 .candle-progress {
 
@@ -1009,8 +1074,14 @@ h1 span {
     transform:
         translateY(25px)
         scale(.96);
+
+    text-align: center;
 }
 
+
+/* ========================================
+   MESSAGE ICON
+======================================== */
 
 .message-icon {
 
@@ -1103,6 +1174,8 @@ h1 span {
     transition:
         transform .2s ease,
         background .2s ease;
+
+    cursor: pointer;
 }
 
 
@@ -1149,6 +1222,62 @@ h1 span {
 
 
 /* ========================================
+   CAKE STICKERS
+======================================== */
+
+.cake-sticker {
+
+    position: absolute;
+
+    z-index: 5;
+
+    pointer-events: none;
+}
+
+
+.cake-sticker img {
+
+    width: 100%;
+
+    height: auto;
+
+    display: block;
+}
+
+
+/* LEFT */
+
+.sticker-d1 {
+
+    width: 110px;
+
+    left:
+        calc(50% - 280px);
+
+    top: 48%;
+
+    transform:
+        translateY(-50%);
+}
+
+
+/* RIGHT */
+
+.sticker-d2 {
+
+    width: 110px;
+
+    right:
+        calc(50% - 280px);
+
+    top: 48%;
+
+    transform:
+        translateY(-50%);
+}
+
+
+/* ========================================
    ANIMATIONS
 ======================================== */
 
@@ -1167,12 +1296,14 @@ h1 span {
 @keyframes flameFlicker {
 
     from {
+
         transform:
             rotate(-45deg)
             scale(.95);
     }
 
     to {
+
         transform:
             rotate(-43deg)
             scale(1.08);
@@ -1183,12 +1314,14 @@ h1 span {
 @keyframes floatAround {
 
     0%, 100% {
+
         transform:
             translateY(0)
             rotate(0deg);
     }
 
     50% {
+
         transform:
             translateY(-18px)
             rotate(5deg);
@@ -1196,31 +1329,8 @@ h1 span {
 }
 
 
-@keyframes smokeRise {
-
-    0% {
-        opacity: .5;
-
-        transform:
-            translateY(0)
-            scale(.7);
-    }
-
-    100% {
-        opacity: 0;
-
-        transform:
-            translate(
-                8px,
-                -45px
-            )
-            scale(1.5);
-    }
-}
-
-
 /* ========================================
-   MOBILE
+   MOBILE — TABLET / PHONE
 ======================================== */
 
 @media (max-width: 768px) {
@@ -1231,7 +1341,8 @@ h1 span {
 
         min-height: auto;
 
-        margin: 20px auto;
+        margin:
+            20px auto;
 
         padding:
             20px
@@ -1243,7 +1354,7 @@ h1 span {
     .birthday-content {
 
         padding:
-            40px 0
+            35px 0
             30px;
     }
 
@@ -1262,31 +1373,89 @@ h1 span {
     .description {
 
         font-size: .9rem;
+
+        line-height: 1.6;
     }
 
 
+    /* ====================================
+       CAKE MOBILE
+    ==================================== */
+
     .cake-area {
 
-        transform:
-            scale(.8);
+        width: 450px;
+
+        max-width: none;
+
+        height: 300px;
 
         margin:
-            -10px
-            auto;
+            5px auto
+            0;
+
+        transform:
+            scale(.78);
+
+        transform-origin:
+            center top;
     }
 
 
     .quest-status {
 
-        margin-top: -20px;
+        margin-top:
+            -45px;
+
+        gap: 10px;
+
+        font-size: .78rem;
     }
 
 
+    #quest-text {
+
+        width: 90%;
+
+        line-height: 1.4;
+    }
+
+
+    /* ====================================
+       STICKERS MOBILE
+    ==================================== */
+
+    .sticker-d1 {
+
+        width: 90px;
+
+        left:
+            calc(50% - 245px);
+    }
+
+
+    .sticker-d2 {
+
+        width: 90px;
+
+        right:
+            calc(50% - 245px);
+    }
+
+
+    /* ====================================
+       MESSAGE
+    ==================================== */
+
     .birthday-message {
+
+        width: 90%;
 
         padding:
             28px
             18px;
+
+        margin-top: 30px;
     }
 
 
@@ -1296,328 +1465,208 @@ h1 span {
 
         letter-spacing: 1px;
     }
+
 }
 
+
+/* ========================================
+   SMALL PHONE
+======================================== */
 
 @media (max-width: 480px) {
 
     .quest-header {
 
         font-size: 8px;
+
+        letter-spacing: 1.5px;
     }
 
 
+    .birthday-page {
+
+        width: 94%;
+
+        padding:
+            18px
+            14px
+            20px;
+    }
+
+
+    .birthday-content {
+
+        padding:
+            30px 0
+            25px;
+    }
+
+
+    h1 {
+
+        font-size:
+            clamp(
+                2.1rem,
+                10vw,
+                3rem
+            );
+    }
+
+
+    h1 span {
+
+        font-size: .5em;
+
+        letter-spacing: 2px;
+    }
+
+
+    .description {
+
+        font-size: .84rem;
+
+        line-height: 1.55;
+    }
+
+
+    /* ====================================
+       CAKE SMALL PHONE
+    ==================================== */
+
     .cake-area {
 
-        transform:
-            scale(.68);
+        width: 450px;
+
+        height: 270px;
 
         margin:
-            -35px
-            auto;
+            0 auto;
+
+        transform:
+            scale(.65);
+
+        transform-origin:
+            center top;
     }
 
 
     .quest-status {
 
-        margin-top: -45px;
+        margin-top:
+            -70px;
+
+        font-size: .75rem;
+    }
+
+
+    #quest-text {
+
+        width: 95%;
+
+        line-height: 1.35;
+    }
+
+
+    /* ====================================
+       STICKERS SMALL PHONE
+    ==================================== */
+
+    .sticker-d1 {
+
+        width: 75px;
+
+        left:
+            calc(50% - 230px);
+    }
+
+
+    .sticker-d2 {
+
+        width: 75px;
+
+        right:
+            calc(50% - 230px);
+    }
+
+
+    /* ====================================
+       READY SCREEN
+    ==================================== */
+
+    #ready-screen {
+
+        padding: 25px;
+    }
+
+
+    #ready-screen h2 {
+
+        max-width: 280px;
+
+        font-size:
+            1.4rem;
+
+        line-height: 1.3;
+    }
+
+
+    #ready-button {
+
+        padding:
+            12px
+            24px;
+
+        font-size: .8rem;
+    }
+
+
+    /* ====================================
+       BIRTHDAY MESSAGE
+    ==================================== */
+
+    .birthday-message {
+
+        width: 92%;
+
+        padding:
+            25px
+            16px;
     }
 
 
     .birthday-message h2 {
 
         font-size: 1.8rem;
+
+        line-height: 1.2;
     }
-}
-/* ========================================
-   WISH REVEAL
-======================================== */
-
-.wish-reveal {
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 100;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    pointer-events: none;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-}
 
 
-/* Soft overlay */
+    .birthday-message p:not(.message-small) {
 
-.wish-reveal::before {
+        font-size: .9rem;
 
-    content: "";
+        line-height: 1.6;
+    }
 
-    position: absolute;
 
-    inset: 0;
+    #continue-button {
 
-    background:
-        rgba(238,233,223,.72);
+        width: 100%;
 
-    backdrop-filter:
-        blur(5px);
+        font-size: .75rem;
 
-    -webkit-backdrop-filter:
-        blur(5px);
+        padding:
+            12px
+            15px;
+    }
+
+
+    .bottom-bar {
+
+        font-size: 6px;
+
+        letter-spacing: .8px;
+    }
 
 }
-
-
-/* Active */
-
-.wish-reveal.active {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-}
-
-
-/* ========================================
-   WISH CARD
-======================================== */
-
-.wish-card {
-
-    position: relative;
-
-    z-index: 3;
-
-    width: min(
-        400px,
-        82vw
-    );
-
-    padding:
-        32px
-        28px
-        28px;
-
-    text-align: center;
-
-    background:
-        rgba(255,253,248,.96);
-
-    border:
-        1px solid
-        rgba(60,55,50,.12);
-
-    box-shadow:
-
-        0 20px 50px
-        rgba(50,45,40,.15),
-
-        0 5px 15px
-        rgba(50,45,40,.08);
-
-    opacity: 0;
-
-    transform:
-        translateY(20px)
-        scale(.96);
-}
-
-
-/* Small label */
-
-.wish-small {
-
-    font-size: 9px;
-
-    letter-spacing: 3px;
-
-    color: #9c5c5c;
-
-    font-weight: bold;
-
-    margin-bottom: 15px;
-}
-
-
-/* Main wish */
-
-.wish-text {
-
-    color: #6e6861;
-
-    font-family: Georgia, serif;
-
-    font-size: 1.15rem;
-
-    line-height: 1.7;
-
-    margin-bottom: 22px;
-}
-
-
-/* ========================================
-   WISH BUTTON
-======================================== */
-
-#wish-confirm {
-
-    padding:
-        12px
-        22px;
-
-    border: none;
-
-    border-radius: 4px;
-
-    background: #292724;
-
-    color: #fffdf8;
-
-    font-family:
-        "Arial Rounded MT Bold",
-        Arial,
-        sans-serif;
-
-    font-size: .8rem;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    box-shadow:
-        0 4px 0 #171614,
-        0 8px 15px
-        rgba(0,0,0,.1);
-
-    transition:
-        transform .2s ease,
-        background .2s ease;
-
-    cursor: pointer;
-}
-
-
-#wish-confirm:hover {
-
-    background: #3b3834;
-
-    transform:
-        translateY(-3px);
-}
-
-
-#wish-confirm span {
-
-    margin-left: 8px;
-
-    color: #d98b8b;
-}
-
-
-/* ========================================
-   HEAD STICKERS
-======================================== */
-
-.wish-character {
-
-    position: absolute;
-
-    z-index: 4;
-
-    width: 145px;
-
-    pointer-events: none;
-
-    opacity: 0;
-}
-
-
-.wish-character img {
-
-    display: block;
-
-    width: 100%;
-
-    height: auto;
-}
-
-
-/* Left sticker */
-
-.character-1 {
-
-    left:
-        calc(50% - 275px);
-
-    top:
-        calc(50% - 145px);
-
-    transform:
-        rotate(-5deg);
-}
-
-
-/* Right sticker */
-
-.character-2 {
-
-    right:
-        calc(50% - 275px);
-
-    bottom:
-        calc(50% - 135px);
-
-    transform:
-        rotate(5deg);
-}
-
-/* ========================================
-   D1 & D2 STICKERS
-======================================== */
-/* ========================================
-   CAKE STICKERS
-======================================== */
-
-.cake-sticker {
-    position: absolute;
-    z-index: 5;
-    pointer-events: none;
-}
-
-.cake-sticker img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-/* Sticker kiri */
-.sticker-d1 {
-    width: 110px;
-    left: calc(50% - 280px);
-    top: 48%;
-    transform: translateY(-50%);
-}
-
-/* Sticker kanan */
-.sticker-d2 {
-    width: 110px;
-    right: calc(50% - 280px);
-    top: 48%;
-    transform: translateY(-50%);
-}
-
-
-
