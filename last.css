@@ -1584,3 +1584,479 @@ h1 span {
     }
 
 }
+
+/* ========================================
+   FINAL VC POPUP
+======================================== */
+
+/* OVERLAY */
+.camera-popup-overlay {
+    position: fixed;
+
+    inset: 0;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(35, 32, 29, 0.55);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    z-index: 99999;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+/* WHEN POPUP IS OPEN */
+.camera-popup-overlay.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+
+/* ========================================
+   POPUP CARD
+======================================== */
+
+.camera-popup {
+
+    width: min(
+        90vw,
+        480px
+    );
+
+    padding:
+        38px
+        30px
+        32px;
+
+    background:
+        #fffdf8;
+
+    border:
+        2px solid
+        rgba(168, 92, 92, .18);
+
+    border-radius:
+        24px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(40, 35, 30, .25);
+
+    text-align:
+        center;
+
+    position:
+        relative;
+
+    overflow:
+        hidden;
+
+}
+
+
+/* ========================================
+   DECORATION
+======================================== */
+
+.camera-popup::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 140px;
+    height: 140px;
+
+    top: -70px;
+    right: -70px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(168, 92, 92, .08);
+
+}
+
+
+.camera-popup::after {
+
+    content: "✦";
+
+    position: absolute;
+
+    left: 25px;
+    top: 20px;
+
+    font-size: 18px;
+
+    color:
+        rgba(168, 92, 92, .35);
+
+}
+
+
+/* ========================================
+   ICON
+======================================== */
+
+.camera-popup-icon {
+
+    font-size:
+        42px;
+
+    margin-bottom:
+        12px;
+
+    animation:
+        popupFloat 2s ease-in-out infinite;
+
+}
+
+
+/* ========================================
+   SMALL LABEL
+======================================== */
+
+.camera-popup-small {
+
+    margin:
+        0 0 8px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        12px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        2px;
+
+    color:
+        #a85c5c;
+
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+.camera-popup h2 {
+
+    margin:
+        0 0 16px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            28px,
+            7vw,
+            38px
+        );
+
+    line-height:
+        1.15;
+
+    color:
+        #292724;
+
+}
+
+
+/* ========================================
+   MESSAGE
+======================================== */
+
+.camera-popup-text {
+
+    margin:
+        0 0 20px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        16px;
+
+    line-height:
+        1.6;
+
+    color:
+        #6f6962;
+
+}
+
+
+/* ========================================
+   NOTE
+======================================== */
+
+.camera-popup-note {
+
+    display:
+        inline-block;
+
+    padding:
+        12px
+        18px;
+
+    margin-bottom:
+        24px;
+
+    background:
+        rgba(168, 92, 92, .08);
+
+    border:
+        1px dashed
+        rgba(168, 92, 92, .35);
+
+    border-radius:
+        14px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size:
+        15px;
+
+    font-weight:
+        700;
+
+    color:
+        #a85c5c;
+
+}
+
+
+/* ========================================
+   BUTTON
+======================================== */
+
+.camera-popup-button {
+
+    display:
+        block;
+
+    width:
+        100%;
+
+    border:
+        none;
+
+    border-radius:
+        12px;
+
+    padding:
+        15px
+        20px;
+
+    background:
+        #292724;
+
+    color:
+        #fffdf8;
+
+    font-family:
+        "Arial Rounded MT Bold",
+        Arial,
+        sans-serif;
+
+    font-size:
+        15px;
+
+    font-weight:
+        800;
+
+    letter-spacing:
+        .5px;
+
+    cursor:
+        pointer;
+
+    box-shadow:
+        0 5px 0
+        #171614;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+
+}
+
+
+/* HOVER */
+.camera-popup-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        #3a3733;
+
+    box-shadow:
+        0 7px 0
+        #171614;
+
+}
+
+
+/* PRESS */
+.camera-popup-button:active {
+
+    transform:
+        translateY(3px);
+
+    box-shadow:
+        0 2px 0
+        #171614;
+
+}
+
+
+/* ========================================
+   POPUP FLOAT
+======================================== */
+
+@keyframes popupFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-6px);
+
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .camera-popup-overlay {
+
+        padding:
+            18px;
+
+    }
+
+
+    .camera-popup {
+
+        width:
+            100%;
+
+        max-width:
+            360px;
+
+        padding:
+            32px
+            22px
+            25px;
+
+        border-radius:
+            22px;
+
+    }
+
+
+    .camera-popup-icon {
+
+        font-size:
+            38px;
+
+    }
+
+
+    .camera-popup-small {
+
+        font-size:
+            11px;
+
+    }
+
+
+    .camera-popup h2 {
+
+        font-size:
+            30px;
+
+    }
+
+
+    .camera-popup-text {
+
+        font-size:
+            15px;
+
+    }
+
+
+    .camera-popup-note {
+
+        font-size:
+            14px;
+
+        padding:
+            11px
+            14px;
+
+    }
+
+
+    .camera-popup-button {
+
+        font-size:
+            14px;
+
+        padding:
+            14px
+            16px;
+
+    }
+
+}
