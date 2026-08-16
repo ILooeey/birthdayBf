@@ -1,6 +1,6 @@
 /* =========================================================
    NAT'S FINAL BIRTHDAY QUEST
-   LAST.JS — NO POPUP VERSION
+   FINAL CLEAN JAVASCRIPT
 ========================================================= */
 
 
@@ -66,7 +66,7 @@ const requiredScratch = 45;
 
 
 /* =========================================================
-   CANVAS CONTEXT
+   CANVAS
 ========================================================= */
 
 if (scratchCanvas) {
@@ -111,14 +111,13 @@ window.addEventListener(
     "load",
     () => {
 
-        /* -------------------------------------------------
-           PAGE ENTRANCE
-        ------------------------------------------------- */
+        /* PAGE */
 
         gsap.from(
             ".container",
             {
                 opacity: 0,
+
                 y: 25,
 
                 duration: 1,
@@ -128,9 +127,7 @@ window.addEventListener(
         );
 
 
-        /* -------------------------------------------------
-           GIFT ENTRANCE
-        ------------------------------------------------- */
+        /* GIFT */
 
         if (giftBox) {
 
@@ -138,7 +135,9 @@ window.addEventListener(
                 giftBox,
                 {
                     opacity: 0,
+
                     scale: 0.6,
+
                     rotation: -10,
 
                     duration: 1.2,
@@ -149,10 +148,6 @@ window.addEventListener(
                 }
             );
 
-
-            /* -------------------------------------------------
-               GIFT FLOAT
-            ------------------------------------------------- */
 
             gsap.to(
                 giftBox,
@@ -172,9 +167,7 @@ window.addEventListener(
         }
 
 
-        /* -------------------------------------------------
-           INITIAL SCRATCH CANVAS
-        ------------------------------------------------- */
+        /* SCRATCH */
 
         setTimeout(
             () => {
@@ -182,6 +175,7 @@ window.addEventListener(
                 resizeScratchCanvas();
 
             },
+
             300
         );
 
@@ -189,198 +183,56 @@ window.addEventListener(
 );
 
 
-/* =====================================================
+/* =========================================================
    UNLOCK GIFT
-===================================================== */
+========================================================= */
 
 if (unlockButton) {
 
-    function unlockGift(e) {
-
-        if (e) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-
-        console.log("🎁 UNLOCK BUTTON CLICKED");
+    console.log(
+        "✅ Unlock button found."
+    );
 
 
-        /* -------------------------------------------------
-           PREVENT DOUBLE CLICK
-        ------------------------------------------------- */
+    unlockButton.addEventListener(
+        "click",
+        () => {
 
-        if (unlockButton.dataset.clicked === "true") {
-            return;
-        }
-
-        unlockButton.dataset.clicked = "true";
-
-        unlockButton.disabled = true;
-
-
-        /* -------------------------------------------------
-           BUTTON PRESS
-        ------------------------------------------------- */
-
-        gsap.timeline()
-
-            .to(
-                unlockButton,
-                {
-                    scale: 0.9,
-                    duration: 0.1
-                }
-            )
-
-            .to(
-                unlockButton,
-                {
-                    scale: 1,
-                    duration: 0.25
-                }
+            console.log(
+                "🎁 UNLOCK BUTTON CLICKED"
             );
 
 
-        /* -------------------------------------------------
-           GIFT SHAKE
-        ------------------------------------------------- */
+            /* DISABLE */
 
-        if (giftBox) {
+            unlockButton.disabled =
+                true;
+
+
+            /* BUTTON */
 
             gsap.timeline()
 
                 .to(
-                    giftBox,
+                    unlockButton,
                     {
-                        x: -8,
-                        rotation: -6,
-                        duration: 0.08
+                        scale: 0.9,
+
+                        duration: 0.1
                     }
                 )
 
                 .to(
-                    giftBox,
+                    unlockButton,
                     {
-                        x: 8,
-                        rotation: 5,
-                        duration: 0.08
-                    }
-                )
+                        scale: 1,
 
-                .to(
-                    giftBox,
-                    {
-                        x: -5,
-                        rotation: -3,
-                        duration: 0.08
-                    }
-                )
-
-                .to(
-                    giftBox,
-                    {
-                        x: 0,
-                        rotation: 0,
-                        duration: 0.15
+                        duration: 0.25
                     }
                 );
 
-        }
 
-
-        /* -------------------------------------------------
-           OPEN GIFT
-        ------------------------------------------------- */
-
-        gsap.to(
-            ".gift-lid",
-            {
-                y: -80,
-                rotation: -8,
-                opacity: 0,
-                duration: 0.8,
-                delay: 0.4,
-                ease: "back.out(1.5)"
-            }
-        );
-
-
-        /* -------------------------------------------------
-           GLOW
-        ------------------------------------------------- */
-
-        gsap.to(
-            ".gift-body",
-            {
-                boxShadow:
-                    "0 0 60px rgba(168,92,92,.35)",
-
-                duration: 0.8,
-                delay: 0.5
-            }
-        );
-
-
-        /* -------------------------------------------------
-           HIDE LOCK
-        ------------------------------------------------- */
-
-        if (lockMessage) {
-
-            gsap.to(
-                lockMessage,
-                {
-                    opacity: 0,
-                    y: -20,
-                    duration: 0.5,
-                    delay: 1,
-
-                    onComplete: () => {
-
-                        lockMessage.style.display = "none";
-
-                        showReveal();
-
-                    }
-
-                }
-            );
-
-        } else {
-
-            showReveal();
-
-        }
-
-    }
-
-
-    /* =================================================
-       DESKTOP
-    ================================================= */
-
-    unlockButton.addEventListener(
-        "click",
-        unlockGift
-    );
-
-
-    /* =================================================
-       MOBILE TOUCH
-    ================================================= */
-
-    unlockButton.addEventListener(
-        "touchend",
-        unlockGift,
-        {
-            passive: false
-        }
-    );
-
-}
-            /* -------------------------------------------------
-               GIFT SHAKE
-            ------------------------------------------------- */
+            /* GIFT SHAKE */
 
             if (giftBox) {
 
@@ -390,6 +242,7 @@ if (unlockButton) {
                         giftBox,
                         {
                             x: -8,
+
                             rotation: -6,
 
                             duration: 0.08
@@ -400,6 +253,7 @@ if (unlockButton) {
                         giftBox,
                         {
                             x: 8,
+
                             rotation: 5,
 
                             duration: 0.08
@@ -410,6 +264,7 @@ if (unlockButton) {
                         giftBox,
                         {
                             x: -5,
+
                             rotation: -3,
 
                             duration: 0.08
@@ -420,6 +275,7 @@ if (unlockButton) {
                         giftBox,
                         {
                             x: 0,
+
                             rotation: 0,
 
                             duration: 0.15
@@ -429,9 +285,7 @@ if (unlockButton) {
             }
 
 
-            /* -------------------------------------------------
-               OPEN GIFT LID
-            ------------------------------------------------- */
+            /* OPEN LID */
 
             gsap.to(
                 ".gift-lid",
@@ -451,9 +305,7 @@ if (unlockButton) {
             );
 
 
-            /* -------------------------------------------------
-               GIFT BODY GLOW
-            ------------------------------------------------- */
+            /* GLOW */
 
             gsap.to(
                 ".gift-body",
@@ -468,9 +320,7 @@ if (unlockButton) {
             );
 
 
-            /* -------------------------------------------------
-               HIDE LOCK MESSAGE
-            ------------------------------------------------- */
+            /* HIDE LOCK */
 
             if (lockMessage) {
 
@@ -493,14 +343,9 @@ if (unlockButton) {
                             showReveal();
 
                         }
+
                     }
                 );
-
-            }
-
-            else {
-
-                showReveal();
 
             }
 
@@ -519,21 +364,18 @@ function showReveal() {
     if (!reveal) return;
 
 
-    /* -------------------------------------------------
-       RESET TRACKING
-    ------------------------------------------------- */
+    scratchedPixels = 0;
+
+    trackingRevealed =
+        false;
+
 
     if (trackingNumber) {
 
         trackingNumber.textContent =
-            "";
+            RESI;
 
     }
-
-
-    scratchedPixels = 0;
-
-    trackingRevealed = false;
 
 
     if (scratchCanvas) {
@@ -546,10 +388,6 @@ function showReveal() {
 
     }
 
-
-    /* -------------------------------------------------
-       SHOW REVEAL
-    ------------------------------------------------- */
 
     reveal.style.display =
         "block";
@@ -577,9 +415,18 @@ function showReveal() {
 
                 createParticles();
 
-                resizeScratchCanvas();
+                setTimeout(
+                    () => {
+
+                        resizeScratchCanvas();
+
+                    },
+
+                    100
+                );
 
             }
+
         }
     );
 
@@ -666,17 +513,11 @@ function drawScratchLayer(
     if (!ctx) return;
 
 
-    /* -------------------------------------------------
-       RESET CANVAS
-    ------------------------------------------------- */
-
     ctx.globalCompositeOperation =
         "source-over";
 
 
-    /* -------------------------------------------------
-       BASE
-    ------------------------------------------------- */
+    /* BASE */
 
     ctx.fillStyle =
         "#a85c5c";
@@ -690,9 +531,7 @@ function drawScratchLayer(
     );
 
 
-    /* -------------------------------------------------
-       TEXTURE
-    ------------------------------------------------- */
+    /* TEXTURE */
 
     for (
         let i = 0;
@@ -701,13 +540,17 @@ function drawScratchLayer(
     ) {
 
         const x =
-            Math.random() * width;
+            Math.random() *
+            width;
 
         const y =
-            Math.random() * height;
+            Math.random() *
+            height;
 
         const size =
-            Math.random() * 2 + 1;
+            Math.random() *
+            2 +
+            1;
 
 
         ctx.fillStyle =
@@ -729,9 +572,7 @@ function drawScratchLayer(
     }
 
 
-    /* -------------------------------------------------
-       SCRATCH TEXT
-    ------------------------------------------------- */
+    /* TEXT */
 
     ctx.fillStyle =
         "#fffdf8";
@@ -751,7 +592,9 @@ function drawScratchLayer(
 
     ctx.fillText(
         "✦ SCRATCH HERE ✦",
+
         width / 2,
+
         height / 2
     );
 
@@ -759,7 +602,7 @@ function drawScratchLayer(
 
 
 /* =========================================================
-   SCRATCH FUNCTION
+   SCRATCH
 ========================================================= */
 
 function scratch(
@@ -816,7 +659,7 @@ function scratch(
 
 
 /* =========================================================
-   GET POINTER POSITION
+   POINTER POSITION
 ========================================================= */
 
 function getPointerPosition(e) {
@@ -860,7 +703,8 @@ if (scratchCanvas) {
         "mousedown",
         (e) => {
 
-            isScratching = true;
+            isScratching =
+                true;
 
 
             const pos =
@@ -880,7 +724,8 @@ if (scratchCanvas) {
         "mousemove",
         (e) => {
 
-            if (!isScratching) return;
+            if (!isScratching)
+                return;
 
 
             const pos =
@@ -906,7 +751,8 @@ window.addEventListener(
     "mouseup",
     () => {
 
-        isScratching = false;
+        isScratching =
+            false;
 
     }
 );
@@ -924,7 +770,9 @@ if (scratchCanvas) {
 
             e.preventDefault();
 
-            isScratching = true;
+
+            isScratching =
+                true;
 
 
             const touch =
@@ -947,6 +795,7 @@ if (scratchCanvas) {
             );
 
         },
+
         {
             passive: false
         }
@@ -960,7 +809,8 @@ if (scratchCanvas) {
             e.preventDefault();
 
 
-            if (!isScratching) return;
+            if (!isScratching)
+                return;
 
 
             const touch =
@@ -983,6 +833,7 @@ if (scratchCanvas) {
             );
 
         },
+
         {
             passive: false
         }
@@ -993,7 +844,8 @@ if (scratchCanvas) {
         "touchend",
         () => {
 
-            isScratching = false;
+            isScratching =
+                false;
 
         }
     );
@@ -1003,7 +855,8 @@ if (scratchCanvas) {
         "touchcancel",
         () => {
 
-            isScratching = false;
+            isScratching =
+                false;
 
         }
     );
@@ -1012,7 +865,7 @@ if (scratchCanvas) {
 
 
 /* =========================================================
-   REVEAL TRACKING NUMBER
+   REVEAL TRACKING
 ========================================================= */
 
 function revealTracking() {
@@ -1027,16 +880,15 @@ function revealTracking() {
     }
 
 
-    trackingRevealed = true;
+    trackingRevealed =
+        true;
 
 
     scratchCanvas.dataset.revealed =
         "true";
 
 
-    /* -------------------------------------------------
-       SHOW RESI
-    ------------------------------------------------- */
+    /* SHOW NUMBER */
 
     if (trackingNumber) {
 
@@ -1046,9 +898,7 @@ function revealTracking() {
     }
 
 
-    /* -------------------------------------------------
-       ADD REVEALED CLASS
-    ------------------------------------------------- */
+    /* CARD */
 
     if (trackingCard) {
 
@@ -1059,9 +909,7 @@ function revealTracking() {
     }
 
 
-    /* -------------------------------------------------
-       HIDE SCRATCH CANVAS
-    ------------------------------------------------- */
+    /* HIDE SCRATCH */
 
     gsap.to(
         scratchCanvas,
@@ -1075,9 +923,7 @@ function revealTracking() {
     );
 
 
-    /* -------------------------------------------------
-       RESI ANIMATION
-    ------------------------------------------------- */
+    /* NUMBER ANIMATION */
 
     if (trackingNumber) {
 
@@ -1104,9 +950,7 @@ function revealTracking() {
     }
 
 
-    /* -------------------------------------------------
-       CHANGE HINT
-    ------------------------------------------------- */
+    /* HINT */
 
     const hint =
         document.querySelector(
@@ -1122,9 +966,7 @@ function revealTracking() {
     }
 
 
-    /* -------------------------------------------------
-       CELEBRATION
-    ------------------------------------------------- */
+    /* CELEBRATION */
 
     createScratchCelebration();
 
@@ -1156,37 +998,9 @@ if (copyButton) {
                     "Copied! 📦♡";
 
 
-                gsap.to(
-                    copyButton,
-                    {
-                        scale: 1.05,
-
-                        duration: 0.15,
-
-                        yoyo: true,
-
-                        repeat: 1
-                    }
-                );
-
-
-                setTimeout(
-                    () => {
-
-                        copyButton.textContent =
-                            originalText;
-
-                    },
-                    1800
-                );
-
             }
 
             catch (error) {
-
-                /* -------------------------------------------------
-                   FALLBACK COPY
-                ------------------------------------------------- */
 
                 const textarea =
                     document.createElement(
@@ -1200,6 +1014,7 @@ if (copyButton) {
 
                 textarea.style.position =
                     "fixed";
+
 
                 textarea.style.opacity =
                     "0";
@@ -1237,18 +1052,33 @@ if (copyButton) {
                 copyButton.textContent =
                     "Copied! 📦♡";
 
-
-                setTimeout(
-                    () => {
-
-                        copyButton.textContent =
-                            originalText;
-
-                    },
-                    1800
-                );
-
             }
+
+
+            gsap.to(
+                copyButton,
+                {
+                    scale: 1.05,
+
+                    duration: 0.15,
+
+                    yoyo: true,
+
+                    repeat: 1
+                }
+            );
+
+
+            setTimeout(
+                () => {
+
+                    copyButton.textContent =
+                        originalText;
+
+                },
+
+                1800
+            );
 
         }
     );
@@ -1257,7 +1087,67 @@ if (copyButton) {
 
 
 /* =========================================================
-   GENERAL CELEBRATION
+   FINAL BUTTON
+========================================================= */
+
+if (finishButton) {
+
+    finishButton.addEventListener(
+        "click",
+        () => {
+
+            console.log(
+                "💗 FINAL BUTTON CLICKED"
+            );
+
+
+            gsap.timeline()
+
+                .to(
+                    finishButton,
+                    {
+                        scale: 0.94,
+
+                        duration: 0.1
+                    }
+                )
+
+                .to(
+                    finishButton,
+                    {
+                        scale: 1,
+
+                        duration: 0.25
+                    }
+                );
+
+
+            createFinalCelebration();
+
+
+            finishButton.textContent =
+                "See you on VC 🤍";
+
+
+            setTimeout(
+                () => {
+
+                    finishButton.textContent =
+                        "Last Info klik inii ✦";
+
+                },
+
+                2000
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PARTICLES
 ========================================================= */
 
 function createParticles() {
@@ -1304,7 +1194,7 @@ function createParticles() {
 
 
         particle.style.zIndex =
-            "999";
+            "9999";
 
 
         particle.style.pointerEvents =
@@ -1345,7 +1235,8 @@ function createParticles() {
                     360,
 
                 duration:
-                    Math.random() * 1.5 +
+                    Math.random() *
+                    1.5 +
                     1,
 
                 ease:
@@ -1413,7 +1304,7 @@ function createScratchCelebration() {
 
 
         particle.style.zIndex =
-            "999";
+            "9999";
 
 
         particle.style.pointerEvents =
@@ -1468,203 +1359,6 @@ function createScratchCelebration() {
         );
 
     }
-
-}
-
-
-/* =========================================================
-   FLOATING BACKGROUND PARTICLES
-========================================================= */
-
-setInterval(
-    () => {
-
-        const symbols = [
-            "✦",
-            "♡",
-            "✧"
-        ];
-
-
-        const element =
-            document.createElement(
-                "div"
-            );
-
-
-        element.className =
-            "background-particle";
-
-
-        element.textContent =
-            symbols[
-                Math.floor(
-                    Math.random() *
-                    symbols.length
-                )
-            ];
-
-
-        element.style.position =
-            "fixed";
-
-
-        element.style.left =
-            Math.random() *
-            100 +
-            "vw";
-
-
-        element.style.top =
-            "105vh";
-
-
-        element.style.color =
-            "#a85c5c";
-
-
-        element.style.opacity =
-            ".2";
-
-
-        element.style.pointerEvents =
-            "none";
-
-
-        element.style.zIndex =
-            "1";
-
-
-        document.body.appendChild(
-            element
-        );
-
-
-        gsap.to(
-            element,
-            {
-
-                y:
-                    -window.innerHeight -
-                    100,
-
-                x:
-                    Math.random() *
-                    100 -
-                    50,
-
-                rotation:
-                    Math.random() *
-                    80 -
-                    40,
-
-                duration:
-                    Math.random() *
-                    6 +
-                    7,
-
-                ease:
-                    "none",
-
-                onComplete: () => {
-
-                    element.remove();
-
-                }
-
-            }
-        );
-
-    },
-    1800
-);
-
-
-/* =========================================================
-   RESIZE
-========================================================= */
-
-window.addEventListener(
-    "resize",
-    () => {
-
-        if (
-            scratchCanvas &&
-            !trackingRevealed
-        ) {
-
-            resizeScratchCanvas();
-
-        }
-
-    }
-);
-
-
-/* =========================================================
-   FINAL BUTTON
-   NO POPUP
-========================================================= */
-
-if (finishButton) {
-
-    finishButton.addEventListener(
-        "click",
-        () => {
-
-            /* -------------------------------------------------
-               BUTTON EFFECT
-            ------------------------------------------------- */
-
-            gsap.to(
-                finishButton,
-                {
-                    scale: 0.94,
-
-                    duration: 0.1
-                }
-            );
-
-
-            gsap.to(
-                finishButton,
-                {
-                    scale: 1,
-
-                    duration: 0.25,
-
-                    delay: 0.1
-                }
-            );
-
-
-            /* -------------------------------------------------
-               FINAL CELEBRATION
-            ------------------------------------------------- */
-
-            createFinalCelebration();
-
-
-            /* -------------------------------------------------
-               CHANGE BUTTON TEXT
-            ------------------------------------------------- */
-
-            finishButton.textContent =
-                "See you on VC 🤍";
-
-
-            setTimeout(
-                () => {
-
-                    finishButton.textContent =
-                        "Last Info klik inii ✦";
-
-                },
-                2000
-            );
-
-        }
-    );
 
 }
 
@@ -1777,3 +1471,129 @@ function createFinalCelebration() {
     }
 
 }
+
+
+/* =========================================================
+   BACKGROUND FLOATING PARTICLES
+========================================================= */
+
+setInterval(
+    () => {
+
+        const symbols = [
+            "✦",
+            "♡",
+            "✧"
+        ];
+
+
+        const element =
+            document.createElement(
+                "div"
+            );
+
+
+        element.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        element.style.position =
+            "fixed";
+
+
+        element.style.left =
+            Math.random() *
+            100 +
+            "vw";
+
+
+        element.style.top =
+            "105vh";
+
+
+        element.style.color =
+            "#a85c5c";
+
+
+        element.style.opacity =
+            ".2";
+
+
+        element.style.pointerEvents =
+            "none";
+
+
+        element.style.zIndex =
+            "1";
+
+
+        document.body.appendChild(
+            element
+        );
+
+
+        gsap.to(
+            element,
+            {
+
+                y:
+                    -window.innerHeight -
+                    100,
+
+                x:
+                    Math.random() *
+                    100 -
+                    50,
+
+                rotation:
+                    Math.random() *
+                    80 -
+                    40,
+
+                duration:
+                    Math.random() *
+                    6 +
+                    7,
+
+                ease:
+                    "none",
+
+                onComplete: () => {
+
+                    element.remove();
+
+                }
+
+            }
+        );
+
+    },
+
+    1800
+);
+
+
+/* =========================================================
+   RESIZE
+========================================================= */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        if (
+            scratchCanvas &&
+            !trackingRevealed
+        ) {
+
+            resizeScratchCanvas();
+
+        }
+
+    }
+);
