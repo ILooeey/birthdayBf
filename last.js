@@ -189,53 +189,195 @@ window.addEventListener(
 );
 
 
-/* =========================================================
+/* =====================================================
    UNLOCK GIFT
-========================================================= */
+===================================================== */
 
 if (unlockButton) {
 
-    unlockButton.addEventListener(
-        "click",
-        () => {
+    function unlockGift(e) {
 
-            console.log(
-                "🎁 UNLOCK BUTTON CLICKED"
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+
+        console.log("🎁 UNLOCK BUTTON CLICKED");
+
+
+        /* -------------------------------------------------
+           PREVENT DOUBLE CLICK
+        ------------------------------------------------- */
+
+        if (unlockButton.dataset.clicked === "true") {
+            return;
+        }
+
+        unlockButton.dataset.clicked = "true";
+
+        unlockButton.disabled = true;
+
+
+        /* -------------------------------------------------
+           BUTTON PRESS
+        ------------------------------------------------- */
+
+        gsap.timeline()
+
+            .to(
+                unlockButton,
+                {
+                    scale: 0.9,
+                    duration: 0.1
+                }
+            )
+
+            .to(
+                unlockButton,
+                {
+                    scale: 1,
+                    duration: 0.25
+                }
             );
 
 
-            /* -------------------------------------------------
-               DISABLE BUTTON
-            ------------------------------------------------- */
+        /* -------------------------------------------------
+           GIFT SHAKE
+        ------------------------------------------------- */
 
-            unlockButton.disabled = true;
-
-
-            /* -------------------------------------------------
-               BUTTON PRESS ANIMATION
-            ------------------------------------------------- */
+        if (giftBox) {
 
             gsap.timeline()
 
                 .to(
-                    unlockButton,
+                    giftBox,
                     {
-                        scale: 0.9,
-
-                        duration: 0.1
+                        x: -8,
+                        rotation: -6,
+                        duration: 0.08
                     }
                 )
 
                 .to(
-                    unlockButton,
+                    giftBox,
                     {
-                        scale: 1,
+                        x: 8,
+                        rotation: 5,
+                        duration: 0.08
+                    }
+                )
 
-                        duration: 0.25
+                .to(
+                    giftBox,
+                    {
+                        x: -5,
+                        rotation: -3,
+                        duration: 0.08
+                    }
+                )
+
+                .to(
+                    giftBox,
+                    {
+                        x: 0,
+                        rotation: 0,
+                        duration: 0.15
                     }
                 );
 
+        }
 
+
+        /* -------------------------------------------------
+           OPEN GIFT
+        ------------------------------------------------- */
+
+        gsap.to(
+            ".gift-lid",
+            {
+                y: -80,
+                rotation: -8,
+                opacity: 0,
+                duration: 0.8,
+                delay: 0.4,
+                ease: "back.out(1.5)"
+            }
+        );
+
+
+        /* -------------------------------------------------
+           GLOW
+        ------------------------------------------------- */
+
+        gsap.to(
+            ".gift-body",
+            {
+                boxShadow:
+                    "0 0 60px rgba(168,92,92,.35)",
+
+                duration: 0.8,
+                delay: 0.5
+            }
+        );
+
+
+        /* -------------------------------------------------
+           HIDE LOCK
+        ------------------------------------------------- */
+
+        if (lockMessage) {
+
+            gsap.to(
+                lockMessage,
+                {
+                    opacity: 0,
+                    y: -20,
+                    duration: 0.5,
+                    delay: 1,
+
+                    onComplete: () => {
+
+                        lockMessage.style.display = "none";
+
+                        showReveal();
+
+                    }
+
+                }
+            );
+
+        } else {
+
+            showReveal();
+
+        }
+
+    }
+
+
+    /* =================================================
+       DESKTOP
+    ================================================= */
+
+    unlockButton.addEventListener(
+        "click",
+        unlockGift
+    );
+
+
+    /* =================================================
+       MOBILE TOUCH
+    ================================================= */
+
+    unlockButton.addEventListener(
+        "touchend",
+        unlockGift,
+        {
+            passive: false
+        }
+    );
+
+}
             /* -------------------------------------------------
                GIFT SHAKE
             ------------------------------------------------- */
