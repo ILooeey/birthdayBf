@@ -1,0 +1,1162 @@
+/* ========================================
+   RESET
+======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    cursor: none;
+}
+
+
+/* ========================================
+   BODY
+======================================== */
+
+body {
+
+    min-height: 100vh;
+
+    position: relative;
+
+    overflow-x: hidden;
+
+    font-family:
+        "Arial Rounded MT Bold",
+        Arial,
+        sans-serif;
+
+    color: #292724;
+
+    background:
+
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(255,255,255,.9),
+            transparent 25%
+        ),
+
+        radial-gradient(
+            circle at 85% 80%,
+            rgba(210,220,215,.5),
+            transparent 30%
+        ),
+
+        #eee9df;
+
+}
+
+
+/* ========================================
+   PAPER TEXTURE
+======================================== */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    z-index: 0;
+
+    opacity: .3;
+
+    background-image:
+
+        radial-gradient(
+            rgba(80,70,60,.13) 1px,
+            transparent 1px
+        );
+
+    background-size: 5px 5px;
+
+}
+
+
+/* ========================================
+   CURSOR
+======================================== */
+
+.cursor {
+
+    position: fixed;
+
+    width: 24px;
+    height: 24px;
+
+    pointer-events: none;
+
+    z-index: 9999;
+
+    transform:
+        translate(-50%, -50%);
+
+}
+
+
+.cursor::after {
+
+    content: "♥";
+
+    font-size: 20px;
+
+    color: #a85c5c;
+
+    filter:
+        drop-shadow(
+            0 2px 3px
+            rgba(0,0,0,.2)
+        );
+
+}
+
+
+/* ========================================
+   BACKGROUND
+======================================== */
+
+.background {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    overflow: hidden;
+
+    z-index: 0;
+
+}
+
+
+.background span {
+
+    position: absolute;
+
+    color: #a85c5c;
+
+    opacity: .18;
+
+    animation:
+        float 6s ease-in-out infinite;
+
+}
+
+
+.background span:nth-child(1) {
+
+    top: 12%;
+    left: 10%;
+
+    font-size: 22px;
+
+}
+
+
+.background span:nth-child(2) {
+
+    top: 25%;
+    right: 12%;
+
+    font-size: 18px;
+
+    animation-delay: 1s;
+
+}
+
+
+.background span:nth-child(3) {
+
+    top: 65%;
+    left: 7%;
+
+    font-size: 25px;
+
+    animation-delay: 2s;
+
+}
+
+
+.background span:nth-child(4) {
+
+    bottom: 15%;
+    right: 15%;
+
+    font-size: 20px;
+
+    animation-delay: 3s;
+
+}
+
+
+.background span:nth-child(5) {
+
+    top: 45%;
+    right: 25%;
+
+    font-size: 16px;
+
+    animation-delay: 1.5s;
+
+}
+
+
+.background span:nth-child(6) {
+
+    bottom: 25%;
+    left: 25%;
+
+    font-size: 18px;
+
+    animation-delay: 2.5s;
+
+}
+
+
+/* ========================================
+   CONTAINER
+======================================== */
+
+.container {
+
+    position: relative;
+
+    z-index: 2;
+
+    width: min(
+        900px,
+        92%
+    );
+
+    min-height: 100vh;
+
+    margin: auto;
+
+    padding:
+        70px 20px
+        100px;
+
+    text-align: center;
+
+}
+
+
+/* ========================================
+   QUEST LABEL
+======================================== */
+
+.quest-label {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    font-weight: bold;
+
+    color: #9c5c5c;
+
+    margin-bottom: 25px;
+
+}
+
+
+.dot {
+
+    width: 6px;
+    height: 6px;
+
+    border-radius: 50%;
+
+    background: #a85c5c;
+
+    animation:
+        blink 1.5s ease-in-out infinite;
+
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+h1 {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            2.5rem,
+            7vw,
+            4.5rem
+        );
+
+    line-height: 1;
+
+    letter-spacing: 1px;
+
+    color: #292724;
+
+    margin-bottom: 25px;
+
+}
+
+
+h1 span {
+
+    display: block;
+
+    margin-top: 8px;
+
+    color: #a85c5c;
+
+    font-size: .7em;
+
+    letter-spacing: 4px;
+
+}
+
+
+/* ========================================
+   INTRO
+======================================== */
+
+.intro {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 1.25rem;
+
+    font-style: italic;
+
+    color: #4f4a45;
+
+    margin-bottom: 8px;
+
+}
+
+
+.sub-intro {
+
+    color: #89827a;
+
+    font-size: .9rem;
+
+    line-height: 1.6;
+
+}
+
+
+/* ========================================
+   GIFT AREA
+======================================== */
+
+.gift-area {
+
+    margin:
+        55px auto
+        30px;
+
+    height: 190px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+}
+
+
+/* ========================================
+   GIFT BOX
+======================================== */
+
+.gift-box {
+
+    position: relative;
+
+    width: 150px;
+    height: 120px;
+
+    transform:
+        rotate(-3deg);
+
+    transition:
+        transform .3s ease;
+
+}
+
+
+.gift-box:hover {
+
+    transform:
+        rotate(0deg)
+        translateY(-8px);
+
+}
+
+
+/* ========================================
+   GIFT BODY
+======================================== */
+
+.gift-body {
+
+    position: absolute;
+
+    bottom: 0;
+    left: 0;
+
+    width: 150px;
+    height: 100px;
+
+    background: #fffdf8;
+
+    border:
+        1px solid
+        rgba(60,55,50,.15);
+
+    box-shadow:
+
+        0 15px 25px
+        rgba(50,45,40,.15);
+
+}
+
+
+/* ========================================
+   GIFT LID
+======================================== */
+
+.gift-lid {
+
+    position: absolute;
+
+    top: 5px;
+    left: -8px;
+
+    width: 166px;
+    height: 32px;
+
+    background: #a85c5c;
+
+    box-shadow:
+
+        0 6px 10px
+        rgba(50,45,40,.15);
+
+    z-index: 3;
+
+}
+
+
+/* ========================================
+   RIBBON
+======================================== */
+
+.ribbon {
+
+    position: absolute;
+
+    width: 20px;
+
+    height: 100%;
+
+    background: #d98b8b;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+}
+
+
+.ribbon.vertical {
+
+    height: 100%;
+
+    top: 0;
+
+}
+
+
+.ribbon.horizontal {
+
+    width: 100%;
+
+    height: 18px;
+
+    left: 0;
+    top: 42%;
+
+    transform: none;
+
+    background: #d98b8b;
+
+}
+
+
+/* ========================================
+   LOCK MESSAGE
+======================================== */
+
+.lock-message {
+
+    margin-top: 5px;
+
+}
+
+
+.lock-icon {
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+
+}
+
+
+.lock-message p {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 1.1rem;
+
+    color: #4f4a45;
+
+}
+
+
+/* ========================================
+   BUTTON
+======================================== */
+
+.unlock-button,
+.copy-button,
+.finish-button {
+
+    border: none;
+
+    background: #292724;
+
+    color: #fffdf8;
+
+    font-family:
+        "Arial Rounded MT Bold",
+        Arial,
+        sans-serif;
+
+    font-size: .85rem;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    padding:
+        14px 28px;
+
+    border-radius: 4px;
+
+    margin-top: 20px;
+
+    box-shadow:
+
+        0 5px 0 #171614,
+
+        0 10px 20px
+        rgba(0,0,0,.12);
+
+    transition:
+        all .25s ease;
+
+}
+
+
+.unlock-button:hover,
+.copy-button:hover,
+.finish-button:hover {
+
+    background: #3b3834;
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+/* ========================================
+   REVEAL
+======================================== */
+
+.reveal {
+
+    display: none;
+
+    opacity: 0;
+
+    margin-top: 30px;
+
+}
+
+
+.reveal-icon {
+
+    font-size: 35px;
+
+    margin-bottom: 12px;
+
+}
+
+
+.reveal-small {
+
+    font-size: 9px;
+
+    letter-spacing: 4px;
+
+    color: #9c5c5c;
+
+    font-weight: bold;
+
+    margin-bottom: 15px;
+
+}
+
+
+.reveal h2 {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            2rem,
+            5vw,
+            3.2rem
+        );
+
+    line-height: 1.1;
+
+    color: #292724;
+
+    margin-bottom: 25px;
+
+}
+
+
+.message {
+
+    color: #625c55;
+
+    font-size: 1rem;
+
+    line-height: 1.8;
+
+}
+
+
+/* ========================================
+   PACKAGE CARD
+======================================== */
+
+.package-card {
+
+    width:
+        min(
+            500px,
+            90%
+        );
+
+    margin:
+        35px auto
+        20px;
+
+    padding: 18px 25px;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 18px;
+
+    background:
+        rgba(255,253,248,.8);
+
+    border:
+        1px solid
+        rgba(60,55,50,.12);
+
+    box-shadow:
+        0 10px 25px
+        rgba(50,45,40,.08);
+
+}
+
+
+.package-icon {
+
+    font-size: 35px;
+
+}
+
+
+.package-info {
+
+    display: flex;
+
+    flex-direction: column;
+
+    text-align: left;
+
+    gap: 4px;
+
+}
+
+
+.package-info span {
+
+    font-size: 8px;
+
+    letter-spacing: 2px;
+
+    color: #99928a;
+
+}
+
+
+.package-info strong {
+
+    font-size: 12px;
+
+    letter-spacing: 1px;
+
+    color: #4b4742;
+
+}
+
+
+/* ========================================
+   TRACKING
+======================================== */
+
+.tracking-card {
+
+    width:
+        min(
+            500px,
+            90%
+        );
+
+    margin: 20px auto;
+
+    padding: 28px 20px;
+
+    background:
+        #fffdf8;
+
+    border:
+        1px dashed
+        rgba(60,55,50,.25);
+
+    box-shadow:
+        0 15px 30px
+        rgba(50,45,40,.08);
+
+}
+/* ========================================
+   SCRATCH CARD
+======================================== */
+
+.tracking-card {
+
+    width: min(500px, 90%);
+
+    margin: 20px auto;
+
+    padding: 28px 20px;
+
+    background: #fffdf8;
+
+    border:
+        1px dashed
+        rgba(60,55,50,.25);
+
+    box-shadow:
+        0 15px 30px
+        rgba(50,45,40,.08);
+
+}
+
+
+.scratch-instruction {
+
+    margin-bottom: 15px;
+
+    color: #89827a;
+
+    font-size: .8rem;
+
+    line-height: 1.5;
+
+}
+
+
+/* ========================================
+   SCRATCH AREA
+======================================== */
+
+.scratch-container {
+
+    position: relative;
+
+    width: 100%;
+
+    max-width: 380px;
+
+    height: 75px;
+
+    margin: 0 auto;
+
+    overflow: hidden;
+
+    border-radius: 4px;
+
+    background: #eee9df;
+
+    border:
+        1px solid
+        rgba(60,55,50,.15);
+
+}
+
+
+/* ========================================
+   SECRET NUMBER
+======================================== */
+
+.tracking-number {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 10px;
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: clamp(
+        1rem,
+        4vw,
+        1.5rem
+    );
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    color: #a85c5c;
+
+    background: #eee9df;
+
+    user-select: none;
+
+}
+
+
+/* ========================================
+   SCRATCH CANVAS
+======================================== */
+
+#scratch-canvas {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+
+    cursor: crosshair;
+
+    touch-action: none;
+
+}
+
+
+/* ========================================
+   HINT
+======================================== */
+
+.scratch-hint {
+
+    margin-top: 14px;
+
+    font-size: .75rem;
+
+    color: #99928a;
+
+    font-style: italic;
+
+}
+
+
+.tracking-card.revealed
+.scratch-hint {
+
+    color: #a85c5c;
+
+}
+
+.tracking-title {
+
+    font-size: 8px;
+
+    letter-spacing: 3px;
+
+    color: #99928a;
+
+    margin-bottom: 12px;
+
+}
+
+
+.tracking-number {
+
+    font-family:
+        "Courier New",
+        monospace;
+
+    font-size: 1.5rem;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    color: #a85c5c;
+
+    padding: 12px;
+
+    background: #eee9df;
+
+}
+
+
+.tracking-card p {
+
+    margin-top: 15px;
+
+    color: #89827a;
+
+    font-size: .8rem;
+
+    line-height: 1.6;
+
+}
+
+
+/* ========================================
+   FINAL MESSAGE
+======================================== */
+
+.final-message {
+
+    margin:
+        45px auto
+        30px;
+
+}
+
+
+.final-heart {
+
+    font-size: 30px;
+
+    color: #a85c5c;
+
+    margin-bottom: 10px;
+
+    animation:
+        heartbeat
+        1.5s ease-in-out infinite;
+
+}
+
+
+.final-message p {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 1.5rem;
+
+    color: #292724;
+
+    margin-bottom: 8px;
+
+}
+
+
+.final-message span {
+
+    color: #89827a;
+
+    font-size: .85rem;
+
+    line-height: 1.6;
+
+}
+
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+@keyframes float {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-18px);
+
+    }
+
+}
+
+
+@keyframes blink {
+
+    0%,
+    100% {
+
+        opacity: 1;
+
+    }
+
+    50% {
+
+        opacity: .3;
+
+    }
+
+}
+
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+
+    }
+
+    50% {
+
+        transform:
+            scale(1.2);
+
+    }
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .container {
+
+        padding:
+            50px 15px
+            70px;
+
+    }
+
+
+    h1 {
+
+        font-size: 2.5rem;
+
+    }
+
+
+    h1 span {
+
+        letter-spacing: 2px;
+
+    }
+
+
+    .gift-area {
+
+        margin-top: 40px;
+
+    }
+
+
+    .message {
+
+        font-size: .9rem;
+
+    }
+
+
+    .package-card {
+
+        padding: 15px;
+
+    }
+
+
+    .tracking-number {
+
+        font-size: 1.15rem;
+
+        letter-spacing: 2px;
+
+    }
+
+}
