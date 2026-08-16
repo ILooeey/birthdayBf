@@ -14,1069 +14,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-    <style>
-
-        /* =====================================================
-           RESET
-        ===================================================== */
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-
-        /* =====================================================
-           BODY
-        ===================================================== */
-
-        body {
-
-            min-height: 100vh;
-
-            position: relative;
-
-            overflow-x: hidden;
-
-            font-family:
-                "Arial Rounded MT Bold",
-                Arial,
-                sans-serif;
-
-            color: #292724;
-
-            background:
-
-                radial-gradient(
-                    circle at 15% 20%,
-                    rgba(255,255,255,.9),
-                    transparent 25%
-                ),
-
-                radial-gradient(
-                    circle at 85% 80%,
-                    rgba(210,220,215,.5),
-                    transparent 30%
-                ),
-
-                #eee9df;
-
-        }
-
-
-        /* =====================================================
-           PAPER TEXTURE
-        ===================================================== */
-
-        body::before {
-
-            content: "";
-
-            position: fixed;
-
-            inset: 0;
-
-            pointer-events: none;
-
-            z-index: 0;
-
-            opacity: .3;
-
-            background-image:
-
-                radial-gradient(
-                    rgba(80,70,60,.13) 1px,
-                    transparent 1px
-                );
-
-            background-size: 5px 5px;
-
-        }
-
-
-        /* =====================================================
-           CUSTOM CURSOR
-        ===================================================== */
-
-        .cursor {
-
-            position: fixed;
-
-            width: 24px;
-            height: 24px;
-
-            pointer-events: none;
-
-            z-index: 100000;
-
-            transform:
-                translate(-50%, -50%);
-
-        }
-
-
-        .cursor::after {
-
-            content: "♥";
-
-            font-size: 20px;
-
-            color: #a85c5c;
-
-            filter:
-                drop-shadow(
-                    0 2px 3px
-                    rgba(0,0,0,.2)
-                );
-
-        }
-
-
-        /* =====================================================
-           BACKGROUND
-        ===================================================== */
-
-        .background {
-
-            position: fixed;
-
-            inset: 0;
-
-            pointer-events: none;
-
-            overflow: hidden;
-
-            z-index: 0;
-
-        }
-
-
-        .background span {
-
-            position: absolute;
-
-            color: #a85c5c;
-
-            opacity: .18;
-
-            animation:
-                float 6s ease-in-out infinite;
-
-        }
-
-
-        .background span:nth-child(1) {
-
-            top: 12%;
-            left: 10%;
-
-            font-size: 22px;
-
-        }
-
-
-        .background span:nth-child(2) {
-
-            top: 25%;
-            right: 12%;
-
-            font-size: 18px;
-
-            animation-delay: 1s;
-
-        }
-
-
-        .background span:nth-child(3) {
-
-            top: 65%;
-            left: 7%;
-
-            font-size: 25px;
-
-            animation-delay: 2s;
-
-        }
-
-
-        .background span:nth-child(4) {
-
-            bottom: 15%;
-            right: 15%;
-
-            font-size: 20px;
-
-            animation-delay: 3s;
-
-        }
-
-
-        .background span:nth-child(5) {
-
-            top: 45%;
-            right: 25%;
-
-            font-size: 16px;
-
-            animation-delay: 1.5s;
-
-        }
-
-
-        .background span:nth-child(6) {
-
-            bottom: 25%;
-            left: 25%;
-
-            font-size: 18px;
-
-            animation-delay: 2.5s;
-
-        }
-
-
-        /* =====================================================
-           CONTAINER
-        ===================================================== */
-
-        .container {
-
-            position: relative;
-
-            z-index: 2;
-
-            width: min(
-                900px,
-                92%
-            );
-
-            min-height: 100vh;
-
-            margin: auto;
-
-            padding:
-                70px 20px
-                100px;
-
-            text-align: center;
-
-        }
-
-
-        /* =====================================================
-           QUEST LABEL
-        ===================================================== */
-
-        .quest-label {
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-            gap: 10px;
-
-            font-size: 10px;
-
-            letter-spacing: 4px;
-
-            font-weight: bold;
-
-            color: #9c5c5c;
-
-            margin-bottom: 25px;
-
-        }
-
-
-        .dot {
-
-            width: 6px;
-            height: 6px;
-
-            border-radius: 50%;
-
-            background: #a85c5c;
-
-            animation:
-                blink 1.5s ease-in-out infinite;
-
-        }
-
-
-        /* =====================================================
-           TITLE
-        ===================================================== */
-
-        h1 {
-
-            font-family:
-                Georgia,
-                serif;
-
-            font-size:
-                clamp(
-                    2.5rem,
-                    7vw,
-                    4.5rem
-                );
-
-            line-height: 1;
-
-            letter-spacing: 1px;
-
-            color: #292724;
-
-            margin-bottom: 25px;
-
-        }
-
-
-        h1 span {
-
-            display: block;
-
-            margin-top: 8px;
-
-            color: #a85c5c;
-
-            font-size: .7em;
-
-            letter-spacing: 4px;
-
-        }
-
-
-        /* =====================================================
-           INTRO
-        ===================================================== */
-
-        .intro {
-
-            font-family:
-                Georgia,
-                serif;
-
-            font-size: 1.25rem;
-
-            font-style: italic;
-
-            color: #4f4a45;
-
-            margin-bottom: 8px;
-
-        }
-
-
-        .sub-intro {
-
-            color: #89827a;
-
-            font-size: .9rem;
-
-            line-height: 1.6;
-
-        }
-
-
-        /* =====================================================
-           GIFT
-        ===================================================== */
-
-        .gift-area {
-
-            margin:
-                55px auto
-                30px;
-
-            height: 190px;
-
-            display: flex;
-
-            justify-content: center;
-
-            align-items: center;
-
-        }
-
-
-        .gift-box {
-
-            position: relative;
-
-            width: 150px;
-            height: 120px;
-
-            transform:
-                rotate(-3deg);
-
-        }
-
-
-        .gift-body {
-
-            position: absolute;
-
-            bottom: 0;
-            left: 0;
-
-            width: 150px;
-            height: 100px;
-
-            background: #fffdf8;
-
-            border:
-                1px solid
-                rgba(60,55,50,.15);
-
-            box-shadow:
-
-                0 15px 25px
-                rgba(50,45,40,.15);
-
-        }
-
-
-        .gift-lid {
-
-            position: absolute;
-
-            top: 5px;
-            left: -8px;
-
-            width: 166px;
-            height: 32px;
-
-            background: #a85c5c;
-
-            box-shadow:
-
-                0 6px 10px
-                rgba(50,45,40,.15);
-
-            z-index: 3;
-
-        }
-
-
-        .ribbon {
-
-            position: absolute;
-
-            width: 20px;
-
-            height: 100%;
-
-            background: #d98b8b;
-
-            left: 50%;
-
-            transform:
-                translateX(-50%);
-
-        }
-
-
-        .ribbon.vertical {
-
-            height: 100%;
-
-            top: 0;
-
-        }
-
-
-        .ribbon.horizontal {
-
-            width: 100%;
-
-            height: 18px;
-
-            left: 0;
-            top: 42%;
-
-            transform: none;
-
-            background: #d98b8b;
-
-        }
-
-
-        /* =====================================================
-           LOCK
-        ===================================================== */
-
-        .lock-message {
-
-            margin-top: 5px;
-
-        }
-
-
-        .lock-icon {
-
-            font-size: 30px;
-
-            margin-bottom: 10px;
-
-        }
-
-
-        .lock-message p {
-
-            font-family:
-                Georgia,
-                serif;
-
-            font-size: 1.1rem;
-
-            color: #4f4a45;
-
-        }
-
-
-        /* =====================================================
-           BUTTONS
-        ===================================================== */
-
-        .unlock-button,
-        .copy-button {
-
-            border: none;
-
-            background: #292724;
-
-            color: #fffdf8;
-
-            font-family:
-                "Arial Rounded MT Bold",
-                Arial,
-                sans-serif;
-
-            font-size: .85rem;
-
-            font-weight: bold;
-
-            letter-spacing: 1px;
-
-            padding:
-                14px 28px;
-
-            border-radius: 4px;
-
-            margin-top: 20px;
-
-            box-shadow:
-
-                0 5px 0 #171614,
-
-                0 10px 20px
-                rgba(0,0,0,.12);
-
-            transition:
-                all .25s ease;
-
-            cursor: pointer;
-
-        }
-
-
-        .unlock-button:hover,
-        .copy-button:hover {
-
-            background: #3b3834;
-
-            transform:
-                translateY(-3px);
-
-        }
-
-
-        /* =====================================================
-           REVEAL
-        ===================================================== */
-
-        .reveal {
-
-            display: none;
-
-            opacity: 0;
-
-            margin-top: 30px;
-
-        }
-
-
-        .reveal-icon {
-
-            font-size: 35px;
-
-            margin-bottom: 12px;
-
-        }
-
-
-        .reveal-small {
-
-            font-size: 9px;
-
-            letter-spacing: 4px;
-
-            color: #9c5c5c;
-
-            font-weight: bold;
-
-            margin-bottom: 15px;
-
-        }
-
-
-        .reveal h2 {
-
-            font-family:
-                Georgia,
-                serif;
-
-            font-size:
-                clamp(
-                    2rem,
-                    5vw,
-                    3.2rem
-                );
-
-            line-height: 1.1;
-
-            color: #292724;
-
-            margin-bottom: 25px;
-
-        }
-
-
-        .message {
-
-            color: #625c55;
-
-            font-size: 1rem;
-
-            line-height: 1.8;
-
-        }
-
-
-        /* =====================================================
-           PACKAGE
-        ===================================================== */
-
-        .package-card {
-
-            width:
-                min(
-                    500px,
-                    90%
-                );
-
-            margin:
-                35px auto
-                20px;
-
-            padding: 18px 25px;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 18px;
-
-            background:
-                rgba(255,253,248,.8);
-
-            border:
-                1px solid
-                rgba(60,55,50,.12);
-
-            box-shadow:
-                0 10px 25px
-                rgba(50,45,40,.08);
-
-        }
-
-
-        .package-icon {
-
-            font-size: 35px;
-
-        }
-
-
-        .package-info {
-
-            display: flex;
-
-            flex-direction: column;
-
-            text-align: left;
-
-            gap: 4px;
-
-        }
-
-
-        .package-info span {
-
-            font-size: 8px;
-
-            letter-spacing: 2px;
-
-            color: #99928a;
-
-        }
-
-
-        .package-info strong {
-
-            font-size: 12px;
-
-            letter-spacing: 1px;
-
-            color: #4b4742;
-
-        }
-
-
-        /* =====================================================
-           TRACKING CARD
-        ===================================================== */
-
-        .tracking-card {
-
-            width:
-                min(
-                    500px,
-                    90%
-                );
-
-            margin: 20px auto;
-
-            padding: 28px 20px;
-
-            background:
-                #fffdf8;
-
-            border:
-                1px dashed
-                rgba(60,55,50,.25);
-
-            box-shadow:
-                0 15px 30px
-                rgba(50,45,40,.08);
-
-        }
-
-
-        .tracking-title {
-
-            font-size: 8px;
-
-            letter-spacing: 3px;
-
-            color: #99928a;
-
-            margin-bottom: 12px;
-
-        }
-
-
-        .scratch-instruction {
-
-            margin-bottom: 15px;
-
-            color: #89827a;
-
-            font-size: .8rem;
-
-        }
-
-
-        .scratch-container {
-
-            position: relative;
-
-            width: 100%;
-
-            max-width: 380px;
-
-            height: 75px;
-
-            margin: 0 auto;
-
-            overflow: hidden;
-
-            border-radius: 4px;
-
-            background: #eee9df;
-
-            border:
-                1px solid
-                rgba(60,55,50,.15);
-
-        }
-
-
-        .tracking-number {
-
-            position: absolute;
-
-            inset: 0;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            padding: 10px;
-
-            font-family:
-                "Courier New",
-                monospace;
-
-            font-size:
-                clamp(
-                    1rem,
-                    4vw,
-                    1.5rem
-                );
-
-            font-weight: bold;
-
-            letter-spacing: 3px;
-
-            color: #a85c5c;
-
-            background: #eee9df;
-
-            user-select: none;
-
-        }
-
-
-        #scratch-canvas {
-
-            position: absolute;
-
-            inset: 0;
-
-            width: 100%;
-
-            height: 100%;
-
-            cursor: crosshair;
-
-            touch-action: none;
-
-        }
-
-
-        .scratch-hint {
-
-            margin-top: 14px;
-
-            font-size: .75rem;
-
-            color: #99928a;
-
-            font-style: italic;
-
-        }
-
-
-        .tracking-card.revealed .scratch-hint {
-
-            color: #a85c5c;
-
-        }
-
-
-        /* =====================================================
-           FINAL MESSAGE
-        ===================================================== */
-
-        .final-message {
-
-            margin:
-                45px auto
-                30px;
-
-        }
-
-
-        .final-heart {
-
-            font-size: 30px;
-
-            color: #a85c5c;
-
-            margin-bottom: 10px;
-
-            animation:
-                heartbeat
-                1.5s ease-in-out infinite;
-
-        }
-
-
-        .final-message p {
-
-            font-family:
-                Georgia,
-                serif;
-
-            font-size: 1.5rem;
-
-            color: #292724;
-
-            margin-bottom: 8px;
-
-        }
-
-
-        .final-message span {
-
-            color: #89827a;
-
-            font-size: .85rem;
-
-            line-height: 1.6;
-
-        }
-
-
-        /* =====================================================
-           ANIMATIONS
-        ===================================================== */
-
-        @keyframes float {
-
-            0%,
-            100% {
-
-                transform:
-                    translateY(0);
-
-            }
-
-            50% {
-
-                transform:
-                    translateY(-18px);
-
-            }
-
-        }
-
-
-        @keyframes blink {
-
-            0%,
-            100% {
-
-                opacity: 1;
-
-            }
-
-            50% {
-
-                opacity: .3;
-
-            }
-
-        }
-
-
-        @keyframes heartbeat {
-
-            0%,
-            100% {
-
-                transform:
-                    scale(1);
-
-            }
-
-            50% {
-
-                transform:
-                    scale(1.2);
-
-            }
-
-        }
-
-
-        /* =====================================================
-           MOBILE
-        ===================================================== */
-
-        @media (max-width: 600px) {
-
-            .container {
-
-                padding:
-                    50px 15px
-                    70px;
-
-            }
-
-
-            h1 {
-
-                font-size: 2.5rem;
-
-            }
-
-
-            h1 span {
-
-                letter-spacing: 2px;
-
-            }
-
-
-            .gift-area {
-
-                margin-top: 40px;
-
-            }
-
-
-            .message {
-
-                font-size: .9rem;
-
-            }
-
-
-            .package-card {
-
-                padding: 15px;
-
-            }
-
-
-            .tracking-number {
-
-                font-size: 1.15rem;
-
-                letter-spacing: 2px;
-
-            }
-
-        }
-
-    </style>
+    <link rel="stylesheet" href="./last.css">
 
 </head>
 
@@ -1084,16 +22,12 @@
 <body>
 
 
-    <!-- =====================================================
-         CURSOR
-    ===================================================== -->
+    <!-- CUSTOM CURSOR -->
 
     <div class="cursor"></div>
 
 
-    <!-- =====================================================
-         BACKGROUND
-    ===================================================== -->
+    <!-- BACKGROUND -->
 
     <div class="background">
 
@@ -1107,12 +41,13 @@
     </div>
 
 
-    <!-- =====================================================
-         MAIN
-    ===================================================== -->
+
+    <!-- MAIN -->
 
     <main class="container">
 
+
+        <!-- TOP LABEL -->
 
         <div class="quest-label">
 
@@ -1125,16 +60,20 @@
         </div>
 
 
+
+        <!-- TITLE -->
+
         <h1>
 
             A Little Something<br>
 
-            <span>
-                Is Coming Your Way.
-            </span>
+            <span>Is Coming Your Way.</span>
 
         </h1>
 
+
+
+        <!-- INTRO -->
 
         <p class="intro">
 
@@ -1151,16 +90,17 @@
         </p>
 
 
-        <!-- =================================================
-             GIFT
-        ================================================= -->
+
+        <!-- GIFT -->
 
         <section class="gift-area">
+
 
             <div
                 class="gift-box"
                 id="gift-box"
             >
+
 
                 <div class="gift-lid">
 
@@ -1177,14 +117,18 @@
 
                 </div>
 
+
+                <div class="gift-shadow"></div>
+
+
             </div>
+
 
         </section>
 
 
-        <!-- =================================================
-             LOCK
-        ================================================= -->
+
+        <!-- LOCK MESSAGE -->
 
         <div
             class="lock-message"
@@ -1192,12 +136,16 @@
         >
 
             <div class="lock-icon">
+
                 🔒
+
             </div>
 
 
             <p>
+
                 Your birthday gift is waiting.
+
             </p>
 
 
@@ -1213,9 +161,8 @@
         </div>
 
 
-        <!-- =================================================
-             REVEAL
-        ================================================= -->
+
+        <!-- REVEAL -->
 
         <section
             class="reveal"
@@ -1224,12 +171,16 @@
 
 
             <div class="reveal-icon">
+
                 💌
+
             </div>
 
 
             <p class="reveal-small">
+
                 GIFT UNLOCKED
+
             </p>
 
 
@@ -1248,100 +199,109 @@
 
                 <br><br>
 
-                I sent a little something 🤍
+                I sent a little something<br>
+                to find its way to you instead. 🤍
 
             </p>
+
 
 
             <!-- PACKAGE -->
 
             <div class="package-card">
 
+
                 <div class="package-icon">
+
                     📦
+
                 </div>
 
 
                 <div class="package-info">
 
                     <span>
+
                         YOUR LITTLE SURPRISE
+
                     </span>
 
 
                     <strong>
-                        ON ITS WAY TO YOUUU GANTENGGGG &gt;o&lt;
+
+                        ON ITS WAY TO YOU
+
                     </strong>
 
                 </div>
 
+
             </div>
 
 
-            <!-- TRACKING -->
+
+            <!-- RECEIPT -->
 
             <div class="tracking-card">
 
+
+                <!-- ========================================
+     SCRATCH TRACKING CARD
+======================================== -->
 
                 <div class="tracking-title">
                     YOUR LITTLE SURPRISE
                 </div>
 
-
                 <p class="scratch-instruction">
-                    gosok gosokinn ciniii✦
+                    Scratch the card to reveal your gift's tracking number ✦
                 </p>
-
 
                 <div class="scratch-container">
 
-
+                    <!-- SECRET NUMBER -->
                     <div
                         class="tracking-number"
                         id="tracking-number"
                     >
+                        CM71903983627
                     </div>
 
-
+                    <!-- SCRATCH LAYER -->
                     <canvas
                         id="scratch-canvas"
                     ></canvas>
 
+                </div>
 
+                <p class="scratch-hint">
+                    ✦ Keep scratching... you're almost there.
+                </p>
+
+            </div>
                 </div>
 
 
-                <p class="scratch-hint">
+                <p>
 
-                    ✦ Terusssss.. you're almost there.
+                    Keep this safe.  
+                    Your little surprise is somewhere
+                    between me and you now. 🤍
 
                 </p>
 
 
+                <button
+                    class="copy-button"
+                    id="copy-button"
+                >
+
+                    Copy tracking number
+
+                </button>
+
             </div>
 
-
-            <!-- MESSAGE -->
-
-            <p>
-
-                Gotcha!!!
-
-                <br>
-
-                Love U Ajushhh 🤍
-
-            </p>
-
-
-            <button
-                class="copy-button"
-                id="copy-button"
-            >
-
-                Mau dicopy? Klik aja
-
-            </button>
 
 
             <!-- FINAL MESSAGE -->
@@ -1350,19 +310,23 @@
 
 
                 <div class="final-heart">
+
                     ♡
+
                 </div>
 
 
                 <p>
-                    Happy Birthday, sayanggg🤍
+
+                    Happy Birthday, my love.
+
                 </p>
 
 
                 <span>
 
                     I hope this little gift makes you smile
-                    as much as you make me smile hihi
+                    as much as you make me smile.
 
                 </span>
 
@@ -1370,1187 +334,27 @@
             </div>
 
 
+
+            <!-- BACK -->
+
+            <button
+                class="finish-button"
+                id="finish-button"
+            >
+
+                One last little surprise ✦
+
+            </button>
+
+
         </section>
+
 
     </main>
 
 
-    <script>
 
-        /* =====================================================
-           ELEMENTS
-        ===================================================== */
-
-        const cursor =
-            document.querySelector(".cursor");
-
-        const giftBox =
-            document.querySelector("#gift-box");
-
-        const unlockButton =
-            document.querySelector("#unlock-button");
-
-        const lockMessage =
-            document.querySelector("#lock-message");
-
-        const reveal =
-            document.querySelector("#reveal");
-
-        const trackingNumber =
-            document.querySelector("#tracking-number");
-
-        const copyButton =
-            document.querySelector("#copy-button");
-
-        const scratchCanvas =
-            document.querySelector("#scratch-canvas");
-
-        const scratchContainer =
-            document.querySelector(".scratch-container");
-
-        const trackingCard =
-            document.querySelector(".tracking-card");
-
-
-        const RESI =
-            "CM71903983627";
-
-
-        /* =====================================================
-           CURSOR
-        ===================================================== */
-
-        document.addEventListener(
-            "mousemove",
-            (e) => {
-
-                if (!cursor) return;
-
-                gsap.to(
-                    cursor,
-                    {
-                        left: e.clientX,
-                        top: e.clientY,
-                        duration: .15,
-                        ease: "power2.out"
-                    }
-                );
-
-            }
-        );
-
-
-        /* =====================================================
-           PAGE LOAD
-        ===================================================== */
-
-        window.addEventListener(
-            "load",
-            () => {
-
-                gsap.from(
-                    ".container",
-                    {
-                        opacity: 0,
-                        y: 25,
-                        duration: 1,
-                        ease: "power3.out"
-                    }
-                );
-
-
-                gsap.from(
-                    ".gift-box",
-                    {
-                        opacity: 0,
-                        scale: .6,
-                        rotation: -10,
-                        duration: 1.2,
-                        delay: .3,
-                        ease: "back.out(1.7)"
-                    }
-                );
-
-
-                gsap.to(
-                    ".gift-box",
-                    {
-                        y: -8,
-                        duration: 1.8,
-                        repeat: -1,
-                        yoyo: true,
-                        ease: "sine.inOut"
-                    }
-                );
-
-
-                setTimeout(
-                    resizeScratchCanvas,
-                    200
-                );
-
-            }
-        );
-
-
-        /* =====================================================
-           UNLOCK GIFT
-        ===================================================== */
-
-        if (unlockButton) {
-
-            unlockButton.addEventListener(
-                "click",
-                () => {
-
-                    unlockButton.disabled = true;
-
-
-                    gsap.to(
-                        unlockButton,
-                        {
-                            scale: .9,
-                            duration: .1
-                        }
-                    );
-
-
-                    gsap.to(
-                        unlockButton,
-                        {
-                            scale: 1,
-                            duration: .25,
-                            delay: .1
-                        }
-                    );
-
-
-                    gsap.timeline()
-
-                        .to(
-                            giftBox,
-                            {
-                                x: -8,
-                                rotation: -6,
-                                duration: .08
-                            }
-                        )
-
-                        .to(
-                            giftBox,
-                            {
-                                x: 8,
-                                rotation: 5,
-                                duration: .08
-                            }
-                        )
-
-                        .to(
-                            giftBox,
-                            {
-                                x: -5,
-                                rotation: -3,
-                                duration: .08
-                            }
-                        )
-
-                        .to(
-                            giftBox,
-                            {
-                                x: 0,
-                                rotation: 0,
-                                duration: .15
-                            }
-                        );
-
-
-                    gsap.to(
-                        ".gift-lid",
-                        {
-                            y: -80,
-                            rotation: -8,
-                            opacity: 0,
-                            duration: .8,
-                            delay: .4,
-                            ease: "back.out(1.5)"
-                        }
-                    );
-
-
-                    gsap.to(
-                        ".gift-body",
-                        {
-                            boxShadow:
-                                "0 0 60px rgba(168,92,92,.35)",
-                            duration: .8,
-                            delay: .5
-                        }
-                    );
-
-
-                    gsap.to(
-                        lockMessage,
-                        {
-                            opacity: 0,
-                            y: -20,
-                            duration: .5,
-                            delay: 1,
-
-                            onComplete: () => {
-
-                                lockMessage.style.display =
-                                    "none";
-
-                                showReveal();
-
-                            }
-
-                        }
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
-           SHOW REVEAL
-        ===================================================== */
-
-        function showReveal() {
-
-            if (!reveal) return;
-
-
-            if (trackingNumber) {
-
-                trackingNumber.textContent = "";
-
-            }
-
-
-            reveal.style.display =
-                "block";
-
-
-            gsap.fromTo(
-                reveal,
-                {
-                    opacity: 0,
-                    y: 40
-                },
-                {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1,
-                    ease: "power3.out",
-
-                    onComplete: () => {
-
-                        createParticles();
-
-                        setTimeout(
-                            resizeScratchCanvas,
-                            100
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
-           SCRATCH CARD
-        ===================================================== */
-
-        let ctx = null;
-
-        if (scratchCanvas) {
-
-            ctx =
-                scratchCanvas.getContext("2d");
-
-        }
-
-
-        let isScratching = false;
-
-        let scratchedPixels = 0;
-
-        const requiredScratch = 45;
-
-
-        /* =====================================================
-           RESIZE CANVAS
-        ===================================================== */
-
-        function resizeScratchCanvas() {
-
-            if (
-                !scratchCanvas ||
-                !scratchContainer ||
-                !ctx
-            ) return;
-
-
-            const rect =
-                scratchContainer.getBoundingClientRect();
-
-
-            if (
-                rect.width <= 0 ||
-                rect.height <= 0
-            ) return;
-
-
-            const dpr =
-                window.devicePixelRatio || 1;
-
-
-            scratchCanvas.width =
-                rect.width * dpr;
-
-
-            scratchCanvas.height =
-                rect.height * dpr;
-
-
-            scratchCanvas.style.width =
-                rect.width + "px";
-
-
-            scratchCanvas.style.height =
-                rect.height + "px";
-
-
-            ctx.setTransform(
-                dpr,
-                0,
-                0,
-                dpr,
-                0,
-                0
-            );
-
-
-            drawScratchLayer(
-                rect.width,
-                rect.height
-            );
-
-        }
-
-
-        /* =====================================================
-           DRAW SCRATCH LAYER
-        ===================================================== */
-
-        function drawScratchLayer(
-            width,
-            height
-        ) {
-
-            if (!ctx) return;
-
-
-            ctx.globalCompositeOperation =
-                "source-over";
-
-
-            ctx.fillStyle =
-                "#a85c5c";
-
-
-            ctx.fillRect(
-                0,
-                0,
-                width,
-                height
-            );
-
-
-            for (
-                let i = 0;
-                i < 350;
-                i++
-            ) {
-
-                const x =
-                    Math.random() * width;
-
-                const y =
-                    Math.random() * height;
-
-                const size =
-                    Math.random() * 2 + 1;
-
-
-                ctx.fillStyle =
-                    `rgba(255,253,248,${Math.random() * .25})`;
-
-
-                ctx.fillRect(
-                    x,
-                    y,
-                    size,
-                    size
-                );
-
-            }
-
-
-            ctx.fillStyle =
-                "#fffdf8";
-
-
-            ctx.font =
-                "bold 12px Arial";
-
-
-            ctx.textAlign =
-                "center";
-
-
-            ctx.textBaseline =
-                "middle";
-
-
-            ctx.fillText(
-                "✦ SCRATCH HERE ✦",
-                width / 2,
-                height / 2
-            );
-
-        }
-
-
-        /* =====================================================
-           SCRATCH
-        ===================================================== */
-
-        function scratch(x, y) {
-
-            if (!ctx) return;
-
-
-            ctx.globalCompositeOperation =
-                "destination-out";
-
-
-            ctx.beginPath();
-
-
-            ctx.arc(
-                x,
-                y,
-                18,
-                0,
-                Math.PI * 2
-            );
-
-
-            ctx.fill();
-
-
-            ctx.globalCompositeOperation =
-                "source-over";
-
-
-            scratchedPixels++;
-
-
-            if (
-                scratchedPixels >=
-                requiredScratch
-            ) {
-
-                revealTracking();
-
-            }
-
-        }
-
-
-        /* =====================================================
-           POINTER POSITION
-        ===================================================== */
-
-        function getPointerPosition(e) {
-
-            const rect =
-                scratchCanvas.getBoundingClientRect();
-
-
-            return {
-
-                x:
-                    e.clientX -
-                    rect.left,
-
-                y:
-                    e.clientY -
-                    rect.top
-
-            };
-
-        }
-
-
-        /* =====================================================
-           MOUSE SCRATCH
-        ===================================================== */
-
-        if (scratchCanvas) {
-
-            scratchCanvas.addEventListener(
-                "mousedown",
-                (e) => {
-
-                    isScratching = true;
-
-                    const pos =
-                        getPointerPosition(e);
-
-                    scratch(
-                        pos.x,
-                        pos.y
-                    );
-
-                }
-            );
-
-
-            scratchCanvas.addEventListener(
-                "mousemove",
-                (e) => {
-
-                    if (!isScratching)
-                        return;
-
-                    const pos =
-                        getPointerPosition(e);
-
-                    scratch(
-                        pos.x,
-                        pos.y
-                    );
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
-           TOUCH SCRATCH
-        ===================================================== */
-
-        if (scratchCanvas) {
-
-            scratchCanvas.addEventListener(
-                "touchstart",
-                (e) => {
-
-                    e.preventDefault();
-
-                    isScratching = true;
-
-
-                    const touch =
-                        e.touches[0];
-
-
-                    const rect =
-                        scratchCanvas.getBoundingClientRect();
-
-
-                    scratch(
-                        touch.clientX -
-                            rect.left,
-
-                        touch.clientY -
-                            rect.top
-                    );
-
-                },
-                {
-                    passive: false
-                }
-            );
-
-
-            scratchCanvas.addEventListener(
-                "touchmove",
-                (e) => {
-
-                    e.preventDefault();
-
-
-                    if (!isScratching)
-                        return;
-
-
-                    const touch =
-                        e.touches[0];
-
-
-                    const rect =
-                        scratchCanvas.getBoundingClientRect();
-
-
-                    scratch(
-                        touch.clientX -
-                            rect.left,
-
-                        touch.clientY -
-                            rect.top
-                    );
-
-                },
-                {
-                    passive: false
-                }
-            );
-
-
-            scratchCanvas.addEventListener(
-                "touchend",
-                () => {
-
-                    isScratching = false;
-
-                }
-            );
-
-        }
-
-
-        window.addEventListener(
-            "mouseup",
-            () => {
-
-                isScratching = false;
-
-            }
-        );
-
-
-        /* =====================================================
-           REVEAL TRACKING
-        ===================================================== */
-
-        function revealTracking() {
-
-            if (!scratchCanvas)
-                return;
-
-
-            if (
-                scratchCanvas.dataset.revealed
-            )
-                return;
-
-
-            scratchCanvas.dataset.revealed =
-                "true";
-
-
-            if (trackingNumber) {
-
-                trackingNumber.textContent =
-                    RESI;
-
-            }
-
-
-            if (trackingCard) {
-
-                trackingCard.classList.add(
-                    "revealed"
-                );
-
-            }
-
-
-            gsap.to(
-                scratchCanvas,
-                {
-                    opacity: 0,
-                    duration: .8,
-                    ease: "power2.out"
-                }
-            );
-
-
-            if (trackingNumber) {
-
-                gsap.fromTo(
-                    trackingNumber,
-                    {
-                        scale: .85,
-                        opacity: .5
-                    },
-                    {
-                        scale: 1,
-                        opacity: 1,
-                        duration: .8,
-                        ease: "back.out(2)"
-                    }
-                );
-
-            }
-
-
-            const hint =
-                document.querySelector(
-                    ".scratch-hint"
-                );
-
-
-            if (hint) {
-
-                hint.textContent =
-                    "You found it. 📦 Your little surprise is on its way. ♡";
-
-            }
-
-
-            createScratchCelebration();
-
-        }
-
-
-        /* =====================================================
-           COPY RESI
-        ===================================================== */
-
-        if (copyButton) {
-
-            copyButton.addEventListener(
-                "click",
-                async () => {
-
-                    try {
-
-                        await navigator.clipboard.writeText(
-                            RESI
-                        );
-
-
-                        copyButton.textContent =
-                            "Copied!!! 📦♡";
-
-
-                        setTimeout(
-                            () => {
-
-                                copyButton.textContent =
-                                    "Mau dicopy? Klik aja";
-
-                            },
-                            1800
-                        );
-
-
-                    } catch (error) {
-
-                        const textarea =
-                            document.createElement(
-                                "textarea"
-                            );
-
-
-                        textarea.value =
-                            RESI;
-
-
-                        document.body.appendChild(
-                            textarea
-                        );
-
-
-                        textarea.select();
-
-
-                        document.execCommand(
-                            "copy"
-                        );
-
-
-                        textarea.remove();
-
-
-                        copyButton.textContent =
-                            "Copied!!! 📦♡";
-
-
-                        setTimeout(
-                            () => {
-
-                                copyButton.textContent =
-                                    "Mau dicopy? Klik aja";
-
-                            },
-                            1800
-                        );
-
-                    }
-
-                }
-            );
-
-        }
-
-
-        /* =====================================================
-           CELEBRATION
-        ===================================================== */
-
-        function createParticles() {
-
-            const symbols = [
-                "✦",
-                "♡",
-                "✧",
-                "⋆"
-            ];
-
-
-            for (
-                let i = 0;
-                i < 18;
-                i++
-            ) {
-
-                const particle =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                particle.textContent =
-                    symbols[
-                        Math.floor(
-                            Math.random() *
-                            symbols.length
-                        )
-                    ];
-
-
-                particle.style.position =
-                    "fixed";
-
-
-                particle.style.left =
-                    "50%";
-
-
-                particle.style.top =
-                    "45%";
-
-
-                particle.style.zIndex =
-                    "999998";
-
-
-                particle.style.pointerEvents =
-                    "none";
-
-
-                particle.style.color =
-                    "#a85c5c";
-
-
-                particle.style.fontSize =
-                    (
-                        Math.random() * 15 +
-                        10
-                    ) + "px";
-
-
-                document.body.appendChild(
-                    particle
-                );
-
-
-                gsap.to(
-                    particle,
-                    {
-
-                        x:
-                            Math.random() *
-                            400 -
-                            200,
-
-                        y:
-                            Math.random() *
-                            400 -
-                            200,
-
-                        opacity: 0,
-
-                        rotation:
-                            Math.random() *
-                            360,
-
-                        duration:
-                            Math.random() * 1.5 +
-                            1,
-
-                        ease:
-                            "power2.out",
-
-                        onComplete: () => {
-
-                            particle.remove();
-
-                        }
-
-                    }
-                );
-
-            }
-
-        }
-
-
-        /* =====================================================
-           SCRATCH CELEBRATION
-        ===================================================== */
-
-        function createScratchCelebration() {
-
-            const symbols = [
-                "✦",
-                "♡",
-                "✧",
-                "⋆"
-            ];
-
-
-            for (
-                let i = 0;
-                i < 12;
-                i++
-            ) {
-
-                const particle =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                particle.textContent =
-                    symbols[
-                        Math.floor(
-                            Math.random() *
-                            symbols.length
-                        )
-                    ];
-
-
-                particle.style.position =
-                    "fixed";
-
-
-                particle.style.left =
-                    "50%";
-
-
-                particle.style.top =
-                    "55%";
-
-
-                particle.style.zIndex =
-                    "999998";
-
-
-                particle.style.pointerEvents =
-                    "none";
-
-
-                particle.style.color =
-                    "#a85c5c";
-
-
-                particle.style.fontSize =
-                    (
-                        Math.random() * 12 +
-                        10
-                    ) + "px";
-
-
-                document.body.appendChild(
-                    particle
-                );
-
-
-                gsap.to(
-                    particle,
-                    {
-
-                        x:
-                            Math.random() *
-                            300 -
-                            150,
-
-                        y:
-                            Math.random() *
-                            200 -
-                            100,
-
-                        opacity: 0,
-
-                        rotation:
-                            Math.random() *
-                            360,
-
-                        duration: 1.2,
-
-                        ease:
-                            "power2.out",
-
-                        onComplete: () => {
-
-                            particle.remove();
-
-                        }
-
-                    }
-                );
-
-            }
-
-        }
-
-
-        /* =====================================================
-           BACKGROUND FLOATING PARTICLES
-        ===================================================== */
-
-        setInterval(
-            () => {
-
-                const symbols = [
-                    "✦",
-                    "♡",
-                    "✧"
-                ];
-
-
-                const element =
-                    document.createElement(
-                        "div"
-                    );
-
-
-                element.textContent =
-                    symbols[
-                        Math.floor(
-                            Math.random() *
-                            symbols.length
-                        )
-                    ];
-
-
-                element.style.position =
-                    "fixed";
-
-
-                element.style.left =
-                    Math.random() *
-                    100 +
-                    "vw";
-
-
-                element.style.top =
-                    "105vh";
-
-
-                element.style.color =
-                    "#a85c5c";
-
-
-                element.style.opacity =
-                    ".2";
-
-
-                element.style.pointerEvents =
-                    "none";
-
-
-                element.style.zIndex =
-                    "1";
-
-
-                document.body.appendChild(
-                    element
-                );
-
-
-                gsap.to(
-                    element,
-                    {
-
-                        y:
-                            -window.innerHeight -
-                            100,
-
-                        x:
-                            Math.random() *
-                            100 -
-                            50,
-
-                        rotation:
-                            Math.random() *
-                            80 -
-                            40,
-
-                        duration:
-                            Math.random() * 6 +
-                            7,
-
-                        ease: "none",
-
-                        onComplete: () => {
-
-                            element.remove();
-
-                        }
-
-                    }
-                );
-
-            },
-            1800
-        );
-
-
-        /* =====================================================
-           RESIZE
-        ===================================================== */
-
-        window.addEventListener(
-            "resize",
-            () => {
-
-                if (
-                    scratchCanvas &&
-                    !scratchCanvas.dataset.revealed
-                ) {
-
-                    resizeScratchCanvas();
-
-                }
-
-            }
-        );
-
-    </script>
+    <script src="./last.js"></script>
 
 </body>
 
