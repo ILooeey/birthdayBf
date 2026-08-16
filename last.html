@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+
     <meta charset="UTF-8">
 
     <meta
@@ -14,55 +15,102 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
     <link rel="stylesheet" href="./last.css">
+
 </head>
+
 
 <body>
 
-    <!-- CUSTOM CURSOR -->
+
+    <!-- =====================================================
+         CUSTOM CURSOR
+    ====================================================== -->
+
     <div class="cursor"></div>
 
 
-    <!-- BACKGROUND -->
+    <!-- =====================================================
+         BACKGROUND
+    ====================================================== -->
+
     <div class="background">
+
         <span>✦</span>
         <span>♡</span>
         <span>✧</span>
         <span>⋆</span>
         <span>♡</span>
         <span>✦</span>
+
     </div>
 
 
-    <!-- MAIN -->
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
     <main class="container">
 
-        <!-- TOP LABEL -->
+
+        <!-- =================================================
+             QUEST LABEL
+        ================================================== -->
+
         <div class="quest-label">
+
             <span class="dot"></span>
+
             FINAL QUEST
+
             <span class="dot"></span>
+
         </div>
 
 
-        <!-- TITLE -->
+
+        <!-- =================================================
+             TITLE
+        ================================================== -->
+
         <h1>
-            A Little Something<br>
-            <span>Is Coming Your Way.</span>
+
+            A Little Something
+
+            <br>
+
+            <span>
+                Is Coming Your Way.
+            </span>
+
         </h1>
 
 
-        <!-- INTRO -->
+
+        <!-- =================================================
+             INTRO
+        ================================================== -->
+
         <p class="intro">
+
             You made it all the way here...
+
         </p>
+
 
         <p class="sub-intro">
+
             So I think you deserve to know<br>
             what's waiting for you. 🤍
+
         </p>
 
 
-        <!-- GIFT -->
+
+        <!-- =================================================
+             GIFT BOX
+        ================================================== -->
+
         <section class="gift-area">
 
             <div
@@ -71,18 +119,16 @@
             >
 
                 <!-- LID -->
+
                 <div class="gift-lid">
 
                     <div class="ribbon lid-ribbon"></div>
-
-                    <!-- BOW -->
-                    <div class="bow left"></div>
-                    <div class="bow right"></div>
 
                 </div>
 
 
                 <!-- BODY -->
+
                 <div class="gift-body">
 
                     <div class="ribbon vertical"></div>
@@ -92,56 +138,81 @@
                 </div>
 
 
-                <!-- SHADOW -->
-                <div class="gift-shadow"></div>
+                <!-- GLOW -->
+
+                <div class="gift-glow"></div>
 
             </div>
 
         </section>
 
 
-        <!-- LOCK -->
+
+        <!-- =================================================
+             LOCK MESSAGE
+        ================================================== -->
+
         <div
             class="lock-message"
             id="lock-message"
         >
 
             <div class="lock-icon">
+
                 🔒
+
             </div>
 
+
             <p>
+
                 Your birthday gift is waiting.
+
             </p>
+
 
             <button
                 id="unlock-button"
                 class="unlock-button"
             >
+
                 Unlock your gift 🎁
+
             </button>
 
         </div>
 
 
-        <!-- REVEAL -->
+
+        <!-- =================================================
+             REVEAL
+        ================================================== -->
+
         <section
             class="reveal"
             id="reveal"
         >
 
+
             <div class="reveal-icon">
+
                 💌
+
             </div>
 
+
             <p class="reveal-small">
+
                 GIFT UNLOCKED
+
             </p>
 
 
             <h2>
+
                 I wish I could<br>
                 give this to you myself.
+
             </h2>
 
 
@@ -158,21 +229,33 @@
             </p>
 
 
-            <!-- PACKAGE -->
+
+            <!-- =================================================
+                 PACKAGE
+            ================================================== -->
+
             <div class="package-card">
 
                 <div class="package-icon">
+
                     📦
+
                 </div>
+
 
                 <div class="package-info">
 
                     <span>
+
                         YOUR LITTLE SURPRISE
+
                     </span>
 
+
                     <strong>
+
                         ON ITS WAY TO YOU
+
                     </strong>
 
                 </div>
@@ -180,47 +263,72 @@
             </div>
 
 
-            <!-- TRACKING -->
+
+            <!-- =================================================
+                 TRACKING CARD
+            ================================================== -->
+
             <div class="tracking-card">
 
+
                 <div class="tracking-title">
+
                     YOUR LITTLE SURPRISE
+
                 </div>
 
 
                 <p class="scratch-instruction">
+
                     Scratch the card to reveal your gift's tracking number ✦
+
                 </p>
 
 
                 <div class="scratch-container">
 
+
+                    <!-- SECRET NUMBER -->
+
                     <div
                         class="tracking-number"
                         id="tracking-number"
                     >
+
                         CM71903983627
+
                     </div>
 
+
+                    <!-- SCRATCH LAYER -->
 
                     <canvas
                         id="scratch-canvas"
                     ></canvas>
 
+
                 </div>
 
 
                 <p class="scratch-hint">
+
                     ✦ Keep scratching... you're almost there.
+
                 </p>
+
 
             </div>
 
 
-            <!-- COPY -->
-            <p class="tracking-note">
 
-                Keep this safe.
+            <!-- =================================================
+                 TRACKING MESSAGE
+            ================================================== -->
+
+            <p class="tracking-message">
+
+                Keep this safe.<br>
+
                 Your little surprise is somewhere
                 between me and you now. 🤍
 
@@ -231,43 +339,71 @@
                 class="copy-button"
                 id="copy-button"
             >
+
                 Copy tracking number
+
             </button>
 
 
-            <!-- FINAL MESSAGE -->
+
+            <!-- =================================================
+                 FINAL MESSAGE
+            ================================================== -->
+
             <div class="final-message">
 
+
                 <div class="final-heart">
+
                     ♡
+
                 </div>
 
+
                 <p>
+
                     Happy Birthday, my love.
+
                 </p>
 
+
                 <span>
+
                     I hope this little gift makes you smile
                     as much as you make me smile.
+
                 </span>
+
 
             </div>
 
 
-            <!-- FINAL BUTTON -->
+
+            <!-- =================================================
+                 FINISH
+            ================================================== -->
+
             <button
                 class="finish-button"
                 id="finish-button"
             >
+
                 One last little surprise ✦
+
             </button>
 
+
         </section>
+
 
     </main>
 
 
-    <!-- FINAL POPUP -->
+
+    <!-- =====================================================
+         FINAL POPUP
+    ====================================================== -->
+
     <div
         class="camera-popup-overlay"
         id="camera-popup-overlay"
@@ -275,39 +411,64 @@
 
         <div class="camera-popup">
 
+
             <div class="camera-popup-icon">
+
                 👀
+
             </div>
+
 
             <p class="camera-popup-small">
+
                 ONE LAST THING...
+
             </p>
+
 
             <h2>
+
                 Nanti pas kita VC...
+
             </h2>
 
+
             <p class="camera-popup-text">
+
                 HIHIHI Love u Sayanggg 🤍
+
             </p>
 
+
             <div class="camera-popup-note">
+
                 Ciniii hadep kameraaa 👀
+
             </div>
+
 
             <button
                 class="camera-popup-button"
                 id="camera-popup-close"
             >
+
                 OKE, SIAPPP ✦
+
             </button>
+
 
         </div>
 
     </div>
 
 
+
+    <!-- =====================================================
+         JAVASCRIPT
+    ====================================================== -->
+
     <script src="./last.js"></script>
 
 </body>
+
 </html>
