@@ -1160,3 +1160,386 @@ h1 span {
     }
 
 }
+/* ========================================
+   CAMERA MOMENT MODAL
+======================================== */
+
+.camera-modal {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(41,39,36,.55);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+}
+
+
+/* ========================================
+   MODAL CARD
+======================================== */
+
+.camera-modal-card {
+
+    position: relative;
+
+    width: min(
+        430px,
+        100%
+    );
+
+    padding:
+        38px 30px
+        32px;
+
+    text-align: center;
+
+    background:
+        rgba(255,253,248,.98);
+
+    border:
+        1px solid
+        rgba(60,55,50,.12);
+
+    box-shadow:
+
+        0 25px 70px
+        rgba(30,27,24,.25),
+
+        0 5px 20px
+        rgba(30,27,24,.12);
+
+    transform:
+        translateY(25px)
+        scale(.92);
+
+}
+
+
+/* ========================================
+   CAMERA ICON
+======================================== */
+
+.camera-icon {
+
+    width: 58px;
+
+    height: 58px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    margin:
+        0 auto
+        18px;
+
+    border-radius: 50%;
+
+    background:
+        #eee9df;
+
+    font-size: 28px;
+
+}
+
+
+/* ========================================
+   LABEL
+======================================== */
+
+.camera-label {
+
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: 9px;
+
+    font-weight: bold;
+
+    letter-spacing: 3px;
+
+    color: #a85c5c;
+
+}
+
+
+/* ========================================
+   TITLE
+======================================== */
+
+.camera-modal-card h2 {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            1.7rem,
+            5vw,
+            2.3rem
+        );
+
+    line-height: 1.15;
+
+    color: #292724;
+
+    margin-bottom: 18px;
+
+}
+
+
+/* ========================================
+   MAIN TEXT
+======================================== */
+
+.camera-modal-card p {
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: 1rem;
+
+    line-height: 1.65;
+
+    color: #625c55;
+
+    margin-bottom: 8px;
+
+}
+
+
+/* ========================================
+   SUB TEXT
+======================================== */
+
+.camera-subtext {
+
+    font-size: .82rem !important;
+
+    color: #99928a !important;
+
+    font-style: italic;
+
+    margin-top: 5px;
+
+    margin-bottom: 25px !important;
+
+}
+
+
+/* ========================================
+   READY BUTTON
+======================================== */
+
+.camera-ready-button {
+
+    width: 100%;
+
+    border: none;
+
+    padding:
+        14px 20px;
+
+    border-radius: 4px;
+
+    background: #292724;
+
+    color: #fffdf8;
+
+    font-family:
+        "Arial Rounded MT Bold",
+        Arial,
+        sans-serif;
+
+    font-size: .82rem;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+
+        0 5px 0 #171614,
+
+        0 10px 20px
+        rgba(0,0,0,.12);
+
+    cursor: pointer;
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+
+}
+
+
+.camera-ready-button:hover {
+
+    background: #3b3834;
+
+    transform:
+        translateY(-3px);
+
+}
+
+
+.camera-ready-button:active {
+
+    transform:
+        translateY(2px);
+
+    box-shadow:
+        0 2px 0 #171614;
+
+}
+
+
+/* ========================================
+   MOBILE
+======================================== */
+
+@media (max-width: 600px) {
+
+    .camera-modal {
+
+        padding: 16px;
+
+    }
+
+
+    .camera-modal-card {
+
+        width: 100%;
+
+        padding:
+            30px 20px
+            25px;
+
+    }
+
+
+    .camera-icon {
+
+        width: 52px;
+
+        height: 52px;
+
+        font-size: 25px;
+
+        margin-bottom: 15px;
+
+    }
+
+
+    .camera-label {
+
+        font-size: 8px;
+
+        letter-spacing: 2.5px;
+
+    }
+
+
+    .camera-modal-card h2 {
+
+        font-size: 1.65rem;
+
+        line-height: 1.15;
+
+    }
+
+
+    .camera-modal-card p {
+
+        font-size: .9rem;
+
+    }
+
+
+    .camera-subtext {
+
+        font-size: .76rem !important;
+
+    }
+
+
+    .camera-ready-button {
+
+        padding: 13px 18px;
+
+        font-size: .78rem;
+
+    }
+
+}
+
+
+/* ========================================
+   VERY SMALL PHONE
+======================================== */
+
+@media (max-width: 360px) {
+
+    .camera-modal-card {
+
+        padding:
+            26px 17px
+            22px;
+
+    }
+
+
+    .camera-icon {
+
+        width: 46px;
+
+        height: 46px;
+
+        font-size: 22px;
+
+    }
+
+
+    .camera-modal-card h2 {
+
+        font-size: 1.45rem;
+
+    }
+
+
+    .camera-modal-card p {
+
+        font-size: .82rem;
+
+    }
+
+}
