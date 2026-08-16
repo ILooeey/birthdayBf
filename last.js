@@ -1330,63 +1330,63 @@ setInterval(
 /* ========================================
    CAMERA MOMENT
 ======================================== */
+/* ========================================
+   FINAL VC POPUP
+======================================== */
 
-/*
-    IMPORTANT:
+const cameraPopupOverlay =
+    document.querySelector(
+        '#camera-popup-overlay'
+    );
 
-    This does NOT access the camera.
+const cameraPopup =
+    document.querySelector(
+        '#camera-popup'
+    );
 
-    Karena kalian sedang VC, popup ini
-    hanya menyuruh dia menghadap kamera.
-*/
+const cameraPopupClose =
+    document.querySelector(
+        '#camera-popup-close'
+    );
 
+
+/* ========================================
+   OPEN FINAL POPUP
+======================================== */
 
 if (
     finishButton &&
-    cameraModal &&
-    cameraModalCard
+    cameraPopupOverlay &&
+    cameraPopup
 ) {
 
     finishButton.addEventListener(
         'click',
         () => {
 
-
             /* ====================================
-               SHOW MODAL
+               SHOW OVERLAY
             ==================================== */
 
-            cameraModal.style.visibility =
-                'visible';
-
-
-            cameraModal.style.pointerEvents =
-                'auto';
-
-
-            gsap.to(
-                cameraModal,
-                {
-
-                    opacity: 1,
-
-                    duration: .45,
-
-                    ease:
-                        "power2.out"
-
-                }
+            cameraPopupOverlay.classList.add(
+                'show'
             );
 
 
             /* ====================================
-               MODAL CARD ENTRANCE
+               ENTRANCE ANIMATION
             ==================================== */
 
-            gsap.to(
-                cameraModalCard,
+            gsap.fromTo(
+                cameraPopup,
                 {
+                    opacity: 0,
 
+                    y: 25,
+
+                    scale: .92
+                },
+                {
                     opacity: 1,
 
                     y: 0,
@@ -1395,9 +1395,7 @@ if (
 
                     duration: .65,
 
-                    ease:
-                        "back.out(1.5)"
-
+                    ease: "back.out(1.5)"
                 }
             );
 
@@ -1408,28 +1406,26 @@ if (
 
 
 /* ========================================
-   CAMERA READY
+   CLOSE FINAL POPUP
 ======================================== */
 
 if (
-    cameraReadyButton &&
-    cameraModal &&
-    cameraModalCard
+    cameraPopupClose &&
+    cameraPopupOverlay &&
+    cameraPopup
 ) {
 
-    cameraReadyButton.addEventListener(
+    cameraPopupClose.addEventListener(
         'click',
         () => {
-
 
             /* ====================================
                BUTTON PRESS
             ==================================== */
 
             gsap.to(
-                cameraReadyButton,
+                cameraPopupClose,
                 {
-
                     scale: .92,
 
                     duration: .1,
@@ -1437,19 +1433,17 @@ if (
                     yoyo: true,
 
                     repeat: 1
-
                 }
             );
 
 
             /* ====================================
-               CLOSE CARD
+               CARD EXIT
             ==================================== */
 
             gsap.to(
-                cameraModalCard,
+                cameraPopup,
                 {
-
                     opacity: 0,
 
                     y: 20,
@@ -1458,48 +1452,49 @@ if (
 
                     duration: .35,
 
-                    ease:
-                        "power2.in"
-
+                    ease: "power2.in"
                 }
             );
 
 
             /* ====================================
-               CLOSE BACKDROP
+               CLOSE OVERLAY
             ==================================== */
 
             gsap.to(
-                cameraModal,
+                cameraPopupOverlay,
                 {
-
                     opacity: 0,
 
                     duration: .4,
 
-                    delay: .15,
+                    delay: .1,
 
-                    ease:
-                        "power2.in",
+                    ease: "power2.in",
 
                     onComplete: () => {
 
-                        cameraModal.style.visibility =
-                            'hidden';
+                        cameraPopupOverlay.classList.remove(
+                            'show'
+                        );
 
+                        /* Reset */
 
-                        cameraModal.style.pointerEvents =
-                            'none';
+                        gsap.set(
+                            cameraPopup,
+                            {
+                                opacity: 1,
+
+                                y: 0,
+
+                                scale: 1
+                            }
+                        );
 
                     }
-
                 }
             );
 
-
-            /* ====================================
-               LITTLE CELEBRATION
-            ==================================== */
 
             createCameraCelebration();
 
