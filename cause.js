@@ -47,6 +47,12 @@ const birthdayMessage =
 const continueButton =
     document.querySelector('#continue-button');
 
+const readyScreen =
+    document.querySelector('#ready-screen');
+
+const readyButton =
+    document.querySelector('#ready-button');
+
 
 let candlesOut = 0;
 
