@@ -147,6 +147,7 @@ body {
 
 
 .floating-background span:nth-child(1) {
+
     top: 12%;
     left: 8%;
     font-size: 22px;
@@ -154,6 +155,7 @@ body {
 
 
 .floating-background span:nth-child(2) {
+
     top: 20%;
     right: 12%;
     font-size: 20px;
@@ -161,6 +163,7 @@ body {
 
 
 .floating-background span:nth-child(3) {
+
     top: 55%;
     left: 7%;
     font-size: 25px;
@@ -168,6 +171,7 @@ body {
 
 
 .floating-background span:nth-child(4) {
+
     top: 70%;
     right: 8%;
     font-size: 18px;
@@ -175,6 +179,7 @@ body {
 
 
 .floating-background span:nth-child(5) {
+
     bottom: 12%;
     left: 20%;
     font-size: 20px;
@@ -182,6 +187,7 @@ body {
 
 
 .floating-background span:nth-child(6) {
+
     top: 42%;
     right: 23%;
     font-size: 22px;
@@ -395,8 +401,7 @@ h1 span {
 
     margin-bottom: 25px;
 
-    padding:
-        25px 20px;
+    padding: 25px 20px;
 
     background:
         rgba(255,253,248,.9);
@@ -478,8 +483,6 @@ h1 span {
 .quest-content {
 
     width: 100%;
-
-    position: relative;
 }
 
 
@@ -519,11 +522,9 @@ h1 span {
 
     position: relative;
 
-    width: 500px;
+    width: min(560px, 100%);
 
     height: 330px;
-
-    max-width: 100%;
 
     margin:
         10px auto
@@ -534,8 +535,14 @@ h1 span {
     justify-content: center;
 
     align-items: flex-end;
+
+    overflow: visible;
 }
 
+
+/* ========================================
+   CAKE GLOW
+======================================== */
 
 .cake-glow {
 
@@ -555,10 +562,11 @@ h1 span {
     background:
         rgba(210,139,139,.12);
 
-    filter:
-        blur(35px);
+    filter: blur(35px);
 
     border-radius: 50%;
+
+    pointer-events: none;
 }
 
 
@@ -576,7 +584,7 @@ h1 span {
 
     flex-shrink: 0;
 
-    z-index: 3;
+    z-index: 4;
 }
 
 
@@ -782,8 +790,7 @@ h1 span {
 
     opacity: 0;
 
-    filter:
-        blur(2px);
+    filter: blur(2px);
 
     pointer-events: none;
 }
@@ -989,13 +996,13 @@ h1 span {
 
     pointer-events: none;
 
-    width: 100px;
+    width: 105px;
 
-    opacity: 0;
+    height: auto;
+
+    top: auto;
 }
 
-
-/* Sticker image */
 
 .cake-sticker img {
 
@@ -1007,33 +1014,34 @@ h1 span {
 }
 
 
-/* ========================================
-   LEFT STICKER
-======================================== */
+/*
+    IMPORTANT:
+
+    Sticker sekarang diposisikan
+    relatif terhadap CAKE, bukan
+    ujung layar/cake-area.
+*/
+
 
 .sticker-d1 {
 
-    left: 30px;
+    left: calc(50% - 270px);
 
-    top: 52%;
+    bottom: 65px;
 
     transform:
-        translateY(-50%);
+        rotate(-7deg);
 }
 
 
-/* ========================================
-   RIGHT STICKER
-======================================== */
-
 .sticker-d2 {
 
-    right: 30px;
+    right: calc(50% - 270px);
 
-    top: 52%;
+    bottom: 65px;
 
     transform:
-        translateY(-50%);
+        rotate(7deg);
 }
 
 
@@ -1398,26 +1406,22 @@ h1 span {
     }
 
 
-    /* ====================================
+    /* ================================
        TABLET CAKE
-    ==================================== */
+    ================================ */
 
     .cake-area {
 
         width: 100%;
 
-        max-width: 470px;
-
         height: 275px;
-
-        margin-top: 5px;
     }
 
 
     .cake {
 
         transform:
-            scale(.82);
+            scale(.78);
 
         transform-origin:
             center bottom;
@@ -1427,22 +1431,30 @@ h1 span {
     .cake-sticker {
 
         width: 82px;
+
+        z-index: 8;
     }
 
 
     .sticker-d1 {
 
-        left: 3%;
+        left: calc(50% - 245px);
 
-        top: 52%;
+        bottom: 55px;
+
+        transform:
+            rotate(-7deg);
     }
 
 
     .sticker-d2 {
 
-        right: 3%;
+        right: calc(50% - 245px);
 
-        top: 52%;
+        bottom: 55px;
+
+        transform:
+            rotate(7deg);
     }
 
 
@@ -1561,9 +1573,9 @@ h1 span {
     }
 
 
-    /* ====================================
+    /* ================================
        READY
-    ==================================== */
+    ================================ */
 
     #ready-screen {
 
@@ -1593,9 +1605,9 @@ h1 span {
     }
 
 
-    /* ====================================
+    /* ================================
        DESCRIPTION
-    ==================================== */
+    ================================ */
 
     .description {
 
@@ -1610,9 +1622,9 @@ h1 span {
     }
 
 
-    /* ====================================
+    /* ================================
        MOBILE CAKE AREA
-    ==================================== */
+    ================================ */
 
     .cake-area {
 
@@ -1628,53 +1640,69 @@ h1 span {
     }
 
 
+    /*
+        Cake dibuat lebih kecil,
+        tapi TIDAK terlalu kecil.
+    */
+
     .cake {
 
         transform:
-            scale(.63);
+            scale(.66);
 
         transform-origin:
             center bottom;
     }
 
 
-    /* ====================================
+    /* ================================
        MOBILE STICKERS
-    ==================================== */
+    ================================ */
 
     .cake-sticker {
 
-        width: 64px;
+        width: 62px;
 
         z-index: 8;
     }
 
 
+    /*
+        JARAK STICKER DARI CAKE:
+
+        Cake setelah scale .66
+        lebarnya kira-kira 218px.
+
+        Sticker ditempatkan sedikit
+        di luar cake, bukan di ujung
+        cake-area.
+    */
+
     .sticker-d1 {
 
-        left: 5px;
+        left: calc(50% - 170px);
 
-        top: 54%;
+        bottom: 55px;
 
         transform:
-            translateY(-50%);
+            rotate(-8deg);
     }
 
 
     .sticker-d2 {
 
-        right: 5px;
+        right: calc(50% - 170px);
 
-        top: 54%;
+        bottom: 55px;
 
         transform:
-            translateY(-50%);
+            rotate(8deg);
     }
 
 
-    /* ====================================
+    /* ================================
        QUEST STATUS
-    ==================================== */
+    ================================ */
 
     .quest-status {
 
@@ -1708,9 +1736,9 @@ h1 span {
     }
 
 
-    /* ====================================
+    /* ================================
        MESSAGE
-    ==================================== */
+    ================================ */
 
     .birthday-message {
 
@@ -1758,9 +1786,9 @@ h1 span {
     }
 
 
-    /* ====================================
+    /* ================================
        FOOTER
-    ==================================== */
+    ================================ */
 
     .bottom-bar {
 
@@ -1810,20 +1838,20 @@ h1 span {
     }
 
 
-    /* ====================================
+    /* ================================
        VERY SMALL CAKE
-    ==================================== */
+    ================================ */
 
     .cake-area {
 
-        height: 205px;
+        height: 200px;
     }
 
 
     .cake {
 
         transform:
-            scale(.55);
+            scale(.58);
 
         transform-origin:
             center bottom;
@@ -1832,23 +1860,29 @@ h1 span {
 
     .cake-sticker {
 
-        width: 54px;
+        width: 53px;
     }
 
 
     .sticker-d1 {
 
-        left: 2px;
+        left: calc(50% - 145px);
 
-        top: 54%;
+        bottom: 48px;
+
+        transform:
+            rotate(-8deg);
     }
 
 
     .sticker-d2 {
 
-        right: 2px;
+        right: calc(50% - 145px);
 
-        top: 54%;
+        bottom: 48px;
+
+        transform:
+            rotate(8deg);
     }
 
 
