@@ -65,17 +65,13 @@ let candlesOut = 0;
 
 window.addEventListener('load', () => {
 
-    // Page entrance
-
     gsap.fromTo(
         '.birthday-page',
-
         {
             opacity: 0,
             y: 25,
-            scale: 0.98
+            scale: .98
         },
-
         {
             opacity: 1,
             y: 0,
@@ -86,50 +82,27 @@ window.addEventListener('load', () => {
     );
 
 
-    // ====================================
-    // QUEST CONTENT
-    // ====================================
-
-    // Tetap hidden karena ada tombol Ready
-    // Jangan disentuh display-nya di sini.
-
-
-    // ====================================
-    // CAKE
-    // ====================================
-
+    // Cake starts hidden
     gsap.set('.cake-area', {
-
         opacity: 0,
-        y: 35,
-        scale: 0.9
-
+        y: 40,
+        scale: .85
     });
 
 
-    // ====================================
-    // QUEST STATUS
-    // ====================================
-
+    // Quest status starts hidden
     gsap.set('.quest-status', {
-
         opacity: 0,
         y: 10
-
     });
 
 
-    // ====================================
-    // BIRTHDAY MESSAGE
-    // ====================================
-
-    gsap.set(birthdayMessage, {
-
+    // Birthday message starts hidden
+    gsap.set('.birthday-message', {
         opacity: 0,
         visibility: 'hidden',
         y: 25,
-        scale: 0.96
-
+        scale: .96
     });
 
 });
@@ -139,14 +112,16 @@ window.addEventListener('load', () => {
 // STICKER ANIMATION
 // ========================================
 
-gsap.to('.sticker-d1', {
+gsap.to(".sticker-d1", {
 
-    x: 10,
+    x: 8,
+
     rotation: 3,
 
     duration: 1.8,
 
     repeat: -1,
+
     yoyo: true,
 
     ease: "sine.inOut"
@@ -154,14 +129,16 @@ gsap.to('.sticker-d1', {
 });
 
 
-gsap.to('.sticker-d2', {
+gsap.to(".sticker-d2", {
 
-    x: -10,
+    x: -8,
+
     rotation: -3,
 
     duration: 2.1,
 
     repeat: -1,
+
     yoyo: true,
 
     ease: "sine.inOut"
@@ -170,57 +147,36 @@ gsap.to('.sticker-d2', {
 
 
 // ========================================
-// READY BUTTON
+// READY SCREEN
 // ========================================
 
-if (readyButton) {
+if (readyButton && readyScreen) {
 
     readyButton.addEventListener('click', () => {
-
-
-        // ====================================
-        // REMOVE HIDDEN CLASS
-        // ====================================
-
-        if (questContent) {
-
-            questContent.classList.remove('hidden');
-
-        }
 
 
         // ====================================
         // SHOW QUEST CONTENT
         // ====================================
 
-        gsap.fromTo(
-            questContent,
+        if (questContent) {
 
-            {
-                opacity: 0
-            },
+            // THIS WAS THE MISSING PART 💀
+            questContent.classList.remove('hidden');
 
-            {
-                opacity: 1,
-                duration: 0.3
-            }
-        );
+        }
 
 
         // ====================================
-        // HIDE READY SCREEN
+        // Hide Ready Screen
         // ====================================
 
         gsap.to(
             readyScreen,
-
             {
-
                 opacity: 0,
-                scale: 0.95,
-
-                duration: 0.5,
-
+                scale: .95,
+                duration: .5,
                 ease: "power2.inOut",
 
                 onComplete: () => {
@@ -228,55 +184,80 @@ if (readyButton) {
                     readyScreen.style.display = 'none';
 
                 }
-
             }
         );
 
 
         // ====================================
-        // SHOW CAKE
+        // Show Cake
         // ====================================
 
         gsap.to(
             '.cake-area',
-
             {
-
                 opacity: 1,
-
                 y: 0,
-
                 scale: 1,
-
                 duration: 1,
-
-                delay: 0.25,
-
+                delay: .25,
                 ease: "back.out(1.5)"
-
             }
         );
 
 
         // ====================================
-        // SHOW QUEST STATUS
+        // Show Quest Status
         // ====================================
 
         gsap.to(
             '.quest-status',
-
             {
-
                 opacity: 1,
-
                 y: 0,
-
-                duration: 0.6,
-
-                delay: 0.8,
-
+                duration: .6,
+                delay: .85,
                 ease: "power2.out"
+            }
+        );
 
+
+        // ====================================
+        // Description Entrance
+        // ====================================
+
+        gsap.fromTo(
+            '.description',
+            {
+                opacity: 0,
+                y: 10
+            },
+            {
+                opacity: 1,
+                y: 0,
+                duration: .6,
+                delay: .15,
+                ease: "power2.out"
+            }
+        );
+
+
+        // ====================================
+        // Sticker Entrance
+        // ====================================
+
+        gsap.fromTo(
+            '.cake-sticker',
+            {
+                opacity: 0,
+                scale: .75
+            },
+            {
+                opacity: 1,
+                scale: 1,
+                duration: .7,
+                delay: .5,
+                stagger: .12,
+                ease: "back.out(1.7)"
             }
         );
 
@@ -294,7 +275,7 @@ flames.forEach((flame) => {
     flame.addEventListener('click', () => {
 
 
-        // Prevent double click
+        // Prevent clicking same candle twice
 
         if (
             flame.classList.contains('extinguished')
@@ -308,83 +289,58 @@ flames.forEach((flame) => {
         flame.classList.add('extinguished');
 
 
-        // ====================================
-        // GET CANDLE
-        // ====================================
-
         const candle =
             flame.closest('.candle');
+
 
         const smoke =
             candle.querySelector('.smoke');
 
 
         // ====================================
-        // FLAME DISAPPEAR
+        // Flame disappearing
         // ====================================
 
         gsap.to(
             flame,
-
             {
-
                 opacity: 0,
-
                 scale: 0,
-
                 rotation: -20,
-
-                duration: 0.35,
-
+                duration: .35,
                 ease: "back.in(2)"
-
             }
         );
 
 
         // ====================================
-        // SMOKE
+        // Smoke
         // ====================================
 
         gsap.fromTo(
-
             smoke,
-
             {
-
                 opacity: 0,
                 y: 0,
-                scale: 0.5
-
+                scale: .5
             },
-
             {
-
-                opacity: 0.5,
+                opacity: .5,
                 y: -20,
                 scale: 1,
-
-                duration: 0.4,
-
+                duration: .4,
                 ease: "power2.out",
 
                 onComplete: () => {
 
                     gsap.to(
                         smoke,
-
                         {
-
                             opacity: 0,
-
                             y: -45,
-
                             scale: 1.5,
-
-                            duration: 0.8,
-
+                            duration: .8,
                             ease: "power2.out"
-
                         }
                     );
 
@@ -395,42 +351,36 @@ flames.forEach((flame) => {
 
 
         // ====================================
-        // CANDLE SHAKE
+        // Candle reaction
         // ====================================
 
         gsap.fromTo(
-
             candle,
-
             {
                 y: 0,
                 rotation: 0
             },
-
             {
-
                 y: -5,
 
                 rotation:
-                    Math.random() > 0.5
+                    Math.random() > .5
                         ? -3
                         : 3,
 
-                duration: 0.15,
+                duration: .15,
 
                 yoyo: true,
 
                 repeat: 1,
 
                 ease: "power2.out"
-
             }
-
         );
 
 
         // ====================================
-        // PROGRESS
+        // Progress
         // ====================================
 
         candlesOut++;
@@ -446,7 +396,7 @@ flames.forEach((flame) => {
 
 
         // ====================================
-        // TEXT
+        // Text update
         // ====================================
 
         const remaining =
@@ -456,18 +406,15 @@ flames.forEach((flame) => {
         if (remaining > 0) {
 
             questText.textContent =
-
                 remaining === 1
-
                     ? "One more candle... make your wish. ✦"
-
                     : `${remaining} candles left... keep going. ✦`;
 
         }
 
 
         // ====================================
-        // COMPLETE
+        // Complete quest
         // ====================================
 
         if (
@@ -495,83 +442,75 @@ function completeQuest() {
 
 
     // ====================================
-    // CELEBRATION
+    // Celebration
     // ====================================
 
     createCelebration();
 
 
     // ====================================
-    // CAKE BOUNCE
+    // Cake celebration
     // ====================================
 
     gsap.to(
         '.cake',
-
         {
-
             y: -8,
-
             rotation: 1,
-
-            duration: 0.25,
-
+            duration: .25,
             yoyo: true,
-
             repeat: 3,
-
             ease: "power2.out"
-
         }
-
     );
 
 
     // ====================================
-    // HIDE QUEST STATUS
+    // Hide quest status
     // ====================================
 
     gsap.to(
         '.quest-status',
-
         {
-
             opacity: 0,
-
             y: -10,
-
-            duration: 0.5
-
+            duration: .5
         }
-
     );
 
 
     // ====================================
-    // SHOW BIRTHDAY MESSAGE
+    // Hide cake
+    // ====================================
+
+    gsap.to(
+        '.cake-area',
+        {
+            opacity: 0,
+            y: -20,
+            scale: .95,
+            duration: .6,
+            delay: .2,
+            ease: "power2.inOut"
+        }
+    );
+
+
+    // ====================================
+    // Show birthday message
     // ====================================
 
     gsap.to(
         birthdayMessage,
-
         {
-
             opacity: 1,
-
             visibility: 'visible',
-
             y: 0,
-
             scale: 1,
-
             duration: 1,
-
-            delay: 0.7,
-
+            delay: .7,
             ease: "back.out(1.5)"
-
         }
-
     );
 
 }
@@ -582,6 +521,7 @@ function completeQuest() {
 // ========================================
 
 function createCelebration() {
+
 
     const symbols = [
         '✦',
@@ -613,20 +553,26 @@ function createCelebration() {
         particle.style.position =
             'fixed';
 
+
         particle.style.left =
             '50%';
+
 
         particle.style.top =
             '45%';
 
+
         particle.style.zIndex =
             '100';
+
 
         particle.style.pointerEvents =
             'none';
 
+
         particle.style.color =
             '#a85c5c';
+
 
         particle.style.fontSize =
             `${Math.random() * 12 + 12}px`;
@@ -639,14 +585,14 @@ function createCelebration() {
 
         gsap.to(
             particle,
-
             {
-
                 x:
-                    Math.random() * 500 - 250,
+                    Math.random() *
+                    500 - 250,
 
                 y:
-                    Math.random() * 400 - 250,
+                    Math.random() *
+                    400 - 250,
 
                 rotation:
                     Math.random() * 360,
@@ -654,10 +600,12 @@ function createCelebration() {
                 opacity: 0,
 
                 scale:
-                    Math.random() * 0.8 + 0.5,
+                    Math.random() *
+                    .8 + .5,
 
                 duration:
-                    Math.random() * 1.5 + 1,
+                    Math.random() *
+                    1.5 + 1,
 
                 ease: "power2.out",
 
@@ -668,7 +616,6 @@ function createCelebration() {
                 }
 
             }
-
         );
 
     }
@@ -688,15 +635,10 @@ if (continueButton) {
 
             gsap.to(
                 '.birthday-page',
-
                 {
-
                     opacity: 0,
-
                     scale: 1.03,
-
-                    duration: 0.8,
-
+                    duration: .8,
                     ease: "power2.inOut",
 
                     onComplete: () => {
@@ -707,7 +649,6 @@ if (continueButton) {
                     }
 
                 }
-
             );
 
         }
