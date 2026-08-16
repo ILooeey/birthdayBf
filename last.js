@@ -1,4 +1,9 @@
 /* ========================================
+   NAT'S FINAL BIRTHDAY QUEST
+======================================== */
+
+
+/* ========================================
    CUSTOM CURSOR
 ======================================== */
 
@@ -9,6 +14,8 @@ const cursor =
 document.addEventListener(
     'mousemove',
     (e) => {
+
+        if (!cursor) return;
 
         gsap.to(cursor, {
 
@@ -48,12 +55,30 @@ const trackingNumber =
 const copyButton =
     document.querySelector('#copy-button');
 
+const finishButton =
+    document.querySelector('#finish-button');
+
+
+/* ========================================
+   CAMERA POPUP ELEMENTS
+======================================== */
+
+const cameraModal =
+    document.querySelector('#camera-modal');
+
+const cameraModalCard =
+    document.querySelector('.camera-modal-card');
+
+const cameraReadyButton =
+    document.querySelector('#camera-ready-button');
+
 
 /* ========================================
    YOUR TRACKING NUMBER
 ======================================== */
 
-const RESI = "CM71903983627";
+const RESI =
+    "CM71903983627";
 
 
 /* ========================================
@@ -68,8 +93,11 @@ window.addEventListener(
             '.container',
             {
                 opacity: 0,
+
                 y: 25,
+
                 duration: 1,
+
                 ease: "power3.out"
             }
         );
@@ -79,10 +107,15 @@ window.addEventListener(
             '.gift-box',
             {
                 opacity: 0,
+
                 scale: .6,
+
                 rotation: -10,
+
                 duration: 1.2,
+
                 delay: .3,
+
                 ease: "back.out(1.7)"
             }
         );
@@ -92,12 +125,51 @@ window.addEventListener(
             '.gift-box',
             {
                 y: -8,
+
                 duration: 1.8,
+
                 repeat: -1,
+
                 yoyo: true,
+
                 ease: "sine.inOut"
             }
         );
+
+
+        /* ====================================
+           CAMERA MODAL INITIAL STATE
+        ==================================== */
+
+        if (
+            cameraModal &&
+            cameraModalCard
+        ) {
+
+            gsap.set(
+                cameraModal,
+                {
+                    opacity: 0,
+
+                    visibility: 'hidden',
+
+                    pointerEvents: 'none'
+                }
+            );
+
+
+            gsap.set(
+                cameraModalCard,
+                {
+                    opacity: 0,
+
+                    y: 25,
+
+                    scale: .92
+                }
+            );
+
+        }
 
     }
 );
@@ -107,205 +179,272 @@ window.addEventListener(
    UNLOCK GIFT
 ======================================== */
 
-unlockButton.addEventListener(
-    'click',
-    () => {
+if (unlockButton) {
+
+    unlockButton.addEventListener(
+        'click',
+        () => {
+
+            unlockButton.disabled =
+                true;
 
 
-        unlockButton.disabled = true;
+            /* ====================================
+               BUTTON PRESS
+            ==================================== */
 
-
-        /* Button press */
-
-        gsap.to(
-            unlockButton,
-            {
-                scale: .9,
-                duration: .1
-            }
-        );
-
-
-        gsap.to(
-            unlockButton,
-            {
-                scale: 1,
-                duration: .25,
-                delay: .1
-            }
-        );
-
-
-        /* Gift shakes */
-
-        gsap.timeline()
-
-            .to(
-                giftBox,
+            gsap.to(
+                unlockButton,
                 {
-                    x: -8,
-                    rotation: -6,
-                    duration: .08
-                }
-            )
+                    scale: .9,
 
-            .to(
-                giftBox,
-                {
-                    x: 8,
-                    rotation: 5,
-                    duration: .08
-                }
-            )
-
-            .to(
-                giftBox,
-                {
-                    x: -5,
-                    rotation: -3,
-                    duration: .08
-                }
-            )
-
-            .to(
-                giftBox,
-                {
-                    x: 0,
-                    rotation: 0,
-                    duration: .15
+                    duration: .1
                 }
             );
 
 
-        /* Open lid */
+            gsap.to(
+                unlockButton,
+                {
+                    scale: 1,
 
-        gsap.to(
-            '.gift-lid',
-            {
+                    duration: .25,
 
-                y: -80,
-
-                rotation: -8,
-
-                opacity: 0,
-
-                duration: .8,
-
-                delay: .4,
-
-                ease: "back.out(1.5)"
-
-            }
-        );
+                    delay: .1
+                }
+            );
 
 
-        /* Gift body glow */
+            /* ====================================
+               GIFT SHAKES
+            ==================================== */
 
-        gsap.to(
-            '.gift-body',
-            {
+            gsap.timeline()
 
-                boxShadow:
-                    '0 0 60px rgba(168,92,92,.35)',
+                .to(
+                    giftBox,
+                    {
+                        x: -8,
 
-                duration: .8,
+                        rotation: -6,
 
-                delay: .5
+                        duration: .08
+                    }
+                )
 
-            }
-        );
+                .to(
+                    giftBox,
+                    {
+                        x: 8,
+
+                        rotation: 5,
+
+                        duration: .08
+                    }
+                )
+
+                .to(
+                    giftBox,
+                    {
+                        x: -5,
+
+                        rotation: -3,
+
+                        duration: .08
+                    }
+                )
+
+                .to(
+                    giftBox,
+                    {
+                        x: 0,
+
+                        rotation: 0,
+
+                        duration: .15
+                    }
+                );
 
 
-        /* Hide lock */
+            /* ====================================
+               OPEN LID
+            ==================================== */
 
-        gsap.to(
-            lockMessage,
-            {
+            gsap.to(
+                '.gift-lid',
+                {
 
-                opacity: 0,
+                    y: -80,
 
-                y: -20,
+                    rotation: -8,
 
-                duration: .5,
+                    opacity: 0,
 
-                delay: 1,
+                    duration: .8,
 
-                onComplete: () => {
+                    delay: .4,
 
-                    lockMessage.style.display =
-                        'none';
-
-                    showReveal();
+                    ease: "back.out(1.5)"
 
                 }
+            );
 
-            }
-        );
 
-    }
-);
+            /* ====================================
+               GIFT BODY GLOW
+            ==================================== */
+
+            gsap.to(
+                '.gift-body',
+                {
+
+                    boxShadow:
+                        '0 0 60px rgba(168,92,92,.35)',
+
+                    duration: .8,
+
+                    delay: .5
+
+                }
+            );
+
+
+            /* ====================================
+               HIDE LOCK
+            ==================================== */
+
+            gsap.to(
+                lockMessage,
+                {
+
+                    opacity: 0,
+
+                    y: -20,
+
+                    duration: .5,
+
+                    delay: 1,
+
+                    onComplete: () => {
+
+                        lockMessage.style.display =
+                            'none';
+
+                        showReveal();
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+}
 
 
 /* ========================================
    SHOW REVEAL
 ======================================== */
+
 function showReveal() {
 
-    // Resi disembunyikan sampai scratch selesai
-    trackingNumber.textContent = "";
+    if (!reveal) return;
 
-    reveal.style.display = 'block';
+
+    /*
+        Hide tracking number
+        until scratch is completed
+    */
+
+    if (trackingNumber) {
+
+        trackingNumber.textContent = "";
+
+    }
+
+
+    reveal.style.display =
+        'block';
+
 
     gsap.fromTo(
         reveal,
         {
             opacity: 0,
+
             y: 40
         },
         {
             opacity: 1,
+
             y: 0,
+
             duration: 1,
+
             ease: "power3.out",
 
             onComplete: () => {
 
                 createParticles();
 
-                setTimeout(() => {
-                    resizeScratchCanvas();
-                }, 100);
+
+                setTimeout(
+                    () => {
+
+                        resizeScratchCanvas();
+
+                    },
+                    100
+                );
 
             }
         }
     );
+
 }
 
-/* ========================================
-   COPY RESI
-======================================== */
 
 /* ========================================
    SCRATCH CARD
 ======================================== */
 
 const scratchCanvas =
-    document.querySelector('#scratch-canvas');
+    document.querySelector(
+        '#scratch-canvas'
+    );
 
 const scratchContainer =
-    document.querySelector('.scratch-container');
+    document.querySelector(
+        '.scratch-container'
+    );
 
 const trackingCard =
-    document.querySelector('.tracking-card');
+    document.querySelector(
+        '.tracking-card'
+    );
 
 
-const ctx =
-    scratchCanvas.getContext('2d');
+let ctx = null;
 
 
-let isScratching = false;
+if (scratchCanvas) {
 
-let scratchedPixels = 0;
+    ctx =
+        scratchCanvas.getContext(
+            '2d'
+        );
+
+}
+
+
+let isScratching =
+    false;
+
+
+let scratchedPixels =
+    0;
+
 
 const requiredScratch =
     45;
@@ -317,8 +456,17 @@ const requiredScratch =
 
 function resizeScratchCanvas() {
 
+    if (
+        !scratchCanvas ||
+        !scratchContainer ||
+        !ctx
+    )
+        return;
+
+
     const rect =
         scratchContainer.getBoundingClientRect();
+
 
     const dpr =
         window.devicePixelRatio || 1;
@@ -327,6 +475,7 @@ function resizeScratchCanvas() {
     scratchCanvas.width =
         rect.width * dpr;
 
+
     scratchCanvas.height =
         rect.height * dpr;
 
@@ -334,11 +483,27 @@ function resizeScratchCanvas() {
     scratchCanvas.style.width =
         rect.width + 'px';
 
+
     scratchCanvas.style.height =
         rect.height + 'px';
 
 
-    ctx.scale(dpr, dpr);
+    /*
+        Reset transform before scaling.
+
+        Prevents the canvas from
+        becoming increasingly distorted
+        after multiple resize events.
+    */
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
 
 
     drawScratchLayer(
@@ -358,12 +523,20 @@ function drawScratchLayer(
     height
 ) {
 
-    /*
-        Base layer
-    */
+    if (!ctx) return;
+
+
+    ctx.globalCompositeOperation =
+        'source-over';
+
+
+    /* ====================================
+       BASE
+    ==================================== */
 
     ctx.fillStyle =
         '#a85c5c';
+
 
     ctx.fillRect(
         0,
@@ -373,9 +546,9 @@ function drawScratchLayer(
     );
 
 
-    /*
-        Subtle texture
-    */
+    /* ====================================
+       TEXTURE
+    ==================================== */
 
     for (
         let i = 0;
@@ -384,10 +557,14 @@ function drawScratchLayer(
     ) {
 
         const x =
-            Math.random() * width;
+            Math.random() *
+            width;
+
 
         const y =
-            Math.random() * height;
+            Math.random() *
+            height;
+
 
         const size =
             Math.random() * 2 + 1;
@@ -409,18 +586,21 @@ function drawScratchLayer(
     }
 
 
-    /*
-        Scratch instruction
-    */
+    /* ====================================
+       INSTRUCTION
+    ==================================== */
 
     ctx.fillStyle =
         '#fffdf8';
 
+
     ctx.font =
         'bold 12px Arial';
 
+
     ctx.textAlign =
         'center';
+
 
     ctx.textBaseline =
         'middle';
@@ -428,7 +608,9 @@ function drawScratchLayer(
 
     ctx.fillText(
         '✦ SCRATCH HERE ✦',
+
         width / 2,
+
         height / 2
     );
 
@@ -443,6 +625,9 @@ function scratch(
     x,
     y
 ) {
+
+    if (!ctx) return;
+
 
     ctx.globalCompositeOperation =
         'destination-out';
@@ -471,7 +656,8 @@ function scratch(
 
 
     if (
-        scratchedPixels >= requiredScratch
+        scratchedPixels >=
+        requiredScratch
     ) {
 
         revealTracking();
@@ -487,6 +673,13 @@ function scratch(
 
 function getPointerPosition(e) {
 
+    if (!scratchCanvas)
+        return {
+            x: 0,
+            y: 0
+        };
+
+
     const rect =
         scratchCanvas.getBoundingClientRect();
 
@@ -494,10 +687,12 @@ function getPointerPosition(e) {
     return {
 
         x:
-            e.clientX - rect.left,
+            e.clientX -
+            rect.left,
 
         y:
-            e.clientY - rect.top
+            e.clientY -
+            rect.top
 
     };
 
@@ -508,50 +703,62 @@ function getPointerPosition(e) {
    MOUSE
 ======================================== */
 
-scratchCanvas.addEventListener(
-    'mousedown',
-    (e) => {
+if (scratchCanvas) {
 
-        isScratching = true;
+    scratchCanvas.addEventListener(
+        'mousedown',
+        (e) => {
 
-        const pos =
-            getPointerPosition(e);
-
-        scratch(
-            pos.x,
-            pos.y
-        );
-
-    }
-);
+            isScratching =
+                true;
 
 
-scratchCanvas.addEventListener(
-    'mousemove',
-    (e) => {
-
-        if (!isScratching)
-            return;
+            const pos =
+                getPointerPosition(e);
 
 
-        const pos =
-            getPointerPosition(e);
+            scratch(
+                pos.x,
+                pos.y
+            );
+
+        }
+    );
 
 
-        scratch(
-            pos.x,
-            pos.y
-        );
+    scratchCanvas.addEventListener(
+        'mousemove',
+        (e) => {
 
-    }
-);
+            if (!isScratching)
+                return;
 
+
+            const pos =
+                getPointerPosition(e);
+
+
+            scratch(
+                pos.x,
+                pos.y
+            );
+
+        }
+    );
+
+}
+
+
+/* ========================================
+   MOUSE UP
+======================================== */
 
 window.addEventListener(
     'mouseup',
     () => {
 
-        isScratching = false;
+        isScratching =
+            false;
 
     }
 );
@@ -561,69 +768,87 @@ window.addEventListener(
    TOUCH
 ======================================== */
 
-scratchCanvas.addEventListener(
-    'touchstart',
-    (e) => {
+if (scratchCanvas) {
 
-        e.preventDefault();
+    scratchCanvas.addEventListener(
+        'touchstart',
+        (e) => {
 
-        isScratching = true;
-
-
-        const touch =
-            e.touches[0];
+            e.preventDefault();
 
 
-        const rect =
-            scratchCanvas.getBoundingClientRect();
+            isScratching =
+                true;
 
 
-        scratch(
-            touch.clientX - rect.left,
-            touch.clientY - rect.top
-        );
-
-    },
-    { passive: false }
-);
+            const touch =
+                e.touches[0];
 
 
-scratchCanvas.addEventListener(
-    'touchmove',
-    (e) => {
-
-        e.preventDefault();
-
-        if (!isScratching)
-            return;
+            const rect =
+                scratchCanvas.getBoundingClientRect();
 
 
-        const touch =
-            e.touches[0];
+            scratch(
+                touch.clientX -
+                    rect.left,
+
+                touch.clientY -
+                    rect.top
+            );
+
+        },
+        {
+            passive: false
+        }
+    );
 
 
-        const rect =
-            scratchCanvas.getBoundingClientRect();
+    scratchCanvas.addEventListener(
+        'touchmove',
+        (e) => {
+
+            e.preventDefault();
 
 
-        scratch(
-            touch.clientX - rect.left,
-            touch.clientY - rect.top
-        );
-
-    },
-    { passive: false }
-);
+            if (!isScratching)
+                return;
 
 
-scratchCanvas.addEventListener(
-    'touchend',
-    () => {
+            const touch =
+                e.touches[0];
 
-        isScratching = false;
 
-    }
-);
+            const rect =
+                scratchCanvas.getBoundingClientRect();
+
+
+            scratch(
+                touch.clientX -
+                    rect.left,
+
+                touch.clientY -
+                    rect.top
+            );
+
+        },
+        {
+            passive: false
+        }
+    );
+
+
+    scratchCanvas.addEventListener(
+        'touchend',
+        () => {
+
+            isScratching =
+                false;
+
+        }
+    );
+
+}
 
 
 /* ========================================
@@ -632,59 +857,108 @@ scratchCanvas.addEventListener(
 
 function revealTracking() {
 
+    if (!scratchCanvas)
+        return;
+
+
     if (
         scratchCanvas.dataset.revealed
     )
         return;
 
+
     scratchCanvas.dataset.revealed =
         'true';
 
-    // Baru tampilkan nomor resi setelah digosok
-    trackingNumber.textContent = RESI;
 
-    trackingCard.classList.add(
-        'revealed'
-    );
+    /* ====================================
+       SHOW RESI
+    ==================================== */
+
+    if (trackingNumber) {
+
+        trackingNumber.textContent =
+            RESI;
+
+    }
+
+
+    if (trackingCard) {
+
+        trackingCard.classList.add(
+            'revealed'
+        );
+
+    }
+
+
+    /* ====================================
+       HIDE SCRATCH LAYER
+    ==================================== */
 
     gsap.to(
         scratchCanvas,
         {
+
             opacity: 0,
+
             duration: .8,
+
             ease: "power2.out"
+
         }
     );
 
-    gsap.fromTo(
-        '#tracking-number',
-        {
-            scale: .85,
-            opacity: .5
-        },
-        {
-            scale: 1,
-            opacity: 1,
-            duration: .8,
-            ease: "back.out(2)"
-        }
-    );
+
+    /* ====================================
+       RESI ANIMATION
+    ==================================== */
+
+    if (trackingNumber) {
+
+        gsap.fromTo(
+            trackingNumber,
+            {
+                scale: .85,
+
+                opacity: .5
+            },
+            {
+                scale: 1,
+
+                opacity: 1,
+
+                duration: .8,
+
+                ease: "back.out(2)"
+            }
+        );
+
+    }
+
 
     const hint =
         document.querySelector(
             '.scratch-hint'
         );
 
-    hint.textContent =
-        "You found it. 📦 Your little surprise is on its way. ♡";
+
+    if (hint) {
+
+        hint.textContent =
+            "You found it. 📦 Your little surprise is on its way. ♡";
+
+    }
+
 
     createScratchCelebration();
+
 }
 
 
 /* ========================================
-   CELEBRATION
-======================================= */
+   SCRATCH CELEBRATION
+======================================== */
 
 function createScratchCelebration() {
 
@@ -703,14 +977,15 @@ function createScratchCelebration() {
     ) {
 
         const particle =
-            document.createElement('div');
+            document.createElement(
+                'div'
+            );
 
 
         particle.textContent =
             symbols[
                 Math.floor(
-                    Math.random()
-                    *
+                    Math.random() *
                     symbols.length
                 )
             ];
@@ -719,24 +994,31 @@ function createScratchCelebration() {
         particle.style.position =
             'fixed';
 
+
         particle.style.left =
             '50%';
+
 
         particle.style.top =
             '55%';
 
+
         particle.style.zIndex =
             '999';
+
 
         particle.style.pointerEvents =
             'none';
 
+
         particle.style.color =
             '#a85c5c';
 
+
         particle.style.fontSize =
             (
-                Math.random() * 12 + 10
+                Math.random() * 12 +
+                10
             ) + 'px';
 
 
@@ -750,20 +1032,22 @@ function createScratchCelebration() {
             {
 
                 x:
-                    Math.random() * 300
-                    - 150,
+                    Math.random() *
+                    300 -
+                    150,
 
                 y:
-                    Math.random() * 200
-                    - 100,
+                    Math.random() *
+                    200 -
+                    100,
 
                 opacity: 0,
 
                 rotation:
-                    Math.random() * 360,
+                    Math.random() *
+                    360,
 
-                duration:
-                    1.2,
+                duration: 1.2,
 
                 ease:
                     "power2.out",
@@ -783,7 +1067,7 @@ function createScratchCelebration() {
 
 
 /* ========================================
-   INITIALIZE
+   INITIALIZE SCRATCH
 ======================================== */
 
 window.addEventListener(
@@ -791,7 +1075,11 @@ window.addEventListener(
     () => {
 
         setTimeout(
-            resizeScratchCanvas,
+            () => {
+
+                resizeScratchCanvas();
+
+            },
             100
         );
 
@@ -799,16 +1087,16 @@ window.addEventListener(
 );
 
 
+/* ========================================
+   RESIZE
+======================================== */
+
 window.addEventListener(
     'resize',
     () => {
 
-        /*
-            Don't redraw after
-            user has already scratched.
-        */
-
         if (
+            scratchCanvas &&
             !scratchCanvas.dataset.revealed
         ) {
 
@@ -821,7 +1109,7 @@ window.addEventListener(
 
 
 /* ========================================
-   PARTICLES
+   GENERAL PARTICLES
 ======================================== */
 
 function createParticles() {
@@ -841,14 +1129,15 @@ function createParticles() {
     ) {
 
         const particle =
-            document.createElement('div');
+            document.createElement(
+                'div'
+            );
 
 
         particle.textContent =
             symbols[
                 Math.floor(
-                    Math.random()
-                    *
+                    Math.random() *
                     symbols.length
                 )
             ];
@@ -880,9 +1169,9 @@ function createParticles() {
 
         particle.style.fontSize =
             (
-                Math.random() * 15 + 10
-            )
-            + 'px';
+                Math.random() * 15 +
+                10
+            ) + 'px';
 
 
         document.body.appendChild(
@@ -895,23 +1184,27 @@ function createParticles() {
             {
 
                 x:
-                    Math.random() * 400
-                    - 200,
+                    Math.random() *
+                    400 -
+                    200,
 
                 y:
-                    Math.random() * 400
-                    - 200,
+                    Math.random() *
+                    400 -
+                    200,
 
                 opacity: 0,
 
                 rotation:
-                    Math.random() * 360,
+                    Math.random() *
+                    360,
 
                 duration:
-                    Math.random() * 1.5
-                    + 1,
+                    Math.random() * 1.5 +
+                    1,
 
-                ease: "power2.out",
+                ease:
+                    "power2.out",
 
                 onComplete: () => {
 
@@ -942,7 +1235,9 @@ setInterval(
 
 
         const element =
-            document.createElement('div');
+            document.createElement(
+                'div'
+            );
 
 
         element.className =
@@ -952,8 +1247,7 @@ setInterval(
         element.textContent =
             symbols[
                 Math.floor(
-                    Math.random()
-                    *
+                    Math.random() *
                     symbols.length
                 )
             ];
@@ -964,8 +1258,9 @@ setInterval(
 
 
         element.style.left =
-            Math.random() * 100
-            + 'vw';
+            Math.random() *
+            100 +
+            'vw';
 
 
         element.style.top =
@@ -998,20 +1293,22 @@ setInterval(
             {
 
                 y:
-                    -window.innerHeight
-                    -100,
+                    -window.innerHeight -
+                    100,
 
                 x:
-                    Math.random() * 100
-                    -50,
+                    Math.random() *
+                    100 -
+                    50,
 
                 rotation:
-                    Math.random() * 80
-                    -40,
+                    Math.random() *
+                    80 -
+                    40,
 
                 duration:
-                    Math.random() * 6
-                    + 7,
+                    Math.random() * 6 +
+                    7,
 
                 ease: "none",
 
@@ -1025,5 +1322,298 @@ setInterval(
         );
 
     },
+
     1800
 );
+
+
+/* ========================================
+   CAMERA MOMENT
+======================================== */
+
+/*
+    IMPORTANT:
+
+    This does NOT access the camera.
+
+    Karena kalian sedang VC, popup ini
+    hanya menyuruh dia menghadap kamera.
+*/
+
+
+if (
+    finishButton &&
+    cameraModal &&
+    cameraModalCard
+) {
+
+    finishButton.addEventListener(
+        'click',
+        () => {
+
+
+            /* ====================================
+               SHOW MODAL
+            ==================================== */
+
+            cameraModal.style.visibility =
+                'visible';
+
+
+            cameraModal.style.pointerEvents =
+                'auto';
+
+
+            gsap.to(
+                cameraModal,
+                {
+
+                    opacity: 1,
+
+                    duration: .45,
+
+                    ease:
+                        "power2.out"
+
+                }
+            );
+
+
+            /* ====================================
+               MODAL CARD ENTRANCE
+            ==================================== */
+
+            gsap.to(
+                cameraModalCard,
+                {
+
+                    opacity: 1,
+
+                    y: 0,
+
+                    scale: 1,
+
+                    duration: .65,
+
+                    ease:
+                        "back.out(1.5)"
+
+                }
+            );
+
+        }
+    );
+
+}
+
+
+/* ========================================
+   CAMERA READY
+======================================== */
+
+if (
+    cameraReadyButton &&
+    cameraModal &&
+    cameraModalCard
+) {
+
+    cameraReadyButton.addEventListener(
+        'click',
+        () => {
+
+
+            /* ====================================
+               BUTTON PRESS
+            ==================================== */
+
+            gsap.to(
+                cameraReadyButton,
+                {
+
+                    scale: .92,
+
+                    duration: .1,
+
+                    yoyo: true,
+
+                    repeat: 1
+
+                }
+            );
+
+
+            /* ====================================
+               CLOSE CARD
+            ==================================== */
+
+            gsap.to(
+                cameraModalCard,
+                {
+
+                    opacity: 0,
+
+                    y: 20,
+
+                    scale: .95,
+
+                    duration: .35,
+
+                    ease:
+                        "power2.in"
+
+                }
+            );
+
+
+            /* ====================================
+               CLOSE BACKDROP
+            ==================================== */
+
+            gsap.to(
+                cameraModal,
+                {
+
+                    opacity: 0,
+
+                    duration: .4,
+
+                    delay: .15,
+
+                    ease:
+                        "power2.in",
+
+                    onComplete: () => {
+
+                        cameraModal.style.visibility =
+                            'hidden';
+
+
+                        cameraModal.style.pointerEvents =
+                            'none';
+
+                    }
+
+                }
+            );
+
+
+            /* ====================================
+               LITTLE CELEBRATION
+            ==================================== */
+
+            createCameraCelebration();
+
+        }
+    );
+
+}
+
+
+/* ========================================
+   CAMERA CELEBRATION
+======================================== */
+
+function createCameraCelebration() {
+
+    const symbols = [
+        "♡",
+        "✦",
+        "✧",
+        "⋆"
+    ];
+
+
+    for (
+        let i = 0;
+        i < 10;
+        i++
+    ) {
+
+        const particle =
+            document.createElement(
+                'div'
+            );
+
+
+        particle.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        particle.style.position =
+            'fixed';
+
+
+        particle.style.left =
+            '50%';
+
+
+        particle.style.top =
+            '50%';
+
+
+        particle.style.zIndex =
+            '100000';
+
+
+        particle.style.pointerEvents =
+            'none';
+
+
+        particle.style.color =
+            '#a85c5c';
+
+
+        particle.style.fontSize =
+            `${Math.random() * 10 + 12}px`;
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        gsap.to(
+            particle,
+            {
+
+                x:
+                    Math.random() *
+                    260 -
+                    130,
+
+                y:
+                    Math.random() *
+                    200 -
+                    100,
+
+                rotation:
+                    Math.random() *
+                    360,
+
+                opacity: 0,
+
+                duration:
+                    Math.random() *
+                    .8 +
+                    .8,
+
+                ease:
+                    "power2.out",
+
+                onComplete: () => {
+
+                    particle.remove();
+
+                }
+
+            }
+        );
+
+    }
+
+}
