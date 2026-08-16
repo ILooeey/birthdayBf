@@ -55,27 +55,7 @@ if (readyButton) {
 
 
         // Show cake
-        gsap.fromTo(
-            '.cake',
-
-            {
-                opacity: 0,
-                y: 40,
-                scale: .85
-            },
-
-            {
-                opacity: 1,
-                y: 0,
-                scale: 1,
-
-                duration: 1,
-
-                delay: .3,
-
-                ease: "back.out(1.5)"
-            }
-        );
+    
 
 
         // Show quest status
