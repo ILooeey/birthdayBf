@@ -1161,10 +1161,10 @@ h1 span {
 
 }
 /* ========================================
-   CAMERA MOMENT MODAL
+   FINAL VC POPUP
 ======================================== */
 
-.camera-modal {
+.camera-popup-overlay {
 
     position: fixed;
 
@@ -1199,10 +1199,10 @@ h1 span {
 
 
 /* ========================================
-   MODAL CARD
+   POPUP CARD
 ======================================== */
 
-.camera-modal-card {
+.camera-popup {
 
     position: relative;
 
@@ -1240,10 +1240,10 @@ h1 span {
 
 
 /* ========================================
-   CAMERA ICON
+   POPUP ICON
 ======================================== */
 
-.camera-icon {
+.camera-popup-icon {
 
     width: 58px;
 
@@ -1270,10 +1270,10 @@ h1 span {
 
 
 /* ========================================
-   LABEL
+   SMALL LABEL
 ======================================== */
 
-.camera-label {
+.camera-popup-small {
 
     display: block;
 
@@ -1294,7 +1294,7 @@ h1 span {
    TITLE
 ======================================== */
 
-.camera-modal-card h2 {
+.camera-popup h2 {
 
     font-family:
         Georgia,
@@ -1317,10 +1317,10 @@ h1 span {
 
 
 /* ========================================
-   MAIN TEXT
+   MESSAGE
 ======================================== */
 
-.camera-modal-card p {
+.camera-popup-text {
 
     font-family:
         Georgia,
@@ -1332,35 +1332,49 @@ h1 span {
 
     color: #625c55;
 
-    margin-bottom: 8px;
+    margin-bottom: 20px;
 
 }
 
 
 /* ========================================
-   SUB TEXT
+   CAMERA NOTE
 ======================================== */
 
-.camera-subtext {
+.camera-popup-note {
 
-    font-size: .82rem !important;
+    display: inline-block;
 
-    color: #99928a !important;
+    padding:
+        12px 18px;
+
+    margin-bottom: 25px;
+
+    background:
+        #eee9df;
+
+    border:
+        1px dashed
+        rgba(168,92,92,.35);
+
+    color: #a85c5c;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size: .95rem;
 
     font-style: italic;
 
-    margin-top: 5px;
-
-    margin-bottom: 25px !important;
-
 }
 
 
 /* ========================================
-   READY BUTTON
+   CLOSE BUTTON
 ======================================== */
 
-.camera-ready-button {
+.camera-popup-button {
 
     width: 100%;
 
@@ -1371,9 +1385,11 @@ h1 span {
 
     border-radius: 4px;
 
-    background: #292724;
+    background:
+        #292724;
 
-    color: #fffdf8;
+    color:
+        #fffdf8;
 
     font-family:
         "Arial Rounded MT Bold",
@@ -1402,9 +1418,10 @@ h1 span {
 }
 
 
-.camera-ready-button:hover {
+.camera-popup-button:hover {
 
-    background: #3b3834;
+    background:
+        #3b3834;
 
     transform:
         translateY(-3px);
@@ -1412,7 +1429,7 @@ h1 span {
 }
 
 
-.camera-ready-button:active {
+.camera-popup-button:active {
 
     transform:
         translateY(2px);
@@ -1424,19 +1441,44 @@ h1 span {
 
 
 /* ========================================
+   POPUP ACTIVE STATE
+======================================== */
+
+.camera-popup-overlay.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+
+.camera-popup-overlay.show
+.camera-popup {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+/* ========================================
    MOBILE
 ======================================== */
 
 @media (max-width: 600px) {
 
-    .camera-modal {
+    .camera-popup-overlay {
 
         padding: 16px;
 
     }
 
 
-    .camera-modal-card {
+    .camera-popup {
 
         width: 100%;
 
@@ -1447,7 +1489,7 @@ h1 span {
     }
 
 
-    .camera-icon {
+    .camera-popup-icon {
 
         width: 52px;
 
@@ -1460,7 +1502,7 @@ h1 span {
     }
 
 
-    .camera-label {
+    .camera-popup-small {
 
         font-size: 8px;
 
@@ -1469,32 +1511,31 @@ h1 span {
     }
 
 
-    .camera-modal-card h2 {
+    .camera-popup h2 {
 
         font-size: 1.65rem;
-
-        line-height: 1.15;
 
     }
 
 
-    .camera-modal-card p {
+    .camera-popup-text {
 
         font-size: .9rem;
 
     }
 
 
-    .camera-subtext {
+    .camera-popup-note {
 
-        font-size: .76rem !important;
+        font-size: .85rem;
 
     }
 
 
-    .camera-ready-button {
+    .camera-popup-button {
 
-        padding: 13px 18px;
+        padding:
+            13px 18px;
 
         font-size: .78rem;
 
@@ -1509,7 +1550,7 @@ h1 span {
 
 @media (max-width: 360px) {
 
-    .camera-modal-card {
+    .camera-popup {
 
         padding:
             26px 17px
@@ -1518,7 +1559,7 @@ h1 span {
     }
 
 
-    .camera-icon {
+    .camera-popup-icon {
 
         width: 46px;
 
@@ -1529,14 +1570,14 @@ h1 span {
     }
 
 
-    .camera-modal-card h2 {
+    .camera-popup h2 {
 
         font-size: 1.45rem;
 
     }
 
 
-    .camera-modal-card p {
+    .camera-popup-text {
 
         font-size: .82rem;
 
