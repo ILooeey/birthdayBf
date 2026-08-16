@@ -1,18 +1,36 @@
-/* ========================================
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Your Birthday Gift 🎁</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+
+<style>
+
+/* =====================================================
    RESET
-======================================== */
+===================================================== */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    cursor: none;
 }
 
 
-/* ========================================
+/* =====================================================
    BODY
-======================================== */
+===================================================== */
 
 body {
 
@@ -48,9 +66,9 @@ body {
 }
 
 
-/* ========================================
+/* =====================================================
    PAPER TEXTURE
-======================================== */
+===================================================== */
 
 body::before {
 
@@ -78,9 +96,9 @@ body::before {
 }
 
 
-/* ========================================
-   CURSOR
-======================================== */
+/* =====================================================
+   CUSTOM CURSOR
+===================================================== */
 
 .cursor {
 
@@ -91,7 +109,7 @@ body::before {
 
     pointer-events: none;
 
-    z-index: 9999;
+    z-index: 100000;
 
     transform:
         translate(-50%, -50%);
@@ -116,9 +134,9 @@ body::before {
 }
 
 
-/* ========================================
+/* =====================================================
    BACKGROUND
-======================================== */
+===================================================== */
 
 .background {
 
@@ -219,9 +237,9 @@ body::before {
 }
 
 
-/* ========================================
+/* =====================================================
    CONTAINER
-======================================== */
+===================================================== */
 
 .container {
 
@@ -247,9 +265,9 @@ body::before {
 }
 
 
-/* ========================================
+/* =====================================================
    QUEST LABEL
-======================================== */
+===================================================== */
 
 .quest-label {
 
@@ -289,9 +307,9 @@ body::before {
 }
 
 
-/* ========================================
+/* =====================================================
    TITLE
-======================================== */
+===================================================== */
 
 h1 {
 
@@ -332,9 +350,9 @@ h1 span {
 }
 
 
-/* ========================================
+/* =====================================================
    INTRO
-======================================== */
+===================================================== */
 
 .intro {
 
@@ -364,9 +382,9 @@ h1 span {
 }
 
 
-/* ========================================
-   GIFT AREA
-======================================== */
+/* =====================================================
+   GIFT
+===================================================== */
 
 .gift-area {
 
@@ -385,10 +403,6 @@ h1 span {
 }
 
 
-/* ========================================
-   GIFT BOX
-======================================== */
-
 .gift-box {
 
     position: relative;
@@ -399,24 +413,8 @@ h1 span {
     transform:
         rotate(-3deg);
 
-    transition:
-        transform .3s ease;
-
 }
 
-
-.gift-box:hover {
-
-    transform:
-        rotate(0deg)
-        translateY(-8px);
-
-}
-
-
-/* ========================================
-   GIFT BODY
-======================================== */
 
 .gift-body {
 
@@ -442,10 +440,6 @@ h1 span {
 }
 
 
-/* ========================================
-   GIFT LID
-======================================== */
-
 .gift-lid {
 
     position: absolute;
@@ -467,10 +461,6 @@ h1 span {
 
 }
 
-
-/* ========================================
-   RIBBON
-======================================== */
 
 .ribbon {
 
@@ -515,9 +505,9 @@ h1 span {
 }
 
 
-/* ========================================
-   LOCK MESSAGE
-======================================== */
+/* =====================================================
+   LOCK
+===================================================== */
 
 .lock-message {
 
@@ -548,9 +538,9 @@ h1 span {
 }
 
 
-/* ========================================
-   BUTTON
-======================================== */
+/* =====================================================
+   BUTTONS
+===================================================== */
 
 .unlock-button,
 .copy-button,
@@ -590,6 +580,8 @@ h1 span {
     transition:
         all .25s ease;
 
+    cursor: pointer;
+
 }
 
 
@@ -605,9 +597,9 @@ h1 span {
 }
 
 
-/* ========================================
+/* =====================================================
    REVEAL
-======================================== */
+===================================================== */
 
 .reveal {
 
@@ -677,9 +669,9 @@ h1 span {
 }
 
 
-/* ========================================
-   PACKAGE CARD
-======================================== */
+/* =====================================================
+   PACKAGE
+===================================================== */
 
 .package-card {
 
@@ -757,9 +749,9 @@ h1 span {
 }
 
 
-/* ========================================
-   TRACKING
-======================================== */
+/* =====================================================
+   TRACKING CARD
+===================================================== */
 
 .tracking-card {
 
@@ -785,27 +777,17 @@ h1 span {
         rgba(50,45,40,.08);
 
 }
-/* ========================================
-   SCRATCH CARD
-======================================== */
 
-.tracking-card {
 
-    width: min(500px, 90%);
+.tracking-title {
 
-    margin: 20px auto;
+    font-size: 8px;
 
-    padding: 28px 20px;
+    letter-spacing: 3px;
 
-    background: #fffdf8;
+    color: #99928a;
 
-    border:
-        1px dashed
-        rgba(60,55,50,.25);
-
-    box-shadow:
-        0 15px 30px
-        rgba(50,45,40,.08);
+    margin-bottom: 12px;
 
 }
 
@@ -818,14 +800,8 @@ h1 span {
 
     font-size: .8rem;
 
-    line-height: 1.5;
-
 }
 
-
-/* ========================================
-   SCRATCH AREA
-======================================== */
 
 .scratch-container {
 
@@ -852,10 +828,6 @@ h1 span {
 }
 
 
-/* ========================================
-   SECRET NUMBER
-======================================== */
-
 .tracking-number {
 
     position: absolute;
@@ -874,11 +846,12 @@ h1 span {
         "Courier New",
         monospace;
 
-    font-size: clamp(
-        1rem,
-        4vw,
-        1.5rem
-    );
+    font-size:
+        clamp(
+            1rem,
+            4vw,
+            1.5rem
+        );
 
     font-weight: bold;
 
@@ -892,10 +865,6 @@ h1 span {
 
 }
 
-
-/* ========================================
-   SCRATCH CANVAS
-======================================== */
 
 #scratch-canvas {
 
@@ -914,10 +883,6 @@ h1 span {
 }
 
 
-/* ========================================
-   HINT
-======================================== */
-
 .scratch-hint {
 
     margin-top: 14px;
@@ -931,63 +896,16 @@ h1 span {
 }
 
 
-.tracking-card.revealed
-.scratch-hint {
+.tracking-card.revealed .scratch-hint {
 
     color: #a85c5c;
 
 }
 
-.tracking-title {
 
-    font-size: 8px;
-
-    letter-spacing: 3px;
-
-    color: #99928a;
-
-    margin-bottom: 12px;
-
-}
-
-
-.tracking-number {
-
-    font-family:
-        "Courier New",
-        monospace;
-
-    font-size: 1.5rem;
-
-    font-weight: bold;
-
-    letter-spacing: 3px;
-
-    color: #a85c5c;
-
-    padding: 12px;
-
-    background: #eee9df;
-
-}
-
-
-.tracking-card p {
-
-    margin-top: 15px;
-
-    color: #89827a;
-
-    font-size: .8rem;
-
-    line-height: 1.6;
-
-}
-
-
-/* ========================================
+/* =====================================================
    FINAL MESSAGE
-======================================== */
+===================================================== */
 
 .final-message {
 
@@ -1039,9 +957,365 @@ h1 span {
 }
 
 
-/* ========================================
+/* =====================================================
+   ⭐ FINAL POPUP
+===================================================== */
+
+.camera-popup-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    width: 100vw;
+    height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(35,32,29,.60);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    z-index: 999999;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+
+}
+
+
+/* ⭐ POPUP OPEN */
+
+.camera-popup-overlay.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+
+/* =====================================================
+   POPUP CARD
+===================================================== */
+
+.camera-popup {
+
+    position: relative;
+
+    width:
+        min(
+            430px,
+            100%
+        );
+
+    padding:
+        38px 30px
+        32px;
+
+    text-align: center;
+
+    background:
+        #fffdf8;
+
+    border:
+        2px solid
+        rgba(168,92,92,.18);
+
+    border-radius: 24px;
+
+    box-shadow:
+
+        0 25px 70px
+        rgba(30,27,24,.30);
+
+    opacity: 0;
+
+    transform:
+        translateY(30px)
+        scale(.90);
+
+    transition:
+        opacity .45s ease,
+        transform .45s cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+/* ⭐ POPUP CARD WHEN OPEN */
+
+.camera-popup-overlay.show .camera-popup {
+
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+/* =====================================================
+   POPUP DECORATION
+===================================================== */
+
+.camera-popup::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 140px;
+    height: 140px;
+
+    top: -70px;
+    right: -70px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(168,92,92,.08);
+
+}
+
+
+.camera-popup::after {
+
+    content: "✦";
+
+    position: absolute;
+
+    left: 25px;
+    top: 20px;
+
+    font-size: 18px;
+
+    color:
+        rgba(168,92,92,.35);
+
+}
+
+
+/* =====================================================
+   POPUP ICON
+===================================================== */
+
+.camera-popup-icon {
+
+    font-size: 42px;
+
+    margin-bottom: 12px;
+
+    animation:
+        popupFloat
+        2s ease-in-out infinite;
+
+}
+
+
+/* =====================================================
+   POPUP SMALL
+===================================================== */
+
+.camera-popup-small {
+
+    margin:
+        0 0 8px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: #a85c5c;
+
+}
+
+
+/* =====================================================
+   POPUP TITLE
+===================================================== */
+
+.camera-popup h2 {
+
+    margin:
+        0 0 16px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            28px,
+            7vw,
+            38px
+        );
+
+    line-height: 1.15;
+
+    color: #292724;
+
+}
+
+
+/* =====================================================
+   POPUP MESSAGE
+===================================================== */
+
+.camera-popup-text {
+
+    margin:
+        0 0 20px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    color: #6f6962;
+
+}
+
+
+/* =====================================================
+   POPUP NOTE
+===================================================== */
+
+.camera-popup-note {
+
+    display: inline-block;
+
+    padding:
+        12px 18px;
+
+    margin-bottom: 24px;
+
+    background:
+        rgba(168,92,92,.08);
+
+    border:
+        1px dashed
+        rgba(168,92,92,.35);
+
+    border-radius: 14px;
+
+    font-family:
+        Arial,
+        sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: #a85c5c;
+
+}
+
+
+/* =====================================================
+   POPUP BUTTON
+===================================================== */
+
+.camera-popup-button {
+
+    display: block;
+
+    width: 100%;
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding:
+        15px 20px;
+
+    background:
+        #292724;
+
+    color:
+        #fffdf8;
+
+    font-family:
+        "Arial Rounded MT Bold",
+        Arial,
+        sans-serif;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    letter-spacing: .5px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 0 #171614;
+
+    transition:
+        transform .2s ease,
+        box-shadow .2s ease,
+        background .2s ease;
+
+}
+
+
+.camera-popup-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    background:
+        #3a3733;
+
+    box-shadow:
+        0 7px 0 #171614;
+
+}
+
+
+.camera-popup-button:active {
+
+    transform:
+        translateY(3px);
+
+    box-shadow:
+        0 2px 0 #171614;
+
+}
+
+
+/* =====================================================
    ANIMATIONS
-======================================== */
+===================================================== */
 
 @keyframes float {
 
@@ -1101,9 +1375,29 @@ h1 span {
 }
 
 
-/* ========================================
+@keyframes popupFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(-6px);
+
+    }
+
+}
+
+
+/* =====================================================
    MOBILE
-======================================== */
+===================================================== */
 
 @media (max-width: 600px) {
 
@@ -1159,317 +1453,6 @@ h1 span {
 
     }
 
-}
-/* ========================================
-   FINAL VC POPUP
-======================================== */
-
-.camera-popup-overlay {
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 99999;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 20px;
-
-    background:
-        rgba(41,39,36,.55);
-
-    backdrop-filter:
-        blur(8px);
-
-    -webkit-backdrop-filter:
-        blur(8px);
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-
-}
-
-
-/* ========================================
-   POPUP CARD
-======================================== */
-
-.camera-popup {
-
-    position: relative;
-
-    width: min(
-        430px,
-        100%
-    );
-
-    padding:
-        38px 30px
-        32px;
-
-    text-align: center;
-
-    background:
-        rgba(255,253,248,.98);
-
-    border:
-        1px solid
-        rgba(60,55,50,.12);
-
-    box-shadow:
-
-        0 25px 70px
-        rgba(30,27,24,.25),
-
-        0 5px 20px
-        rgba(30,27,24,.12);
-
-    transform:
-        translateY(25px)
-        scale(.92);
-
-}
-
-
-/* ========================================
-   POPUP ICON
-======================================== */
-
-.camera-popup-icon {
-
-    width: 58px;
-
-    height: 58px;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    margin:
-        0 auto
-        18px;
-
-    border-radius: 50%;
-
-    background:
-        #eee9df;
-
-    font-size: 28px;
-
-}
-
-
-/* ========================================
-   SMALL LABEL
-======================================== */
-
-.camera-popup-small {
-
-    display: block;
-
-    margin-bottom: 12px;
-
-    font-size: 9px;
-
-    font-weight: bold;
-
-    letter-spacing: 3px;
-
-    color: #a85c5c;
-
-}
-
-
-/* ========================================
-   TITLE
-======================================== */
-
-.camera-popup h2 {
-
-    font-family:
-        Georgia,
-        serif;
-
-    font-size:
-        clamp(
-            1.7rem,
-            5vw,
-            2.3rem
-        );
-
-    line-height: 1.15;
-
-    color: #292724;
-
-    margin-bottom: 18px;
-
-}
-
-
-/* ========================================
-   MESSAGE
-======================================== */
-
-.camera-popup-text {
-
-    font-family:
-        Georgia,
-        serif;
-
-    font-size: 1rem;
-
-    line-height: 1.65;
-
-    color: #625c55;
-
-    margin-bottom: 20px;
-
-}
-
-
-/* ========================================
-   CAMERA NOTE
-======================================== */
-
-.camera-popup-note {
-
-    display: inline-block;
-
-    padding:
-        12px 18px;
-
-    margin-bottom: 25px;
-
-    background:
-        #eee9df;
-
-    border:
-        1px dashed
-        rgba(168,92,92,.35);
-
-    color: #a85c5c;
-
-    font-family:
-        Georgia,
-        serif;
-
-    font-size: .95rem;
-
-    font-style: italic;
-
-}
-
-
-/* ========================================
-   CLOSE BUTTON
-======================================== */
-
-.camera-popup-button {
-
-    width: 100%;
-
-    border: none;
-
-    padding:
-        14px 20px;
-
-    border-radius: 4px;
-
-    background:
-        #292724;
-
-    color:
-        #fffdf8;
-
-    font-family:
-        "Arial Rounded MT Bold",
-        Arial,
-        sans-serif;
-
-    font-size: .82rem;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
-
-    box-shadow:
-
-        0 5px 0 #171614,
-
-        0 10px 20px
-        rgba(0,0,0,.12);
-
-    cursor: pointer;
-
-    transition:
-        transform .2s ease,
-        background .2s ease;
-
-}
-
-
-.camera-popup-button:hover {
-
-    background:
-        #3b3834;
-
-    transform:
-        translateY(-3px);
-
-}
-
-
-.camera-popup-button:active {
-
-    transform:
-        translateY(2px);
-
-    box-shadow:
-        0 2px 0 #171614;
-
-}
-
-
-/* ========================================
-   POPUP ACTIVE STATE
-======================================== */
-
-.camera-popup-overlay.show {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
-
-}
-
-
-.camera-popup-overlay.show
-.camera-popup {
-
-    transform:
-        translateY(0)
-        scale(1);
-
-}
-
-
-/* ========================================
-   MOBILE
-======================================== */
-
-@media (max-width: 600px) {
 
     .camera-popup-overlay {
 
@@ -1482,71 +1465,66 @@ h1 span {
 
         width: 100%;
 
+        max-width: 360px;
+
         padding:
-            30px 20px
+            32px 22px
             25px;
+
+        border-radius: 22px;
 
     }
 
 
     .camera-popup-icon {
 
-        width: 52px;
-
-        height: 52px;
-
-        font-size: 25px;
-
-        margin-bottom: 15px;
+        font-size: 38px;
 
     }
 
 
     .camera-popup-small {
 
-        font-size: 8px;
-
-        letter-spacing: 2.5px;
+        font-size: 11px;
 
     }
 
 
     .camera-popup h2 {
 
-        font-size: 1.65rem;
+        font-size: 30px;
 
     }
 
 
     .camera-popup-text {
 
-        font-size: .9rem;
+        font-size: 15px;
 
     }
 
 
     .camera-popup-note {
 
-        font-size: .85rem;
+        font-size: 14px;
+
+        padding:
+            11px 14px;
 
     }
 
 
     .camera-popup-button {
 
-        padding:
-            13px 18px;
+        font-size: 14px;
 
-        font-size: .78rem;
+        padding:
+            14px 16px;
 
     }
 
 }
 
-
-/* ========================================
-   VERY SMALL PHONE
-======================================== */
 
 @media (max-width: 360px) {
 
@@ -1559,504 +1537,1840 @@ h1 span {
     }
 
 
-    .camera-popup-icon {
-
-        width: 46px;
-
-        height: 46px;
-
-        font-size: 22px;
-
-    }
-
-
     .camera-popup h2 {
 
-        font-size: 1.45rem;
-
-    }
-
-
-    .camera-popup-text {
-
-        font-size: .82rem;
+        font-size: 26px;
 
     }
 
 }
 
-/* ========================================
-   FINAL VC POPUP
-======================================== */
 
-/* OVERLAY */
-.camera-popup-overlay {
-    position: fixed;
+/* =====================================================
+   HIDE POPUP CONTENT COMPLETELY UNTIL OPEN
+===================================================== */
 
-    inset: 0;
+.camera-popup-overlay:not(.show) .camera-popup {
 
-    width: 100%;
-    height: 100%;
-
-    display: flex;
-
-    align-items: center;
-    justify-content: center;
-
-    padding: 20px;
-
-    background:
-        rgba(35, 32, 29, 0.55);
-
-    backdrop-filter:
-        blur(8px);
-
-    -webkit-backdrop-filter:
-        blur(8px);
-
-    z-index: 99999;
-
-    opacity: 0;
-
-    visibility: hidden;
-
-    pointer-events: none;
-}
-
-
-/* WHEN POPUP IS OPEN */
-.camera-popup-overlay.show {
-
-    opacity: 1;
-
-    visibility: visible;
-
-    pointer-events: auto;
+    display: none;
 
 }
 
+</style>
 
-/* ========================================
-   POPUP CARD
-======================================== */
-
-.camera-popup {
-
-    width: min(
-        90vw,
-        480px
-    );
-
-    padding:
-        38px
-        30px
-        32px;
-
-    background:
-        #fffdf8;
-
-    border:
-        2px solid
-        rgba(168, 92, 92, .18);
-
-    border-radius:
-        24px;
-
-    box-shadow:
-        0 25px 70px
-        rgba(40, 35, 30, .25);
-
-    text-align:
-        center;
-
-    position:
-        relative;
-
-    overflow:
-        hidden;
-
-}
+</head>
 
 
-/* ========================================
-   DECORATION
-======================================== */
-
-.camera-popup::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 140px;
-    height: 140px;
-
-    top: -70px;
-    right: -70px;
-
-    border-radius: 50%;
-
-    background:
-        rgba(168, 92, 92, .08);
-
-}
+<body>
 
 
-.camera-popup::after {
+<!-- =====================================================
+     CURSOR
+===================================================== -->
 
-    content: "✦";
-
-    position: absolute;
-
-    left: 25px;
-    top: 20px;
-
-    font-size: 18px;
-
-    color:
-        rgba(168, 92, 92, .35);
-
-}
+<div class="cursor"></div>
 
 
-/* ========================================
-   ICON
-======================================== */
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
 
-.camera-popup-icon {
+<div class="background">
 
-    font-size:
-        42px;
+    <span>✦</span>
+    <span>♡</span>
+    <span>✧</span>
+    <span>⋆</span>
+    <span>♡</span>
+    <span>✦</span>
 
-    margin-bottom:
-        12px;
-
-    animation:
-        popupFloat 2s ease-in-out infinite;
-
-}
+</div>
 
 
-/* ========================================
-   SMALL LABEL
-======================================== */
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
-.camera-popup-small {
-
-    margin:
-        0 0 8px;
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        12px;
-
-    font-weight:
-        800;
-
-    letter-spacing:
-        2px;
-
-    color:
-        #a85c5c;
-
-}
+<main class="container">
 
 
-/* ========================================
-   TITLE
-======================================== */
+    <div class="quest-label">
 
-.camera-popup h2 {
+        <span class="dot"></span>
 
-    margin:
-        0 0 16px;
+        FINAL QUEST
 
-    font-family:
-        Georgia,
-        serif;
+        <span class="dot"></span>
 
-    font-size:
-        clamp(
-            28px,
-            7vw,
-            38px
+    </div>
+
+
+    <h1>
+
+        A Little Something<br>
+
+        <span>
+            Is Coming Your Way.
+        </span>
+
+    </h1>
+
+
+    <p class="intro">
+
+        You made it all the way here...
+
+    </p>
+
+
+    <p class="sub-intro">
+
+        So I think you deserve to know<br>
+        what's waiting for you. 🤍
+
+    </p>
+
+
+    <!-- =================================================
+         GIFT
+    ================================================= -->
+
+    <section class="gift-area">
+
+        <div
+            class="gift-box"
+            id="gift-box"
+        >
+
+            <div class="gift-lid">
+
+                <div class="ribbon"></div>
+
+            </div>
+
+
+            <div class="gift-body">
+
+                <div class="ribbon vertical"></div>
+
+                <div class="ribbon horizontal"></div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         LOCK
+    ================================================= -->
+
+    <div
+        class="lock-message"
+        id="lock-message"
+    >
+
+        <div class="lock-icon">
+            🔒
+        </div>
+
+
+        <p>
+            Your birthday gift is waiting.
+        </p>
+
+
+        <button
+            id="unlock-button"
+            class="unlock-button"
+        >
+
+            Unlock your gift 🎁
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         REVEAL
+    ================================================= -->
+
+    <section
+        class="reveal"
+        id="reveal"
+    >
+
+
+        <div class="reveal-icon">
+            💌
+        </div>
+
+
+        <p class="reveal-small">
+            GIFT UNLOCKED
+        </p>
+
+
+        <h2>
+
+            I wish I could<br>
+            give this to you myself.
+
+        </h2>
+
+
+        <p class="message">
+
+            But since I can't hand it to you<br>
+            and watch you open it myself...
+
+            <br><br>
+
+            I sent a little something 🤍
+
+        </p>
+
+
+        <!-- PACKAGE -->
+
+        <div class="package-card">
+
+            <div class="package-icon">
+                📦
+            </div>
+
+
+            <div class="package-info">
+
+                <span>
+                    YOUR LITTLE SURPRISE
+                </span>
+
+
+                <strong>
+                    ON ITS WAY TO YOUUU GANTENGGGG &gt;o&lt;
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- TRACKING -->
+
+        <div class="tracking-card">
+
+
+            <div class="tracking-title">
+                YOUR LITTLE SURPRISE
+            </div>
+
+
+            <p class="scratch-instruction">
+                gosok gosokinn ciniii✦
+            </p>
+
+
+            <div class="scratch-container">
+
+
+                <div
+                    class="tracking-number"
+                    id="tracking-number"
+                >
+                    CM71903983627
+                </div>
+
+
+                <canvas
+                    id="scratch-canvas"
+                ></canvas>
+
+
+            </div>
+
+
+            <p class="scratch-hint">
+
+                ✦ Terusssss.. you're almost there.
+
+            </p>
+
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <p>
+
+            Gotcha!!!
+
+            <br>
+
+            Love U Ajushhh 🤍
+
+        </p>
+
+
+        <button
+            class="copy-button"
+            id="copy-button"
+        >
+
+            Mau dicopy? Klik aja
+
+        </button>
+
+
+        <!-- FINAL MESSAGE -->
+
+        <div class="final-message">
+
+
+            <div class="final-heart">
+                ♡
+            </div>
+
+
+            <p>
+                Happy Birthday, sayanggg🤍
+            </p>
+
+
+            <span>
+
+                I hope this little gift makes you smile
+                as much as you make me smile hihi
+
+            </span>
+
+
+        </div>
+
+
+        <!-- =================================================
+             FINISH BUTTON
+        ================================================= -->
+
+        <button
+            class="finish-button"
+            id="finish-button"
+        >
+
+            Last Info klik inii ✦
+
+        </button>
+
+
+    </section>
+
+</main>
+
+
+<!-- =====================================================
+     ⭐ FINAL POPUP
+===================================================== -->
+
+<div
+    class="camera-popup-overlay"
+    id="camera-popup-overlay"
+>
+
+
+    <div
+        class="camera-popup"
+        id="camera-popup"
+    >
+
+
+        <div class="camera-popup-icon">
+            👀
+        </div>
+
+
+        <p class="camera-popup-small">
+            ONE LAST THING...
+        </p>
+
+
+        <h2>
+            Nanti pas kita VC...
+        </h2>
+
+
+        <p class="camera-popup-text">
+
+            HIHIHI Love u Sayanggg 🤍
+
+        </p>
+
+
+        <div class="camera-popup-note">
+
+            Ciniii hadep kameraaa 👀
+
+        </div>
+
+
+        <button
+            class="camera-popup-button"
+            id="camera-popup-close"
+        >
+
+            OKE, SIAPPP ✦
+
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const cursor =
+    document.querySelector(".cursor");
+
+const giftBox =
+    document.querySelector("#gift-box");
+
+const unlockButton =
+    document.querySelector("#unlock-button");
+
+const lockMessage =
+    document.querySelector("#lock-message");
+
+const reveal =
+    document.querySelector("#reveal");
+
+const trackingNumber =
+    document.querySelector("#tracking-number");
+
+const copyButton =
+    document.querySelector("#copy-button");
+
+const finishButton =
+    document.querySelector("#finish-button");
+
+const scratchCanvas =
+    document.querySelector("#scratch-canvas");
+
+const scratchContainer =
+    document.querySelector(".scratch-container");
+
+const trackingCard =
+    document.querySelector(".tracking-card");
+
+const cameraPopupOverlay =
+    document.querySelector("#camera-popup-overlay");
+
+const cameraPopup =
+    document.querySelector("#camera-popup");
+
+const cameraPopupClose =
+    document.querySelector("#camera-popup-close");
+
+
+const RESI =
+    "CM71903983627";
+
+
+/* =====================================================
+   CURSOR
+===================================================== */
+
+document.addEventListener(
+    "mousemove",
+    (e) => {
+
+        if (!cursor) return;
+
+        gsap.to(
+            cursor,
+            {
+                left: e.clientX,
+                top: e.clientY,
+                duration: .15,
+                ease: "power2.out"
+            }
         );
 
-    line-height:
-        1.15;
+    }
+);
 
-    color:
-        #292724;
+
+/* =====================================================
+   PAGE LOAD
+===================================================== */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        gsap.from(
+            ".container",
+            {
+                opacity: 0,
+                y: 25,
+                duration: 1,
+                ease: "power3.out"
+            }
+        );
+
+
+        gsap.from(
+            ".gift-box",
+            {
+                opacity: 0,
+                scale: .6,
+                rotation: -10,
+                duration: 1.2,
+                delay: .3,
+                ease: "back.out(1.7)"
+            }
+        );
+
+
+        gsap.to(
+            ".gift-box",
+            {
+                y: -8,
+                duration: 1.8,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut"
+            }
+        );
+
+
+        setTimeout(
+            resizeScratchCanvas,
+            200
+        );
+
+    }
+);
+
+
+/* =====================================================
+   UNLOCK GIFT
+===================================================== */
+
+if (unlockButton) {
+
+    unlockButton.addEventListener(
+        "click",
+        () => {
+
+            unlockButton.disabled = true;
+
+
+            gsap.to(
+                unlockButton,
+                {
+                    scale: .9,
+                    duration: .1
+                }
+            );
+
+
+            gsap.to(
+                unlockButton,
+                {
+                    scale: 1,
+                    duration: .25,
+                    delay: .1
+                }
+            );
+
+
+            gsap.timeline()
+
+                .to(
+                    giftBox,
+                    {
+                        x: -8,
+                        rotation: -6,
+                        duration: .08
+                    }
+                )
+
+                .to(
+                    giftBox,
+                    {
+                        x: 8,
+                        rotation: 5,
+                        duration: .08
+                    }
+                )
+
+                .to(
+                    giftBox,
+                    {
+                        x: -5,
+                        rotation: -3,
+                        duration: .08
+                    }
+                )
+
+                .to(
+                    giftBox,
+                    {
+                        x: 0,
+                        rotation: 0,
+                        duration: .15
+                    }
+                );
+
+
+            gsap.to(
+                ".gift-lid",
+                {
+                    y: -80,
+                    rotation: -8,
+                    opacity: 0,
+                    duration: .8,
+                    delay: .4,
+                    ease: "back.out(1.5)"
+                }
+            );
+
+
+            gsap.to(
+                ".gift-body",
+                {
+                    boxShadow:
+                        "0 0 60px rgba(168,92,92,.35)",
+                    duration: .8,
+                    delay: .5
+                }
+            );
+
+
+            gsap.to(
+                lockMessage,
+                {
+                    opacity: 0,
+                    y: -20,
+                    duration: .5,
+                    delay: 1,
+
+                    onComplete: () => {
+
+                        lockMessage.style.display =
+                            "none";
+
+                        showReveal();
+
+                    }
+
+                }
+            );
+
+        }
+    );
 
 }
 
 
-/* ========================================
-   MESSAGE
-======================================== */
+/* =====================================================
+   SHOW REVEAL
+===================================================== */
 
-.camera-popup-text {
+function showReveal() {
 
-    margin:
-        0 0 20px;
+    if (!reveal) return;
 
-    font-family:
-        Arial,
-        sans-serif;
 
-    font-size:
-        16px;
+    if (trackingNumber) {
 
-    line-height:
-        1.6;
+        trackingNumber.textContent = "";
 
-    color:
-        #6f6962;
+    }
+
+
+    reveal.style.display =
+        "block";
+
+
+    gsap.fromTo(
+        reveal,
+        {
+            opacity: 0,
+            y: 40
+        },
+        {
+            opacity: 1,
+            y: 0,
+            duration: 1,
+            ease: "power3.out",
+
+            onComplete: () => {
+
+                createParticles();
+
+                setTimeout(
+                    resizeScratchCanvas,
+                    100
+                );
+
+            }
+
+        }
+    );
 
 }
 
 
-/* ========================================
-   NOTE
-======================================== */
+/* =====================================================
+   SCRATCH CARD
+===================================================== */
 
-.camera-popup-note {
+let ctx = null;
 
-    display:
-        inline-block;
+if (scratchCanvas) {
 
-    padding:
-        12px
-        18px;
-
-    margin-bottom:
-        24px;
-
-    background:
-        rgba(168, 92, 92, .08);
-
-    border:
-        1px dashed
-        rgba(168, 92, 92, .35);
-
-    border-radius:
-        14px;
-
-    font-family:
-        Arial,
-        sans-serif;
-
-    font-size:
-        15px;
-
-    font-weight:
-        700;
-
-    color:
-        #a85c5c;
+    ctx =
+        scratchCanvas.getContext("2d");
 
 }
 
 
-/* ========================================
-   BUTTON
-======================================== */
+let isScratching = false;
 
-.camera-popup-button {
+let scratchedPixels = 0;
 
-    display:
-        block;
-
-    width:
-        100%;
-
-    border:
-        none;
-
-    border-radius:
-        12px;
-
-    padding:
-        15px
-        20px;
-
-    background:
-        #292724;
-
-    color:
-        #fffdf8;
-
-    font-family:
-        "Arial Rounded MT Bold",
-        Arial,
-        sans-serif;
-
-    font-size:
-        15px;
-
-    font-weight:
-        800;
-
-    letter-spacing:
-        .5px;
-
-    cursor:
-        pointer;
-
-    box-shadow:
-        0 5px 0
-        #171614;
-
-    transition:
-        transform .2s ease,
-        box-shadow .2s ease,
-        background .2s ease;
-
-}
+const requiredScratch = 45;
 
 
-/* HOVER */
-.camera-popup-button:hover {
+/* =====================================================
+   RESIZE CANVAS
+===================================================== */
 
-    transform:
-        translateY(-2px);
+function resizeScratchCanvas() {
 
-    background:
-        #3a3733;
+    if (
+        !scratchCanvas ||
+        !scratchContainer ||
+        !ctx
+    ) return;
 
-    box-shadow:
-        0 7px 0
-        #171614;
+
+    const rect =
+        scratchContainer.getBoundingClientRect();
+
+
+    if (
+        rect.width <= 0 ||
+        rect.height <= 0
+    ) return;
+
+
+    const dpr =
+        window.devicePixelRatio || 1;
+
+
+    scratchCanvas.width =
+        rect.width * dpr;
+
+
+    scratchCanvas.height =
+        rect.height * dpr;
+
+
+    scratchCanvas.style.width =
+        rect.width + "px";
+
+
+    scratchCanvas.style.height =
+        rect.height + "px";
+
+
+    ctx.setTransform(
+        dpr,
+        0,
+        0,
+        dpr,
+        0,
+        0
+    );
+
+
+    drawScratchLayer(
+        rect.width,
+        rect.height
+    );
 
 }
 
 
-/* PRESS */
-.camera-popup-button:active {
+/* =====================================================
+   DRAW SCRATCH LAYER
+===================================================== */
 
-    transform:
-        translateY(3px);
+function drawScratchLayer(
+    width,
+    height
+) {
 
-    box-shadow:
-        0 2px 0
-        #171614;
+    if (!ctx) return;
+
+
+    ctx.globalCompositeOperation =
+        "source-over";
+
+
+    ctx.fillStyle =
+        "#a85c5c";
+
+
+    ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+
+    for (
+        let i = 0;
+        i < 350;
+        i++
+    ) {
+
+        const x =
+            Math.random() * width;
+
+        const y =
+            Math.random() * height;
+
+        const size =
+            Math.random() * 2 + 1;
+
+
+        ctx.fillStyle =
+            `rgba(255,253,248,${
+                Math.random() * .25
+            })`;
+
+
+        ctx.fillRect(
+            x,
+            y,
+            size,
+            size
+        );
+
+    }
+
+
+    ctx.fillStyle =
+        "#fffdf8";
+
+
+    ctx.font =
+        "bold 12px Arial";
+
+
+    ctx.textAlign =
+        "center";
+
+
+    ctx.textBaseline =
+        "middle";
+
+
+    ctx.fillText(
+        "✦ SCRATCH HERE ✦",
+        width / 2,
+        height / 2
+    );
 
 }
 
 
-/* ========================================
-   POPUP FLOAT
-======================================== */
+/* =====================================================
+   SCRATCH
+===================================================== */
 
-@keyframes popupFloat {
+function scratch(x, y) {
 
-    0%,
-    100% {
+    if (!ctx) return;
 
-        transform:
-            translateY(0);
+
+    ctx.globalCompositeOperation =
+        "destination-out";
+
+
+    ctx.beginPath();
+
+
+    ctx.arc(
+        x,
+        y,
+        18,
+        0,
+        Math.PI * 2
+    );
+
+
+    ctx.fill();
+
+
+    ctx.globalCompositeOperation =
+        "source-over";
+
+
+    scratchedPixels++;
+
+
+    if (
+        scratchedPixels >=
+        requiredScratch
+    ) {
+
+        revealTracking();
 
     }
 
-    50% {
+}
 
-        transform:
-            translateY(-6px);
+
+/* =====================================================
+   POINTER POSITION
+===================================================== */
+
+function getPointerPosition(e) {
+
+    const rect =
+        scratchCanvas.getBoundingClientRect();
+
+
+    return {
+
+        x:
+            e.clientX -
+            rect.left,
+
+        y:
+            e.clientY -
+            rect.top
+
+    };
+
+}
+
+
+/* =====================================================
+   MOUSE SCRATCH
+===================================================== */
+
+if (scratchCanvas) {
+
+    scratchCanvas.addEventListener(
+        "mousedown",
+        (e) => {
+
+            isScratching = true;
+
+            const pos =
+                getPointerPosition(e);
+
+            scratch(
+                pos.x,
+                pos.y
+            );
+
+        }
+    );
+
+
+    scratchCanvas.addEventListener(
+        "mousemove",
+        (e) => {
+
+            if (!isScratching)
+                return;
+
+            const pos =
+                getPointerPosition(e);
+
+            scratch(
+                pos.x,
+                pos.y
+            );
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   TOUCH SCRATCH
+===================================================== */
+
+if (scratchCanvas) {
+
+    scratchCanvas.addEventListener(
+        "touchstart",
+        (e) => {
+
+            e.preventDefault();
+
+            isScratching = true;
+
+
+            const touch =
+                e.touches[0];
+
+
+            const rect =
+                scratchCanvas.getBoundingClientRect();
+
+
+            scratch(
+                touch.clientX -
+                    rect.left,
+
+                touch.clientY -
+                    rect.top
+            );
+
+        },
+        {
+            passive: false
+        }
+    );
+
+
+    scratchCanvas.addEventListener(
+        "touchmove",
+        (e) => {
+
+            e.preventDefault();
+
+
+            if (!isScratching)
+                return;
+
+
+            const touch =
+                e.touches[0];
+
+
+            const rect =
+                scratchCanvas.getBoundingClientRect();
+
+
+            scratch(
+                touch.clientX -
+                    rect.left,
+
+                touch.clientY -
+                    rect.top
+            );
+
+        },
+        {
+            passive: false
+        }
+    );
+
+
+    scratchCanvas.addEventListener(
+        "touchend",
+        () => {
+
+            isScratching = false;
+
+        }
+    );
+
+}
+
+
+window.addEventListener(
+    "mouseup",
+    () => {
+
+        isScratching = false;
+
+    }
+);
+
+
+/* =====================================================
+   REVEAL TRACKING
+===================================================== */
+
+function revealTracking() {
+
+    if (!scratchCanvas)
+        return;
+
+
+    if (
+        scratchCanvas.dataset.revealed
+    )
+        return;
+
+
+    scratchCanvas.dataset.revealed =
+        "true";
+
+
+    if (trackingNumber) {
+
+        trackingNumber.textContent =
+            RESI;
+
+    }
+
+
+    if (trackingCard) {
+
+        trackingCard.classList.add(
+            "revealed"
+        );
+
+    }
+
+
+    gsap.to(
+        scratchCanvas,
+        {
+            opacity: 0,
+            duration: .8,
+            ease: "power2.out"
+        }
+    );
+
+
+    if (trackingNumber) {
+
+        gsap.fromTo(
+            trackingNumber,
+            {
+                scale: .85,
+                opacity: .5
+            },
+            {
+                scale: 1,
+                opacity: 1,
+                duration: .8,
+                ease: "back.out(2)"
+            }
+        );
+
+    }
+
+
+    const hint =
+        document.querySelector(
+            ".scratch-hint"
+        );
+
+
+    if (hint) {
+
+        hint.textContent =
+            "You found it. 📦 Your little surprise is on its way. ♡";
+
+    }
+
+
+    createScratchCelebration();
+
+}
+
+
+/* =====================================================
+   COPY RESI
+===================================================== */
+
+if (copyButton) {
+
+    copyButton.addEventListener(
+        "click",
+        async () => {
+
+            try {
+
+                await navigator.clipboard.writeText(
+                    RESI
+                );
+
+
+                copyButton.textContent =
+                    "Copied!!! 📦♡";
+
+
+                setTimeout(
+                    () => {
+
+                        copyButton.textContent =
+                            "Mau dicopy? Klik aja";
+
+                    },
+                    1800
+                );
+
+
+            } catch (error) {
+
+                const textarea =
+                    document.createElement(
+                        "textarea"
+                    );
+
+
+                textarea.value =
+                    RESI;
+
+
+                document.body.appendChild(
+                    textarea
+                );
+
+
+                textarea.select();
+
+
+                document.execCommand(
+                    "copy"
+                );
+
+
+                textarea.remove();
+
+
+                copyButton.textContent =
+                    "Copied!!! 📦♡";
+
+
+                setTimeout(
+                    () => {
+
+                        copyButton.textContent =
+                            "Mau dicopy? Klik aja";
+
+                    },
+                    1800
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ⭐ OPEN FINAL POPUP
+===================================================== */
+
+if (finishButton) {
+
+    finishButton.addEventListener(
+        "click",
+        (e) => {
+
+            e.preventDefault();
+
+
+            console.log(
+                "FINAL POPUP OPEN"
+            );
+
+
+            if (!cameraPopupOverlay)
+                return;
+
+
+            /* SHOW */
+
+            cameraPopupOverlay.classList.add(
+                "show"
+            );
+
+
+            /* PREVENT PAGE SCROLL */
+
+            document.body.style.overflow =
+                "hidden";
+
+
+            /* CELEBRATION */
+
+            createCameraCelebration();
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ⭐ CLOSE FINAL POPUP
+===================================================== */
+
+if (cameraPopupClose) {
+
+    cameraPopupClose.addEventListener(
+        "click",
+        (e) => {
+
+            e.preventDefault();
+
+
+            if (!cameraPopupOverlay)
+                return;
+
+
+            cameraPopupOverlay.classList.remove(
+                "show"
+            );
+
+
+            document.body.style.overflow =
+                "";
+
+
+            createCameraCelebration();
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   CLICK OUTSIDE POPUP TO CLOSE
+===================================================== */
+
+if (cameraPopupOverlay) {
+
+    cameraPopupOverlay.addEventListener(
+        "click",
+        (e) => {
+
+            if (
+                e.target ===
+                cameraPopupOverlay
+            ) {
+
+                cameraPopupOverlay.classList.remove(
+                    "show"
+                );
+
+
+                document.body.style.overflow =
+                    "";
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   ESC TO CLOSE
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    (e) => {
+
+        if (
+            e.key === "Escape" &&
+            cameraPopupOverlay &&
+            cameraPopupOverlay.classList.contains(
+                "show"
+            )
+        ) {
+
+            cameraPopupOverlay.classList.remove(
+                "show"
+            );
+
+
+            document.body.style.overflow =
+                "";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CELEBRATIONS
+===================================================== */
+
+function createParticles() {
+
+    const symbols = [
+        "✦",
+        "♡",
+        "✧",
+        "⋆"
+    ];
+
+
+    for (
+        let i = 0;
+        i < 18;
+        i++
+    ) {
+
+        const particle =
+            document.createElement(
+                "div"
+            );
+
+
+        particle.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        particle.style.position =
+            "fixed";
+
+
+        particle.style.left =
+            "50%";
+
+
+        particle.style.top =
+            "45%";
+
+
+        particle.style.zIndex =
+            "999998";
+
+
+        particle.style.pointerEvents =
+            "none";
+
+
+        particle.style.color =
+            "#a85c5c";
+
+
+        particle.style.fontSize =
+            (
+                Math.random() * 15 +
+                10
+            ) + "px";
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        gsap.to(
+            particle,
+            {
+
+                x:
+                    Math.random() *
+                    400 -
+                    200,
+
+                y:
+                    Math.random() *
+                    400 -
+                    200,
+
+                opacity: 0,
+
+                rotation:
+                    Math.random() *
+                    360,
+
+                duration:
+                    Math.random() * 1.5 +
+                    1,
+
+                ease:
+                    "power2.out",
+
+                onComplete: () => {
+
+                    particle.remove();
+
+                }
+
+            }
+        );
 
     }
 
 }
 
 
-/* ========================================
-   MOBILE
-======================================== */
+/* =====================================================
+   SCRATCH CELEBRATION
+===================================================== */
 
-@media (max-width: 600px) {
+function createScratchCelebration() {
 
-    .camera-popup-overlay {
-
-        padding:
-            18px;
-
-    }
-
-
-    .camera-popup {
-
-        width:
-            100%;
-
-        max-width:
-            360px;
-
-        padding:
-            32px
-            22px
-            25px;
-
-        border-radius:
-            22px;
-
-    }
+    const symbols = [
+        "✦",
+        "♡",
+        "✧",
+        "⋆"
+    ];
 
 
-    .camera-popup-icon {
+    for (
+        let i = 0;
+        i < 12;
+        i++
+    ) {
 
-        font-size:
-            38px;
-
-    }
-
-
-    .camera-popup-small {
-
-        font-size:
-            11px;
-
-    }
+        const particle =
+            document.createElement(
+                "div"
+            );
 
 
-    .camera-popup h2 {
-
-        font-size:
-            30px;
-
-    }
-
-
-    .camera-popup-text {
-
-        font-size:
-            15px;
-
-    }
+        particle.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
 
 
-    .camera-popup-note {
-
-        font-size:
-            14px;
-
-        padding:
-            11px
-            14px;
-
-    }
+        particle.style.position =
+            "fixed";
 
 
-    .camera-popup-button {
+        particle.style.left =
+            "50%";
 
-        font-size:
-            14px;
 
-        padding:
-            14px
-            16px;
+        particle.style.top =
+            "55%";
+
+
+        particle.style.zIndex =
+            "999998";
+
+
+        particle.style.pointerEvents =
+            "none";
+
+
+        particle.style.color =
+            "#a85c5c";
+
+
+        particle.style.fontSize =
+            (
+                Math.random() * 12 +
+                10
+            ) + "px";
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        gsap.to(
+            particle,
+            {
+
+                x:
+                    Math.random() *
+                    300 -
+                    150,
+
+                y:
+                    Math.random() *
+                    200 -
+                    100,
+
+                opacity: 0,
+
+                rotation:
+                    Math.random() *
+                    360,
+
+                duration: 1.2,
+
+                ease:
+                    "power2.out",
+
+                onComplete: () => {
+
+                    particle.remove();
+
+                }
+
+            }
+        );
 
     }
 
 }
+
+
+/* =====================================================
+   POPUP CELEBRATION
+===================================================== */
+
+function createCameraCelebration() {
+
+    const symbols = [
+        "♡",
+        "✦",
+        "✧",
+        "⋆"
+    ];
+
+
+    for (
+        let i = 0;
+        i < 12;
+        i++
+    ) {
+
+        const particle =
+            document.createElement(
+                "div"
+            );
+
+
+        particle.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        particle.style.position =
+            "fixed";
+
+
+        particle.style.left =
+            "50%";
+
+
+        particle.style.top =
+            "50%";
+
+
+        particle.style.zIndex =
+            "1000000";
+
+
+        particle.style.pointerEvents =
+            "none";
+
+
+        particle.style.color =
+            "#a85c5c";
+
+
+        particle.style.fontSize =
+            `${Math.random() * 10 + 12}px`;
+
+
+        document.body.appendChild(
+            particle
+        );
+
+
+        gsap.to(
+            particle,
+            {
+
+                x:
+                    Math.random() *
+                    260 -
+                    130,
+
+                y:
+                    Math.random() *
+                    200 -
+                    100,
+
+                rotation:
+                    Math.random() *
+                    360,
+
+                opacity: 0,
+
+                duration:
+                    Math.random() *
+                    .8 +
+                    .8,
+
+                ease:
+                    "power2.out",
+
+                onComplete: () => {
+
+                    particle.remove();
+
+                }
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   BACKGROUND FLOATING PARTICLES
+===================================================== */
+
+setInterval(
+    () => {
+
+        const symbols = [
+            "✦",
+            "♡",
+            "✧"
+        ];
+
+
+        const element =
+            document.createElement(
+                "div"
+            );
+
+
+        element.textContent =
+            symbols[
+                Math.floor(
+                    Math.random() *
+                    symbols.length
+                )
+            ];
+
+
+        element.style.position =
+            "fixed";
+
+
+        element.style.left =
+            Math.random() *
+            100 +
+            "vw";
+
+
+        element.style.top =
+            "105vh";
+
+
+        element.style.color =
+            "#a85c5c";
+
+
+        element.style.opacity =
+            ".2";
+
+
+        element.style.pointerEvents =
+            "none";
+
+
+        element.style.zIndex =
+            "1";
+
+
+        document.body.appendChild(
+            element
+        );
+
+
+        gsap.to(
+            element,
+            {
+
+                y:
+                    -window.innerHeight -
+                    100,
+
+                x:
+                    Math.random() *
+                    100 -
+                    50,
+
+                rotation:
+                    Math.random() *
+                    80 -
+                    40,
+
+                duration:
+                    Math.random() * 6 +
+                    7,
+
+                ease: "none",
+
+                onComplete: () => {
+
+                    element.remove();
+
+                }
+
+            }
+        );
+
+    },
+    1800
+);
+
+
+/* =====================================================
+   RESIZE
+===================================================== */
+
+window.addEventListener(
+    "resize",
+    () => {
+
+        if (
+            scratchCanvas &&
+            !scratchCanvas.dataset.revealed
+        ) {
+
+            resizeScratchCanvas();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+
+</html>
