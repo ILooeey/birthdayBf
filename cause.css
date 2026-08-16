@@ -226,7 +226,99 @@ body {
         blur(10px);
 }
 
+/* ========================================
+   READY SCREEN
+======================================== */
 
+#ready-screen {
+
+    position: absolute;
+
+    inset: 0;
+
+    z-index: 50;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        rgba(255,253,248,.96);
+
+    opacity: 1;
+}
+
+
+#ready-screen p {
+
+    font-family: Georgia, serif;
+
+    font-size: 1.25rem;
+
+    color: #6e6861;
+
+    margin-bottom: 22px;
+}
+
+
+#ready-button {
+
+    padding:
+        13px 28px;
+
+    border: none;
+
+    border-radius: 4px;
+
+    background: #292724;
+
+    color: #fffdf8;
+
+    font-family:
+        "Arial Rounded MT Bold",
+        Arial,
+        sans-serif;
+
+    font-size: .85rem;
+
+    font-weight: bold;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 5px 0 #171614,
+        0 10px 20px
+        rgba(0,0,0,.12);
+
+    transition:
+        transform .2s ease,
+        background .2s ease;
+
+    cursor: pointer;
+}
+
+
+#ready-button:hover {
+
+    background: #3b3834;
+
+    transform:
+        translateY(-3px);
+}
+
+
+#ready-button span {
+
+    margin-left: 8px;
+
+    color: #d98b8b;
+}
 /* ========================================
    HEADER
 ======================================== */
