@@ -1,17 +1,18 @@
-/* =========================================================
+/* ========================================
    RESET
-========================================================= */
+======================================== */
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    cursor: none;
 }
 
 
-/* =========================================================
+/* ========================================
    BODY
-========================================================= */
+======================================== */
 
 body {
 
@@ -47,9 +48,9 @@ body {
 }
 
 
-/* =========================================================
+/* ========================================
    PAPER TEXTURE
-========================================================= */
+======================================== */
 
 body::before {
 
@@ -77,9 +78,9 @@ body::before {
 }
 
 
-/* =========================================================
-   CUSTOM CURSOR
-========================================================= */
+/* ========================================
+   CURSOR
+======================================== */
 
 .cursor {
 
@@ -90,7 +91,7 @@ body::before {
 
     pointer-events: none;
 
-    z-index: 100000;
+    z-index: 999999;
 
     transform:
         translate(-50%, -50%);
@@ -115,9 +116,9 @@ body::before {
 }
 
 
-/* =========================================================
+/* ========================================
    BACKGROUND
-========================================================= */
+======================================== */
 
 .background {
 
@@ -149,78 +150,55 @@ body::before {
 
 
 .background span:nth-child(1) {
-
     top: 12%;
     left: 10%;
-
     font-size: 22px;
-
 }
 
 
 .background span:nth-child(2) {
-
     top: 25%;
     right: 12%;
-
     font-size: 18px;
-
     animation-delay: 1s;
-
 }
 
 
 .background span:nth-child(3) {
-
     top: 65%;
     left: 7%;
-
     font-size: 25px;
-
     animation-delay: 2s;
-
 }
 
 
 .background span:nth-child(4) {
-
     bottom: 15%;
     right: 15%;
-
     font-size: 20px;
-
     animation-delay: 3s;
-
 }
 
 
 .background span:nth-child(5) {
-
     top: 45%;
     right: 25%;
-
     font-size: 16px;
-
     animation-delay: 1.5s;
-
 }
 
 
 .background span:nth-child(6) {
-
     bottom: 25%;
     left: 25%;
-
     font-size: 18px;
-
     animation-delay: 2.5s;
-
 }
 
 
-/* =========================================================
+/* ========================================
    CONTAINER
-========================================================= */
+======================================== */
 
 .container {
 
@@ -246,9 +224,9 @@ body::before {
 }
 
 
-/* =========================================================
-   QUEST LABEL
-========================================================= */
+/* ========================================
+   QUEST
+======================================== */
 
 .quest-label {
 
@@ -288,9 +266,9 @@ body::before {
 }
 
 
-/* =========================================================
+/* ========================================
    TITLE
-========================================================= */
+======================================== */
 
 h1 {
 
@@ -331,9 +309,9 @@ h1 span {
 }
 
 
-/* =========================================================
+/* ========================================
    INTRO
-========================================================= */
+======================================== */
 
 .intro {
 
@@ -363,9 +341,9 @@ h1 span {
 }
 
 
-/* =========================================================
-   GIFT
-========================================================= */
+/* ========================================
+   GIFT AREA
+======================================== */
 
 .gift-area {
 
@@ -381,10 +359,12 @@ h1 span {
 
     align-items: center;
 
-    pointer-events: none;
-
 }
 
+
+/* ========================================
+   GIFT BOX
+======================================== */
 
 .gift-box {
 
@@ -396,8 +376,24 @@ h1 span {
     transform:
         rotate(-3deg);
 
+    transition:
+        transform .3s ease;
+
 }
 
+
+.gift-box:hover {
+
+    transform:
+        rotate(0deg)
+        translateY(-8px);
+
+}
+
+
+/* ========================================
+   GIFT BODY
+======================================== */
 
 .gift-body {
 
@@ -423,6 +419,10 @@ h1 span {
 }
 
 
+/* ========================================
+   GIFT LID
+======================================== */
+
 .gift-lid {
 
     position: absolute;
@@ -444,6 +444,10 @@ h1 span {
 
 }
 
+
+/* ========================================
+   RIBBON
+======================================== */
 
 .ribbon {
 
@@ -488,15 +492,11 @@ h1 span {
 }
 
 
-/* =========================================================
+/* ========================================
    LOCK
-========================================================= */
+======================================== */
 
 .lock-message {
-
-    position: relative;
-
-    z-index: 20;
 
     margin-top: 5px;
 
@@ -525,17 +525,13 @@ h1 span {
 }
 
 
-/* =========================================================
+/* ========================================
    BUTTONS
-========================================================= */
+======================================== */
 
 .unlock-button,
 .copy-button,
 .finish-button {
-
-    position: relative;
-
-    z-index: 30;
 
     border: none;
 
@@ -573,8 +569,6 @@ h1 span {
 
     cursor: pointer;
 
-    pointer-events: auto;
-
 }
 
 
@@ -590,28 +584,9 @@ h1 span {
 }
 
 
-.unlock-button:active,
-.copy-button:active,
-.finish-button:active {
-
-    transform:
-        translateY(2px);
-
-}
-
-
-.unlock-button:disabled {
-
-    opacity: .7;
-
-    cursor: default;
-
-}
-
-
-/* =========================================================
+/* ========================================
    REVEAL
-========================================================= */
+======================================== */
 
 .reveal {
 
@@ -621,12 +596,12 @@ h1 span {
 
     margin-top: 30px;
 
-    position: relative;
-
-    z-index: 5;
-
 }
 
+
+/* ========================================
+   REVEAL CONTENT
+======================================== */
 
 .reveal-icon {
 
@@ -685,9 +660,9 @@ h1 span {
 }
 
 
-/* =========================================================
+/* ========================================
    PACKAGE
-========================================================= */
+======================================== */
 
 .package-card {
 
@@ -765,9 +740,9 @@ h1 span {
 }
 
 
-/* =========================================================
+/* ========================================
    TRACKING CARD
-========================================================= */
+======================================== */
 
 .tracking-card {
 
@@ -815,6 +790,8 @@ h1 span {
     color: #89827a;
 
     font-size: .8rem;
+
+    line-height: 1.5;
 
 }
 
@@ -896,8 +873,6 @@ h1 span {
 
     touch-action: none;
 
-    z-index: 5;
-
 }
 
 
@@ -914,37 +889,22 @@ h1 span {
 }
 
 
-.tracking-card.revealed .scratch-hint {
-
-    color: #a85c5c;
-
-}
-
-
-/* =========================================================
-   TRACKING MESSAGE
-========================================================= */
-
 .tracking-message {
 
-    color: #625c55;
+    margin-top: 15px;
 
-    font-size: .9rem;
+    color: #89827a;
 
-    line-height: 1.7;
+    font-size: .8rem;
 
-    margin:
-        25px auto
-        10px;
-
-    max-width: 500px;
+    line-height: 1.6;
 
 }
 
 
-/* =========================================================
+/* ========================================
    FINAL MESSAGE
-========================================================= */
+======================================== */
 
 .final-message {
 
@@ -996,25 +956,240 @@ h1 span {
 }
 
 
-/* =========================================================
+/* ========================================
+   POPUP
+======================================== */
+
+.camera-popup-overlay {
+
+    position: fixed;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+
+    background:
+        rgba(35,32,29,.60);
+
+    backdrop-filter:
+        blur(8px);
+
+    -webkit-backdrop-filter:
+        blur(8px);
+
+    z-index: 999999;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+
+    transition:
+        opacity .3s ease,
+        visibility .3s ease;
+
+}
+
+
+.camera-popup-overlay.show {
+
+    opacity: 1;
+
+    visibility: visible;
+
+    pointer-events: auto;
+
+}
+
+
+.camera-popup {
+
+    position: relative;
+
+    width:
+        min(
+            430px,
+            100%
+        );
+
+    padding:
+        38px 30px
+        32px;
+
+    text-align: center;
+
+    background:
+        #fffdf8;
+
+    border:
+        2px solid
+        rgba(168,92,92,.18);
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(30,27,24,.30);
+
+    transform:
+        translateY(30px)
+        scale(.9);
+
+    transition:
+        .45s ease;
+
+}
+
+
+.camera-popup-overlay.show
+.camera-popup {
+
+    transform:
+        translateY(0)
+        scale(1);
+
+}
+
+
+.camera-popup-icon {
+
+    font-size: 42px;
+
+    margin-bottom: 12px;
+
+    animation:
+        popupFloat
+        2s ease-in-out infinite;
+
+}
+
+
+.camera-popup-small {
+
+    margin-bottom: 8px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+
+    color: #a85c5c;
+
+}
+
+
+.camera-popup h2 {
+
+    margin-bottom: 16px;
+
+    font-family:
+        Georgia,
+        serif;
+
+    font-size:
+        clamp(
+            28px,
+            7vw,
+            38px
+        );
+
+    color: #292724;
+
+}
+
+
+.camera-popup-text {
+
+    margin-bottom: 20px;
+
+    font-size: 16px;
+
+    line-height: 1.6;
+
+    color: #6f6962;
+
+}
+
+
+.camera-popup-note {
+
+    display: inline-block;
+
+    padding:
+        12px 18px;
+
+    margin-bottom: 24px;
+
+    background:
+        rgba(168,92,92,.08);
+
+    border:
+        1px dashed
+        rgba(168,92,92,.35);
+
+    border-radius: 14px;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    color: #a85c5c;
+
+}
+
+
+.camera-popup-button {
+
+    display: block;
+
+    width: 100%;
+
+    border: none;
+
+    border-radius: 12px;
+
+    padding:
+        15px 20px;
+
+    background:
+        #292724;
+
+    color:
+        #fffdf8;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 5px 0 #171614;
+
+}
+
+
+/* ========================================
    ANIMATIONS
-========================================================= */
+======================================== */
 
 @keyframes float {
 
     0%,
     100% {
-
-        transform:
-            translateY(0);
-
+        transform: translateY(0);
     }
 
     50% {
-
-        transform:
-            translateY(-18px);
-
+        transform: translateY(-18px);
     }
 
 }
@@ -1024,15 +1199,11 @@ h1 span {
 
     0%,
     100% {
-
         opacity: 1;
-
     }
 
     50% {
-
         opacity: .3;
-
     }
 
 }
@@ -1042,25 +1213,33 @@ h1 span {
 
     0%,
     100% {
-
-        transform:
-            scale(1);
-
+        transform: scale(1);
     }
 
     50% {
-
-        transform:
-            scale(1.2);
-
+        transform: scale(1.2);
     }
 
 }
 
 
-/* =========================================================
+@keyframes popupFloat {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+
+}
+
+
+/* ========================================
    MOBILE
-========================================================= */
+======================================== */
 
 @media (max-width: 600px) {
 
@@ -1116,23 +1295,16 @@ h1 span {
 
     }
 
-}
 
+    .camera-popup {
 
-@media (max-width: 360px) {
+        width: 100%;
 
-    h1 {
-
-        font-size: 2.2rem;
-
-    }
-
-    .unlock-button,
-    .copy-button,
-    .finish-button {
+        max-width: 360px;
 
         padding:
-            13px 20px;
+            32px 22px
+            25px;
 
     }
 
